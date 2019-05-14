@@ -1,0 +1,38 @@
+FIX BUGS:
+
+argument collection # important //  geArgs and cleanArgs in expression
+continue line '/'
+setting default data types for variables # name = string // name will take only strings in its scope
+### add type param to varable dict ###
+finish multline assignment for containers //
+ eg = {
+    name = 4
+    age = 5
+}
+get arg_values
+fix display endl
+isIndexing and containers
+
+
+
+
+CREATE FEATURES:
+
+flow control // = [
+    if else elseif then when for while do break continue
+    loop(f, condition) loop(container, foreach)
+    all foreach with try except pass 
+]
+new keyword // as from in with like is at 
+new function // sleep 
+method calling
+agument unpacking
+convertion of objects, list, str, tuple etc
+functions and classes
+comparism
+doc strings
+imports
+file writing
+flow controls
+Exception
+byte manipulation

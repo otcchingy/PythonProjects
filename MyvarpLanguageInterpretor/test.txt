@@ -1,0 +1,51 @@
+[1,2,3,4,5]
+
+if (true){
+else if (true){
+else (true)){
+while (true){
+when (true){
+
+}
+
+
+if vbvb(hgh) == 111{
+else if (vbvb >= ddf()){
+else vbvb <= ddf{
+while (vbvb > ddf){
+when (vbvb < ddf){
+
+
+name = "atinga";age=25
+
+display(name)
+name = name * 2
+display('The new name is ')
+display(name)
+
+name = bernard;name = "bernard ';' is cool";egg = 5+5+5+3;
+
+display('\n\n')
+names = 'benrard', 'atinga', 'azumanh'
+display(names)
+
+sum = 5+5-5*5+5+5
+display('the sum is',sum)
+
+ num = input('Enter your number : ')
+ total = ffvsdf
+
+ func add(a,b){
+	return a+b
+ }
+
+ sum = add(a,b)
+ display(sum)
+
+name.jhj()
+name.hjhj(vnvjhjhghg,hgfhjg)
+
+name()
+
+### jkgjhdslkjflksdjf ### name ###
+### jkgjhdslkjflksdjf ###  ### vksdfhkbdb ### 

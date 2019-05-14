@@ -1,0 +1,17 @@
+__pycache__/twilio_app.cpython-36.pyc
+.dist
+.vscode
+junk
+__pycache__/database.cpython-36.pyc
+templates/loader.html
+test.py
+database.txt
+test.py
+static/uploads/photos/Photo.jpeg
+static/uploads/photos/Photo_1.jpeg
+static/uploads/photos/Photo_2.jpeg
+app-old.py
+.vs/VSWorkspaceState.json
+.vs/slnx.sqlite
+.vs/Flask/v15/.suo
+__pycache__/app.cpython-36.pyc
