@@ -1,0 +1,90 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Lukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>Admin-Login</title>
+    <!-- Icons-->
+    <link href="/static/node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+    <link href="/static/node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+    <link href="/static/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <!-- Main styles for this application-->
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+  </head>
+
+  {% with flashes = get_flashed_messages() %}
+    {% if flashes %}
+        {% for flash in flashes %}
+            {% if flash.category == 'success' %}
+                <div class="alert alert-success" role="alert">{{ flash }}</div>
+            {% elif flash.category == 'error' %}
+                <div class="alert alert-danger" role="alert">{{ flash }}</div>
+            {% else %}
+                <div class="alert alert-success" role="alert">{{ flash }}</div>
+            {% endif %}
+        {% endfor %}
+    {%endif%}
+  {% endwith %}
+
+  <body class="app flex-row align-items-center">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card-group">
+            <div class="card p-4">
+              <div class="card-body">
+                <h1>Login</h1>
+				<form  method="POST" action="/login">
+                {{ form.hidden_tag() }}
+                <p class="text-muted">Sign In to your account</p>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="icon-user"></i>
+                    </span>
+                  </div>
+                  <input class="form-control" type="text" id="username" name="username" placeholder="Username">
+                </div>
+                <div class="input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="icon-lock"></i>
+                    </span>
+                  </div>
+                  <input class="form-control" type="password" id="password" name="password" placeholder="Password">
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <button class="btn btn-primary px-4" type="submit" name="login" value="Login" >Login</button>
+                  </div>
+                  <div class="col-6 text-right">
+                    <a class="btn btn-link px-0" href="/change_login_details" >Change Details?</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%; background-image:url('/static/images/blog.jpg'); background-position:center;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	</form>
+    <!-- CoreUI and necessary plugins-->
+    <script src="/static/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/static/node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/static/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/static/node_modules/pace-progress/pace.min.js"></script>
+    <script src="/static/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+    <script src="/static/node_modules/@coreui/coreui/dist/js/coreui.min.js"></script>
+  </body>
+</html>

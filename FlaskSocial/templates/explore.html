@@ -1,0 +1,211 @@
+{% extends 'structure.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block body %}
+<script src="/static/javascript/explore.js"></script>
+
+
+	<main class="main">
+        <!-- Breadcrumb-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Explore
+          </li>
+        </ol>
+        <div class="container-fluid">
+          <div class="animated fadeIn"></div>
+          <div id="alert" class="alert.hide alert-success" role="alert"></div>
+          <div class="card">
+            <div class="card-header">News Feed
+              <div class="card-header-actions">
+                <a class="card-header-action" href="http://coreui.io/docs/components/bootstrap-scrollspy/" target="_blank">
+                  <small class="text-muted"></small>
+                </a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="scrollspy-example1">
+            <form method="POST" action="/explore">
+              <div class="input-prepend input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fa fa-search"></i>
+                  </span>
+                </div>
+                <input class="form-control" id="search" name="search" size="16" required='' type="text" placeholder="Search something here">
+                <span class="input-group-append">
+                  <button class="btn btn-info" name="explore" type="submit">Explore</button>
+                </span>
+              </div>
+              </form>
+                  </ul>
+                </nav>
+                <div id="spy-example1"  data-target="#navbar-example1" data-offset="65" style="position: relative; height: 100%; overflow: auto; margin-top: .5rem;">
+           
+         <div class="container">
+        <h1>Discover </h1>
+        <div id="field" class="timelineposts">
+
+        <div class="col-md-6">
+            <ul id="list-group" class="list-group">
+                {% for post in discover %}
+                  {% if post != 'reachedMax' %}
+                    {% with uzer = get_user(userid=post.user_id) %}
+                      {% if uzer %}
+                        <li class="list-group-item">
+                        <blockquote id='{{ post.post_id}}'>
+                          <div>
+                            <img style=" max-width: 50px; height: 50px; border-radius: 50em;"
+                              {% if uzer.profile_pic %} 
+                                src="{{ user.profile_pic }}" 
+                                {% else %} 
+                                  {% if uzer.gender=="male" %} 
+                                    src="/static/avatar/block-male.png"
+                                  {% elif uzer.gender=="female" %} 
+                                    src="/static/avatar/block-female.png" 
+                                  {% else %} 
+                                    src="/static/avatar/default-black.png"
+                                  {% endif %}
+                              {% endif %} alt="Friend">
+                            <b>@{{ uzer.username }}</b>
+                          </div>
+                          <article>
+                              {% if post.post_content['media'] != [] %}
+                                {% for media in post.post_content['media'] %}
+                                  {% if media['filetype'] == 'photo' %}
+                                      <center><img src="{{ (media['path'])[0] }}"  width="80%" height="100%" ></center>
+                                  {% elif media['filetype'] == 'audio' %}
+                                      <center><img src='/static/avatar/audio.png'  width="150" height="100" ></center>
+                                      <center><a  href="{{ (media['path'])[0] }}">Listen to {{ media['filename'] }}</a></center>
+                                  {% elif media['filetype'] == 'video' %}
+                                      <center> <img src='/static/avatar/video.png'  width="150" height="100" ></center>
+                                      <center><a  href="{{ (media['path'])[0] }}">Watch {{ media['filename'] }}</a></center>
+                                  {% elif media['filetype'] == 'document' %}
+                                      <center> <img src='/static/avatar/document.png'  width="150" height="100" ></center>
+                                      <center><a  href="{{ (media['path'])[0] }}">View {{ media['filename'] }}</a></center>
+                                  {% elif media['filetype'] == 'batch' %}
+                                        <div class="carousel slide" id="carouselExampleIndicators" data-ride="carousel">
+                                          <ol class="carousel-indicators">
+                                            <li class="active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                            {% if len(media['path']) >= 2 %}
+                                                {% for x in range(2, len(media['path'])) %}
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{x}}"></li>
+                                                {% endfor %}
+                                            {% endif %}
+                                          </ol>
+                                          <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                              <img class="d-block w-100" alt="First slide [800x400]" style="height: 70%; width: 60%;" src="{{ (media['path'])[0] }}" data-holder-rendered="true">
+                                            </div>
+                                              {% for y in (1, (len(media['path'])-1)) %}
+                                                <div class="carousel-item">
+                                                  <img class="d-block w-100" alt="Slide [800x400]" style="height: 70%; width: 60%;" src="{{ (media['path'])[y] }}" data-holder-rendered="true">
+                                                </div>
+                                              {% endfor %}
+                                          </div>
+                                          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                          </a>
+                                          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                          </a>
+                                        </div>
+                                  {% else %}
+                                    <empty></empty>
+                                  {% endif %}
+                                {% endfor %}
+                              {% endif %}<br/>
+                              <div style="font-size:15px;font-style:arial;">{{ post.post_content['post'] }}</div>
+                            </article>
+                          <p> </p>
+                          <footer>Posted --<span id='ago{{ post.post_id }}'>{{ time_ago(post.timestamp) }}</span>  {% if user.id == post.user_id %} -----
+                            <button class="btn" onClick="location.href='/edit/{{ post.post_id }}'">Edit Post</button>
+                            -----
+                            <button class="btn" onClick="myFunctions(action='delete', postid='{{post.post_id}}', section='delete{{post.post_id}}')">Delete</button>
+                            {% endif %}
+                            <br> {% if check_if_liked(user, post.post_id) == True %}
+                            <btn id="unlike{{post.post_id}}">
+                              <button class="btn btn-default" onClick="myFunctions(action='unlike', postid='{{post.post_id}}', section='unlike{{post.post_id}}')"
+                                type="button" style="color:#873beb;background-image:url(&quot;none&quot;);background-color:transparent;">
+                                <i class="glyphicon glyphicon-heart" data-aos="flip-right"></i>
+                                <span>{{ get_likes(post.post_id, count=True) }} Likes</span>
+                              </button>
+                            </btn>
+                            {% else %}
+                            <btn id="like{{post.post_id}}">
+                              <button class="btn btn-default" onClick="myFunctions(action='like', postid='{{post.post_id}}', section='like{{post.post_id}}')"
+                                type="button" style="color:#eb3b60;background-image:url(&quot;none&quot;);background-color:transparent;">
+                                <i class="glyphicon glyphicon-heart" data-aos="flip-right"></i>
+                                <span>{{ get_likes(post.post_id, count=True) }} Likes</span>
+                              </button>
+                            </btn>
+                            {% endif %}
+                            <button class="btn btn-default comment" onclick="showCommentsModal(postid='{{post.post_id}}')" type="button" style="color:#eb3b60;background-image:url(&quot;none&quot;);background-color:transparent;">
+                              <i class="glyphicon glyphicon-flash" style="color:#f9d616;"></i>
+                              <span style="color:#f9d616;"> Comments</span>
+                            </button>
+                            <button class="btn btn-default" id="share" type="button" style="color:#eb3b8c;background-image:url(&quot;none&quot;);background-color:transparent;">
+                              <i class="glyphicon glyphicon-heart" data-aos="flip-right"></i>
+                              <span>Share</span>
+                            </button>
+                          </footer>
+                        </blockquote>
+                        <div class="modal" id='cbox{{ post.post_id }}' role="dialog" tabindex="-1" style="padding-top:100px;">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" onclick="hideModal(postid='{{post.post_id}}')" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span>×</span>
+                                </button>
+                                <h4 class="modal-title">Comments</h4>
+                              </div>
+                              <div class="modal-body" id="cbody{{post.post_id}}" style="max-height: 400px; overflow-y: auto">
+                              </div>
+                              <div class="modal-footer">
+                                <div>
+                                  <span style="color:#706f6b;text-align: right;">
+                                    <count id="span{{post.post_id}}">{{ get_comments(post.post_id, count=True ) }}</count>
+                                  </span>
+                                  <input required='' id="comment{{post.post_id}}" type="text">
+                                  <button class="btn btn-default" type="button" onclick="postComments(postid='{{post.post_id}}')">Post Comment</button>
+                                </div>
+                                <button class="btn btn-default" type="button" onclick="hideModal(postid='{{post.post_id}}')">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </li>
+                      {% endif %}
+                    {%  endwith %}
+                  {% else %}
+                  <p>No More Post</p>
+                  {% endif %}
+                {% else %}
+                <p>Nothing to explore</p>
+                {% endfor%}
+            </ul>
+            </div>
+          </div>
+        </div>  
+        </div>
+          </div>
+        </div>
+        </div>
+        <div id="disqus_thread" class="disqus-loading">
+          <center>
+            <div>
+              <span  id="loader" class="spinner spinner_large">
+                <span class="spinner__dot spinner__dot_1"></span>
+                <span class="spinner__dot spinner__dot_2"></span>
+                <span class="spinner__dot spinner__dot_3"></span>
+              </span>
+            </div>
+          </center>
+        </div>
+        <br/>
+      </main>
+   									
+	
+{% endblock %}

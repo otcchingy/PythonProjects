@@ -1,0 +1,58 @@
+{% extends 'structure.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block body %}
+	<script src="/static/javascript/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="/static/javascript/messages.js"></script>
+	<main class="main">
+		<div style="visibility: hidden;" id="user"></div>
+        <!-- Breadcrumb-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">My Messages</li>
+          </li>
+        </ol>
+        <div class="container-fluid">
+          <div class="animated fadeIn"></div>
+		  <div id="alert" class="alert.hide alert-success" role="alert"></div>
+			<div class="container">
+			<h1>My Messages</h1>
+			</div>
+				<div>
+					<div class="container">
+						<div class="row">
+							<div class="col-md-3">
+								<ul class="list-group">
+									<li class="list-group-item" style="background-color:#FFF;"><span style="font-size:16px;"><strong><input type="button"  onclick="joinaugMessage()">Hang Room</strong></span></li>
+									<div><br/></div>
+									{% with friends = friends_id_list(user) %}
+										{% for friendid in friends %}
+											{% with uzer = get_user(userid=friendid) %}
+												<li class="list-group-item" style="background-color:#FFF;"><span style="font-size:16px;"><strong><input type="button"  onclick="privateMessage(userid='{{ friendid }}')">{{ uzer.username }}</strong></span><span class="online-status" id='{{ friendid }}'></span><span id='unread{{friendid}}'>{% if unread_messages(user, friendid , action='get') != None %}{{unread_messages(user, friendid , action='get')}}{% endif %}</span></li>
+											{% endwith %}
+										{% endfor %}
+									{% endwith %}
+								</ul>
+							</div>
+							<div class="col-md-9" style="position:relative;">
+								<ul id="message-box" class="list-group">
+									<li class="list-group-item" style="overflow:auto;height:300px;margin-bottom:55px;background-color:rgb(193, 213, 219) ">
+									<center><b>Welcome Back</b></center>
+									</li>
+								</ul>
+								<div class="message-input-div">
+									<input id="messagecontent" required="" type="text" style="width:100%;height:50px;outline:none;font-size:16px;">
+								</div>
+								<div id="send-button"><button class="btn btn-default msg-button-send" type="button">SEND </button>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+								
+        </div>
+	</main>
+
+
+
+{% endblock %}

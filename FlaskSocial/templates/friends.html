@@ -1,0 +1,144 @@
+{% extends 'structure.html' %} {% import "bootstrap/wtf.html" as wtf %} {% block body %}
+
+<main class="main">
+  <!-- Breadcrumb-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">Friends</li>
+    </li>
+  </ol>
+  <div class="container-fluid">
+    <div class="animated fadeIn"></div>
+
+    {% with flashes = get_flashed_messages() %} {% if flashes %} {% for flash in flashes %} {% if flash.category == 'success'
+    %}
+    <div class="alert alert-success" role="alert">{{ flash }}</div>
+    {% elif flash.category == 'error' %}
+    <div class="alert alert-danger" role="alert">{{ flash }}</div>
+    {% else %}
+    <div class="alert alert-success" role="alert">{{ flash }}</div>
+    {% endif %} {% endfor %} {%endif%} {% endwith %}
+    <div id="alert" class="alert.hide alert-success" role="alert"></div>
+    <div class="card">
+      <div class="card-header">Friend List
+        <div class="card-header-actions">
+          <a class="card-header-action" href="http://coreui.io/docs/components/bootstrap-scrollspy/" target="_blank">
+            <small class="text-muted"></small>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="scrollspy-example1">
+
+          <div id="spy-example1" data-spy="scroll" data-target="#navbar-example1" data-offset="65" style="position: relative; height: 600px; overflow: auto; margin-top: .5rem; overflow-y: scroll;">
+
+
+            <table class="table table-responsive-sm table-hover table-outline mb-0">
+              <thead class="thead-light">
+                <tr>
+                  <th class="text-center">
+                    <i class="icon-people"></i>
+                  </th>
+                  <th>User</th>
+                  <th class="text-center">School</th>
+                  <th>Course</th>
+                  <th class="text-center">Mutual Friends</th>
+                  <th>Activity</th>
+                </tr>
+              </thead>
+              {% for result in (ofriends + ufriends) %} 
+                {% if result.user_id == user.id %} 
+                  {% with friend = get_user(userid=result.friend_id) %}
+                    <tbody>
+                    <tr>
+                      <td class="text-center">
+                        <div class="avatar">
+                          <img class="img-avatar" onclick="location.href='/view_profile/{{friend.id}}/{{friend.username}}'" {% if friend.profile_pic != None %} src="{{ friend.profile_pic }}" {% else %} {% if friend.gender=="male" %} src="/static/avatar/block-male.png"
+                            {% elif friend.gender=="female" %} src="/static/avatar/block-female.png" {% else %} src="/static/avatar/default-black.png"
+                            {% endif %} {% endif %} alt="{{friend.username}}">
+                          <span class="avatar-status badge-success"></span>
+                        </div>
+                      </td>
+                      <td>
+                        <div>{{friend.username}}</div>
+                        <div class="small text-muted">
+                          <span>{{friend.firstname}}</span> {{ friend.lastname }}</div>
+                      </td>
+                      <td class="text-center">
+                        <i class="flag-icon flag-icon-us h4 mb-0" id="us" title="us">University of Ghana</i>
+                      </td>
+                      <td>
+                        <div class="clearfix">
+                          <div class="float-left">
+                            <strong>Computer Science</strong>
+                          </div>
+                        </div>
+
+                      </td>
+                      <td class="text-center">
+                        <i class="fa fa-cc-mastercard" style="font-size:18px">{{ get_mutual_friends(user, friend, count=True) }}</i>
+                      </td>
+                      <td>
+                        <div class="small text-muted">Last login</div>
+                        <strong>10 sec ago</strong>
+                      </td>
+                    </tr>
+                  {% endwith %} 
+                {% else %} 
+                  {% with friend = get_user(userid=result.user_id) %}
+                    <tbody>
+                    <tr>
+                      <td class="text-center">
+                        <div class="avatar">
+                          <img class="img-avatar" {% if friend.profile_pic %} src="{{ user.profile_pic }}" {% else %} {% if friend.gender=="male" %}
+                            src="/static/avatar/block-male.png" {% elif friend.gender=="female" %} src="/static/avatar/block-female.png"
+                            {% else %} src="/static/avatar/default-black.png" {% endif %} {% endif %} alt="{{ friend.username }}">
+                          <span class="avatar-status badge-success"></span>
+                        </div>
+                      </td>
+                      <td>
+                        <div>{{friend.username}}</div>
+                        <div class="small text-muted">
+                          <span>{{friend.firstname}}</span> {{ friend.lastname }}</div>
+                      </td>
+                      <td class="text-center">
+                        <i class="flag-icon flag-icon-us h4 mb-0" id="us" title="us">University of Ghana</i>
+                      </td>
+                      <td>
+                        <div class="clearfix">
+                          <div class="float-left">
+                            <strong>Computer Science</strong>
+                          </div>
+                        </div>
+
+                      </td>
+                      <td class="text-center">
+                        <i class="fa fa-cc-mastercard" style="font-size:18px">
+                          <a href="/view_mutual_friends">{{ get_mutual_friends(user, friend, count=True) }}</a>
+                        </i>
+                      </td>
+                      <td>
+                        <div class="small text-muted">Last login</div>
+                        <strong>10 sec ago</strong>
+                      </td>
+                    </tr>
+                  {% endwith %} 
+                {% endif %} 
+              {% else %}
+              <td>
+                <div>No Friends Yet</div>
+                <div class="small text-muted">
+              </td>
+            {% endfor %}
+            </tbody>
+            </table>
+            </div>
+            ` </div>
+        </div>
+        <div class="clear">
+        </div>
+      </div>
+
+    </div>
+</main>
+
+{% endblock %}

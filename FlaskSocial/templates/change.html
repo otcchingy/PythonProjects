@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block body %}
+
+
+{% with flashes = get_flashed_messages() %}
+    {% if flashes %}
+        {% for flash in flashes %}
+            {% if flash.category == 'success' %}
+                <div class="alert alert-success" role="alert">{{ flash }}</div>
+            {% elif flash.category == 'error' %}
+                <div class="alert alert-danger" role="alert">{{ flash }}</div>
+            {% else %}
+                <div class="alert alert-success" role="alert">{{ flash }}</div>
+            {% endif %}
+        {% endfor %}
+    {%endif%}
+{% endwith %}
+
+<div class="login-clean">
+        <form method="POST", action="/change_password">
+            <h2 class="sr-only">Change Password Form</h2>
+            <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
+            <div class="form-group">
+                {{ form.hidden_tag() }}
+                {{ wtf.form_field(form.old_password) }}
+                {{ wtf.form_field(form.new_password) }}
+                {{ wtf.form_field(form.confirm_password)}}
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" id="change" type="submit" data-bs-hover-animate="shake">Change Password</button>
+            </div><a href="/settings" class="forgot"><center>Go to settings</center></a><a href="/profile/{{ current_user.username }}" class="forgot"><center>profile</center></a><a href="/timeline" class="forgot"><center>or timeline</center></a>
+        </form>
+</div>
+
+<div class="footer-dark navbar-fixed-bottom" style="position: relative">
+        <footer>
+            <div class="container">
+                <p class="copyright">ChatAPP© 2018</p>
+            </div>
+        </footer>
+</div>
+
+
+{% endblock %}
+
+
+
+
+

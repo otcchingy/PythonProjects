@@ -1,0 +1,295 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+  <head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+	<link rel="icon" href="/static/assets/img/chatapp.png">
+    <title>ChatAPP</title>
+    <!-- Main styles for this application-->
+    <link href="/static/template-master/css/style.css" rel="stylesheet">
+	<link href="/static/template-master/vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+	<!--Other Stylesheet 
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="/static/assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="/static/assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="/static/assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean1.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">-->
+  </head>
+  <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+      <header class="app-header navbar">
+      <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        <img class="navbar-brand-full" src="/static/assets/img/chatapp.png" width="150" height="150" alt="ChatAPP">
+        <!--img class="navbar-brand-minimized" src="/static/assets/img/chatapp.png" width="30" height="30" alt="ChatAPP"-->
+      </a>
+      <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" aria-expanded="true" data-toggle="dropdown">
+        <span class="navbar-toggler-icon" aria-expanded="true"></span>
+      </button>
+      <ul class="nav navbar-nav d-md-down-none">
+		<li class="nav-item px-3">
+		   <form method="POST" action="/search" class="navbar-form navbar-left">
+				<div class="searchbox"><i class="glyphicon glyphicon-search"></i>
+				<input class="form-control sbox" id="search" name="search" required='' type="text" value="" style='width:100%';>
+					<ul class="list-group autocomplete" style="position:absolute;width:100%; z-index:100">
+					</ul>
+				</div>
+			</form>
+		</li>
+      </ul>
+      <ul class="nav navbar-nav ml-auto">
+		  
+		<li class="nav-item px-3">
+          <a class="nav-link" href="/timeline">Login</a>
+        </li>
+        <li class="nav-item px-3">
+          <a class="nav-link" href="/signup">Signup</a>
+		 
+        </li>
+        <li class="nav-item px-3">
+          <a class="nav-link" href="/about">About</a><a class="nav-link" href="#"></a>
+        </li>
+        <li class="nav-item d-md-down-none">
+          <a class="nav-link" href="#">
+            <i class="icon-list"></i>
+          </a>
+        </li>
+        <li class="nav-item d-md-down-none">
+          <a class="nav-link" href="#">
+            <i class="icon-location-pin"></i>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="/" role="button" aria-haspopup="true" aria-expanded="false">
+            <img class="img-avatar" onClick="location.href='/login'" src="/static/avatar/default-black.png" alt="ChatAPP" >
+          </a>
+          <div id="profile-icon" class="dropdown-menu dropdown-menu-right">
+            <div class="dropdown-header text-center">
+              <strong>Account</strong>
+            </div>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-bell-o"></i> Updates
+              <span class="badge badge-info">42</span>
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-envelope-o"></i> Messages
+              <span class="badge badge-success">42</span>
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-tasks"></i> Tasks
+              <span class="badge badge-danger">42</span>
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-comments"></i> Comments
+              <span class="badge badge-warning">42</span>
+            </a>
+            <div class="dropdown-header text-center">
+              <strong>Settings</strong>
+            </div>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-user"></i> Profile</a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-wrench"></i> Settings</a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-usd"></i> Payments
+              <span class="badge badge-secondary">42</span>
+            </a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-file"></i> Projects
+              <span class="badge badge-primary">42</span>
+            </a>
+            <div class="divider"></div>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-shield"></i> Lock Account</a>
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-lock"></i> Logout</a>
+          </div>
+        </li>
+      </ul>
+      <button class="navbar-toggler aside-menu-toggler d-md-down-none" type="button" data-toggle="aside-menu-lg-show">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <button class="navbar-toggler aside-menu-toggler d-lg-none" type="button" data-toggle="aside-menu-show">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </header>
+  
+  
+	<main >
+        <!-- Breadcrumb-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Help and Support
+          </li>
+        </ol>
+        <div class="container-fluid">
+          <div class="animated fadeIn"></div>
+
+			 
+			<div class="container">
+			
+			<h1>Help </h1>
+			<div class="timelineposts">
+			<br/>
+			<br/>
+			<form method="POST" action="/offline_help">
+			<div class="input-prepend input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-search"></i>
+              </span>
+            </div>
+            <input class="form-control" id="help_search" name="help_search" size="16" required='' type="text" placeholder="What do you need help with?">
+            <span class="input-group-append">
+              <button class="btn btn-info" name="help" type="submit">Get Help</button>
+            </span>
+          </div></form>
+		
+		  <br/>
+		  <br/>
+		
+				{% for result in results  %}
+				 
+			<div class="card">
+              <div class="card-header">Help Result
+                <div class="card-header-actions">
+                  <a class="card-header-action" href="http://coreui.io/docs/components/bootstrap-scrollspy/" target="_blank">
+                    <small class="text-muted"></small>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="scrollspy-example1">
+                  <nav class="navbar navbar-light bg-light" id="navbar-example1" style="padding: .5rem 1rem;">
+                    <a class="navbar-brand" ><b style="font-size: 100%;">{{ result.help_topic }} </b></a>
+                  </nav>
+                  <div id="spy-example1"  data-target="#navbar-example1" data-offset="65" style="position: relative; height: 100%; overflow: auto; margin-top: .5rem;">
+
+						<p>{{ result.help_content }}</p>
+
+						</div>
+					</div> 
+				   
+				   
+		  `		</div>	  
+                  </div>
+				  
+				  <div class="clear">
+	
+                </div>
+              </div>
+			  
+				
+				
+				{% else %}
+				<p><center>Didn't get help?.</center></p>
+				<br><center>Try Contacting our <a mailto="chatapp.gh@gmail.com">support team</a></center></br>
+					            <!-- /.row-->
+            <div class="row">
+              <div class="col-sm-6 col-md-4">
+                <div class="card border-primary">
+                  <div class="card-header">Card outline</div>
+                  <div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
+                    ut aliquip ex ea commodo consequat.</div>
+                </div>
+              </div>
+              <!-- /.col-->
+              <div class="col-sm-6 col-md-4">
+                <div class="card border-secondary">
+                  <div class="card-header">Card outline</div>
+                  <div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
+                    ut aliquip ex ea commodo consequat.</div>
+                </div>
+              </div>
+              <!-- /.col-->
+              <div class="col-sm-6 col-md-4">
+                <div class="card border-success">
+                  <div class="card-header">Card outline</div>
+                  <div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
+                    ut aliquip ex ea commodo consequat.</div>
+                </div>
+              </div>
+              <!-- /.col-->
+              <div class="col-sm-6 col-md-4">
+                <div class="card border-info">
+                  <div class="card-header">Card outline</div>
+                  <div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
+                    ut aliquip ex ea commodo consequat.</div>
+                </div>
+              </div>
+              <!-- /.col-->
+              <div class="col-sm-6 col-md-4">
+                <div class="card border-warning">
+                  <div class="card-header">Card outline</div>
+                  <div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
+                    ut aliquip ex ea commodo consequat.</div>
+                </div>
+              </div>
+              <!-- /.col-->
+              <div class="col-sm-6 col-md-4">
+                <div class="card border-danger">
+                  <div class="card-header">Card outline</div>
+                  <div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl
+                    ut aliquip ex ea commodo consequat.</div>
+                </div>
+              </div>
+              <!-- /.col-->
+				
+				{% endfor %}
+				
+				 
+			</div>
+		</div>
+		
+        </div>
+      </main>		
+	
+    <footer style="
+	
+	display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 1rem;
+    color: #23282c;
+    background: #f0f3f5;
+    border-top: 1px solid #c8ced3;
+	  position: fixed;
+	  -ms-flex: 0 0 50px;
+    flex: 0 0 50px;
+	
+	  transition: margin-left 0.25s, margin-right 0.25s, width 0.25s, flex 0.25s;
+    transition: margin-left 0.25s, margin-right 0.25s, width 0.25s, flex 0.25s, -ms-flex 0.25s;
+	
+   " >
+  <div>
+    <a href="https://chatapp.com">ChatAPP</a>
+    <span>&copy; 2018 awesomeLabs.</span>
+  </div>
+  <div class="ml-auto">
+    <span>Powered by</span>
+    <a href="https://chatapp.com">TechUP Studio</a>
+  </div>
+  </footer>
+  </body>
+
+	<!-- Old plugins -->
+	<script src="/static/assets/js/jquery.min.js"></script>
+	<script src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/static/assets/js/bs-animation.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+</html>		

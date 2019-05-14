@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+{% import "bootstrap/wtf.html" as wtf %}
+<head>
+	<title>ChatAPP</title>
+	<meta charset="UTF-8">
+	<link rel="icon" href="/static/assets/img/chatapp.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/verify/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/verify/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/verify/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/verify/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="static/verify/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/verify/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/verify/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="static/verify/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/verify/css/util.css">
+	<link rel="stylesheet" type="text/css" href="static/verify/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+
+	
+{% with flashes = get_flashed_messages() %}
+	{% if flashes %}
+		{% for flash in flashes %}
+			{% if flash.category == 'success' %}
+				<div class="alert alert-success" role="alert">{{ flash }}</div>
+			{% elif flash.category == 'error' %}
+				<div class="alert alert-danger" role="alert">{{ flash }}</div>
+			{% else %}
+				<div class="alert alert-success" role="alert">{{ flash }}</div>
+			{% endif %}
+		{% endfor %}
+	{%endif%}
+{% endwith %}
+
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('static/verify/images/bg-01.jpg');">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				<form class="login100-form validate-form" method="POST" action="/verify">
+
+					<span class="login100-form-title p-b-49">
+						Verify
+					</span>
+
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Input is required">
+						<span class="label-input100">Email or phone number</span>
+						 {{ form.hidden_tag() }}
+						<input class="input100" type="text" id="input" name="input" placeholder="">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button id="verify" type='submit' class="login100-form-btn">
+								Get Verification Link
+							</button>
+						</div>
+					</div>
+
+					<div class="text-center p-t-8 p-b-31">
+						<a href="/">
+							Home
+						</a>
+						<p><a href="/settings">
+							Settings
+						</a></p>
+						<a href="/help">
+							Contact us for help
+						</a>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="static/verify/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/verify/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/verify/vendor/bootstrap/js/popper.js"></script>
+	<script src="static/verify/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/verify/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/verify/vendor/daterangepicker/moment.min.js"></script>
+	<script src="static/verify/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="static/verify/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="static/verify/js/main.js"></script>
+
+</body>
+</html>

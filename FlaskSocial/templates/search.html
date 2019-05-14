@@ -1,0 +1,288 @@
+{% extends 'structure.html' %} 
+{% import "bootstrap/wtf.html" as wtf %} 
+
+{% block body %}
+
+<script type=text/javascript src="/static/javascript/search.js"></script>
+<main class="main">
+	<!-- Breadcrumb-->
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Search</li>
+		</li>
+	</ol>
+	<div class="container-fluid">
+		<div class="animated fadeIn"></div>
+
+			
+			{% with flashes = get_flashed_messages() %}
+			{% if flashes %}
+				{% for flash in flashes %}
+					{% if flash.category == 'success' %}
+						<div class="alert alert-success" role="alert">{{ flash }}</div>
+					{% elif flash.category == 'error' %}
+						<div class="alert alert-danger" role="alert">{{ flash }}</div>
+					{% else %}
+						<div class="alert alert-success" role="alert">{{ flash }}</div>
+					{% endif %}
+				{% endfor %}
+			{%endif%}
+			{% endwith %}
+			<div id="alert" class="alert.hide alert-success" role="alert"></div>
+
+		<div class="container">
+			<h1>Search </h1>
+			<div class="timelineposts">
+				<br/>
+				<br/>
+
+
+				<form method="POST" action="/search">
+					<div class="input-prepend input-group required">
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<i class="fa fa-search"></i>
+							</span>
+						</div>
+						<input class="form-control" id="search" name="search" size="16" required='' type="text" placeholder="What are you searching for?">
+						<span class="input-group-append">
+							<button class="btn btn-info" name="_search" type="submit">Search</button>
+						</span>
+					</div>
+				</form>
+				<br/>
+				<br/>
+				<br/>
+
+				<div class="card">
+					<div class="card-header">Search
+						<div class="card-header-actions">
+							<a class="card-header-action" target="_blank">
+								<small class="text-muted"></small>
+							</a>
+						</div>
+					</div>
+					<div class="card-body">
+						<div class="scrollspy-example1">
+							<nav class="navbar navbar-light bg-light" id="navbar-example1" style="padding: .5rem 1rem;">
+								<a class="navbar-brand">Search Results</a>
+
+							</nav>
+							<div id="spy-example1" data-target="#navbar-example1" data-offset="65" style="position: relative; height: 100%; overflow: auto; margin-top: .5rem;">
+
+								<div class="card-header">
+
+								</div>
+								<div class="card-body">
+
+									<div class="row">
+										<div class="col">
+											<ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
+												<li class="nav-item">
+													<a class="nav-link active" id="pills-users-tab" data-toggle="pill" href="#pills-users" role="tab" aria-controls="pills-users" aria-selected="true">Users</a>
+												</li>
+												<li class="nav-item ">
+													<a class="nav-link" id="pills-pages-tab" data-toggle="pill" href="#pills-pages" role="tab" aria-controls="pills-pages" aria-selected="true">Pages</a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" id="pills-clubs-tab" data-toggle="pill" href="#pills-clubs" role="tab" aria-controls="pills-clubs" aria-selected="true">Clubs</a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" id="pills-events-tab" data-toggle="pill" href="#pills-events" role="tab" aria-controls="pills-events" aria-selected="true">Events</a>
+												</li>
+											</ul>
+											<div class="tab-content" id="pills-tabContent">
+												<div class="tab-pane fade show active" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">
+
+													<div class="col-md-6">
+														<ul class="list-group">
+															{% for result in user_results %}
+																{% if result != user %}
+																	<li class="list-group-item">
+																		<blockquote>
+																			<p>@{{ result.username }}</p>
+																			<article>
+																				<img style=" max-width: 50px; height: 50px; border-radius: 50em;" onClick="location.href='/view_profile/{{ result.username }}'"
+																					{% if result.profile_pic %} 
+																						src="{{ result.profile_pic }}" 
+																					{% else %} 
+																						{% if result.gender=="male" %} 
+																							src="/static/avatar/block-male.png"
+																						{% elif result.gender=="female" %} 
+																							src="/static/avatar/block-female.png" 
+																						{% else %} 
+																							src="/static/avatar/default-black.png"
+																					{% endif %}
+																 {% endif %} alt="Friend"> ----{{ result.firstname }}----{{ result.lastname }} </article>
+													
+																	<button onclick="location.href='/view_profile/{{result.id}}/{{ result.username }}'" class="btn btn-default" type="button" style="color:#eb3b60;background-image:url(&quot;none&quot;);background-color:transparent;">
+																		<i class="glyphicon glyphicon" data-aos="flip-right"></i>
+																		<span>View Profile</span>
+																	</button>
+																	<btn id="todo{{result.id}}"><button class="btn btn-default"  
+																		{% if friends_checker(user, result.id) == False and result.id in get_friend_requests_to_user(user) %}
+																			onclick="location.href='/pending'"
+																		{% elif friends_checker(user, result.id) == False and result.id in get_friend_requests_from_user(user) %}
+																			onclick="myFriend(action='unfriend', friend='{{ result.id }}', section='todo{{result.id}}')"   
+																		{% elif result.id in friends_id_list(user) %}
+																			onclick="myFriend(action='unfriend', friend='{{ result.id }}', section='todo{{result.id}}')"
+																		{% else %}
+																			onclick="myFriend(action='addfriend', friend='{{ result.id }}', section='todo{{result.id}}')"
+																		{% endif %}
+																	type="button" style="color:#ebe614;background-image:url(&quot;none&quot;);background-color:transparent;">
+																		<i class="glyphicon glyphicon" data-aos="flip-right"></i>
+																		<span>
+																			{% if friends_checker(user, result.id) == False and result.id in get_friend_requests_to_user(user) %}
+																				Accept/Decline
+																			{% elif friends_checker(user, result.id) == False and result.id in get_friend_requests_from_user(user) %}
+																				Friend Request Sent    
+																			{% elif result.id in friends_id_list(user) %}
+																				Unfriend
+																			{% else %}
+																				Addfriend
+																			{% endif %}
+																		</span>
+																	</button></btn>
+																	<btn id="ftodo{{result.id}}"><button 
+																		{% if check_if_following(user, result.id) == False %}
+																			onclick="myFriend(action='follow', friend='{{ result.id }}', section='ftodo{{result.id}}')"
+																		{% else %}
+																			onclick="myFriend(action='unfollow', friend='{{ result.id }}', section='ftodo{{result.id}}')"
+																		{% endif %}
+																	class="btn btn-default" type="button" style="color:#1723eb;background-image:url(&quot;none&quot;);background-color:transparent;">
+																		<i class="glyphicon glyphicon" data-aos="flip-right"></i>
+																		<span>
+																			{% if check_if_following(user, result.id) == False %}
+																				Follow
+																			{% else %}
+																				Unfollow
+																			{% endif %}
+																		</span>
+																	</button>
+
+																	
+																</blockquote>
+
+																	</li>
+																{% endif %}
+															{% else %}
+															<p>No results found!!!</p>
+															{% endfor%}
+														</ul>
+													</div>
+
+												</div>
+												<div class="tab-pane fade" id="pills-pages" role="tabpanel" aria-labelledby="pills-pages-tab">
+
+													<div class="col-md-6">
+														<ul class="list-group">
+															{% for result in pages_results %}
+															<li class="list-group-item">
+																<blockquote>
+																	<p>@{{ result.pagename }}</p>
+																	<article>
+																		<img src="{{ result.profile_pic }}"> ----{{ result.firstname }}----{{ result.lastname }} </article>
+																	<button onclick="location.href='/view_profile/{{ result.pagename }}'" class="btn btn-default" type="button" style="color:#eb3b60;background-image:url(&quot;none&quot;);background-color:transparent;">
+																		<i class="glyphicon glyphicon" data-aos="flip-right"></i>
+																		<span>View Profile</span>
+																	</button>
+																	<button onclick="location.href='/add_friend/{{ result.pagename }}/{{result.id}}'" class="btn btn-default" type="button" style="color:#ebe614;background-image:url(&quot;none&quot;);background-color:transparent;">
+																		<i class="glyphicon glyphicon" data-aos="flip-right"></i>
+																		<span>Addfriend</span>
+																	</button>
+																	<button onclick="location.href='/follow/{{ result.pagename }}'" class="btn btn-default" type="button" style="color:#1723eb;background-image:url(&quot;none&quot;);background-color:transparent;">
+																		<i class="glyphicon glyphicon" data-aos="flip-right"></i>
+																		<span>Follow</span>
+																	</button>
+																</blockquote>
+
+															</li>
+															{% else %}
+															<p>No results found!!!</p>
+															{% endfor%}
+														</ul>
+													</div>
+
+												</div>
+												<div class="tab-pane fade" id="pills-clubs" role="tabpanel" aria-labelledby="pills-clubs-tab">
+
+													<div class="col-md-6">
+														<ul class="list-group">
+															{% for result in clubs_results %}
+															<li class="list-group-item">
+																<blockquote>
+																	<p>@{{ result.clubname }}</p>
+																	<article>{{ result.profile_pic }} ----{{ result.firstname }}----{{ result.lastname }} </article>
+																	<button onclick="location.href='/view_profile/{{ result.clubname }}'" class="btn btn-default" type="button" style="color:#eb3b60;background-image:url(&quot;none&quot;);background-color:transparent;">
+																		<i class="glyphicon glyphicon" data-aos="flip-right"></i>
+																		<span>View Profile</span>
+																	</button>
+																	<button onclick="location.href='/add_friend/{{ result.clubname }}/{{result.id}}'" class="btn btn-default" type="button" style="color:#ebe614;background-image:url(&quot;none&quot;);background-color:transparent;">
+																		<i class="glyphicon glyphicon" data-aos="flip-right"></i>
+																		<span>Addfriend</span>
+																	</button>
+																	<button onclick="location.href='/follow/{{ result.clubname }}'" class="btn btn-default" type="button" style="color:#1723eb;background-image:url(&quot;none&quot;);background-color:transparent;">
+																		<i class="glyphicon glyphicon" data-aos="flip-right"></i>
+																		<span>Follow</span>
+																	</button>
+																</blockquote>
+
+															</li>
+															{% else %}
+															<p>No results found!!!</p>
+															{% endfor%}
+														</ul>
+													</div>
+													<div class="tab-pane fade" id="pills-events" role="tabpanel" aria-labelledby="pills-events-tab">
+
+														<div class="col-md-6">
+															<ul class="list-group">
+																{% for result in events_results %}
+																<li class="list-group-item">
+																	<blockquote>
+																		<p>@{{ result.eventname }}</p>
+																		<article>{{ result.profile_pic }} ----{{ result.firstname }}----{{ result.lastname }} </article>
+																		<button onclick="location.href='/view_profile/{{ result.eventname }}'" class="btn btn-default" type="button" style="color:#eb3b60;background-image:url(&quot;none&quot;);background-color:transparent;">
+																			<i class="glyphicon glyphicon" data-aos="flip-right"></i>
+																			<span>View Profile</span>
+																		</button>
+																		<button onclick="location.href='/add_friend/{{ result.eventname }}/{{result.id}}'" class="btn btn-default" type="button"
+																		 style="color:#ebe614;background-image:url(&quot;none&quot;);background-color:transparent;">
+																			<i class="glyphicon glyphicon" data-aos="flip-right"></i>
+																			<span>Addfriend</span>
+																		</button>
+																		<button onclick="location.href='/follow/{{ result.eventname }}'" class="btn btn-default" type="button" style="color:#1723eb;background-image:url(&quot;none&quot;);background-color:transparent;">
+																			<i class="glyphicon glyphicon" data-aos="flip-right"></i>
+																			<span>Follow</span>
+																		</button>
+																	</blockquote>
+
+																</li>
+																{% else %}
+																<p>No results found!!!</p>
+																{% endfor%}
+															</ul>
+														</div>
+
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+									<hr>
+								</div>
+							</div>
+
+							` </div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</main>
+
+
+{% endblock %}

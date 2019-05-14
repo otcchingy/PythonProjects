@@ -1,0 +1,13 @@
+{% if messages %}
+   {% for message in messages %}
+        {% if message == 'reachedMax' %}
+            <center><strong> End of Messages </strong></center>
+        {% elif message.sender_id == user.id %}
+            <div style="text-align: right;"><div class="message-from-other message"><strong>Me</strong></div><div class="message-spacer message">{{ message.message_content }}</div></div><br/>
+        {% else%}
+            {% with uzer = get_user(userid=message.sender_id)%}
+               <div class="message-from-other message"><strong>{{uzer.username}}</strong></div><div class="message-spacer message">message : {{ message.message_content }}</div><br/>
+            {% endwith %}
+        {% endif %}
+    {% endfor %}
+{% endif %}

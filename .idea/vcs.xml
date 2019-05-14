@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Advanced Python" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Flask-Blog" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Flask-Social" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Myvarp Language Interpretor" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Python Examples" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Python Examples/Python" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/PythonExamples/Python" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/StoryLaneChatServer" vcs="Git" />
+  </component>
+</project>

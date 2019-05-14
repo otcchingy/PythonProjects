@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block body %}
+
+
+{% with flashes = get_flashed_messages() %}
+    {% if flashes %}
+        {% for flash in flashes %}
+            {% if flash.category == 'success' %}
+                <div class="alert alert-success" role="alert">{{ flash }}</div>
+            {% elif flash.category == 'error' %}
+                <div class="alert alert-danger" role="alert">{{ flash }}</div>
+            {% else %}
+                <div class="alert alert-success" role="alert">{{ flash }}</div>
+            {% endif %}
+        {% endfor %}
+    {%endif%}
+{% endwith %}
+
+<div class="login-clean">
+        <form method="POST", action="/reset_password/{{ token }}">
+            <h2 class="sr-only">Reset Password Form</h2>
+            <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
+            <div class="form-group">
+                {{ form.hidden_tag() }}
+                {{ wtf.form_field(form.new_password) }}
+                {{ wtf.form_field(form.confirm_password)}}
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" id="reset" type="submit" data-bs-hover-animate="shake">Change Password</button>
+        </form>
+</div>
+<div class="footer-dark navbar-fixed-bottom" style="position: relative">
+        <footer>
+            <div class="container">
+                <p class="copyright">ChatAPP© 2018</p>
+            </div>
+        </footer>
+</div>
+
+{% endblock %}

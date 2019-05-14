@@ -1,0 +1,81 @@
+{% extends 'admin/master.html' %} {% block body %} {{ super() }}
+<div class="row-fluid">
+
+    <div>
+        {% if current_user.is_authenticated %}
+
+
+        <main>
+            <!-- Breadcrumb-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    Admin Tools |||
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">Edit User Info</a> |
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">Edit Page Info</a> |
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#"> Edit Club Info</a> |
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">Advertising</a> |
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">Update ChatApp</a> |
+                </li>
+            </ol>
+            <div class="container-fluid">
+                <div class="animated fadeIn"></div>
+
+
+                <div class="container">
+
+                    <div class="timelineposts">
+                     
+
+                        <h1>
+                            <center>Chatapp-Admin</center>
+                        </h1>
+                        <p class="lead">
+                            <center>Put List Of Count users here for display</center>
+                        </p>
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            <a class="btn btn-primary" href="/timeline">
+                <i class="icon-arrow-left icon-white"></i> Back</a>
+        </main>
+
+
+        {% else %}
+        <form method="POST" action="">
+            {{ form.hidden_tag() if form.hidden_tag }} {% for f in form if f.type != 'CSRFTokenField' %}
+            <div>
+                {{ f.label }} {{ f }} 
+                {% if f.errors %}
+                <ul>
+                    {% for e in f.errors %}
+                    <li>{{ e }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button class="btn" type="submit">Submit</button>
+        </form>
+        {{ link | safe }}
+        <a class="btn btn-primary" href="/timeline">
+            <i class="icon-arrow-left icon-white"></i> Back</a>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock body %}

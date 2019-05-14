@@ -1,0 +1,51 @@
+{% for comment in comments %}
+    {% with uzer = get_user(userid=comment.user_id) , post_owner = get_user(postid=comment.post_id)  %}
+        {% if uzer %}
+        <li class="list-group-item" id='c_delete{{comment.comment_id}}'>
+            <blockquote>
+                <div>
+                    <img style=" max-width: 50px; height: 50px; border-radius: 50em;"
+                      {% if uzer.profile_pic %} 
+                        src="{{ user.profile_pic }}" 
+                        {% else %} 
+                          {% if uzer.gender=="male" %} 
+                            src="/static/avatar/block-male.png"
+                          {% elif uzer.gender=="female" %} 
+                            src="/static/avatar/block-female.png" 
+                          {% else %} 
+                            src="/static/avatar/default-black.png"
+                          {% endif %}
+                      {% endif %} alt="Friend">
+                    <b>@{{ uzer.username }}   </b>
+                  </div>
+                  <br/><br/>
+                <article>{{ comment.comment_content }}</article>
+                    commented:  --<span>{{ time_ago(comment.timestamp) }}</span>
+                {% if user.id == comment.user_id or user.id == post_owner.id %} 
+                <button class="btn" onClick="myFunctions(action='c_delete', postid='{{comment.comment_id}}', section='c_delete{{comment.comment_id}}')">Delete</button>
+                {% endif %}
+                <br> {% if check_if_liked(user, comment.comment_id, comment=True) == True %}
+                <btn id="c_unlike{{comment.comment_id}}">
+                    <button class="btn btn-default" onClick="myFunctions(action='c_unlike', postid='{{comment.comment_id}}', section='c_unlike{{comment.comment_id}}')"
+                    type="button" style="color:#873beb;background-image:url(&quot;none&quot;);background-color:transparent;">
+                    <i class="glyphicon glyphicon-heart" data-aos="flip-right"></i>
+                    <span>{{ get_likes(comment.comment_id, comment=True, count=True) }} Likes</span>
+                    </button>
+                </btn>
+                {% else %}
+                <btn id="c_like{{comment.comment_id}}">
+                    <button class="btn btn-default" onClick="myFunctions(action='c_like', postid='{{comment.comment_id}}', section='c_like{{comment.comment_id}}')"
+                    type="button" style="color:#eb3b8c;background-image:url(&quot;none&quot;);background-color:transparent;">
+                    <i class="glyphicon glyphicon-heart" data-aos="flip-right"></i>
+                    <span>{{ get_likes(comment.comment_id, comment=True, count=True) }} Likes</span>
+                    </button>
+                </btn>
+                {% endif %}
+                    <br/>
+                </blockquote>
+            </li>
+            {% endif %}
+        {% endwith %}
+{% else %}
+<p>No Comments Yet</p>
+{% endfor%}

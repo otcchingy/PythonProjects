@@ -1,0 +1,137 @@
+{% extends 'structure.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block body %}
+<script type="text/javascript" src="/static/javascript/notifications.js"></script>
+	<main class="main">
+        <!-- Breadcrumb-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Notifications</li>
+          </li>
+        </ol>
+        <div class="container-fluid">
+          <div class="animated fadeIn"></div>
+
+		  <div id="alert" class="alert.hide alert-success" role="alert"></div>
+			<div class="container">
+					{% with flashes = get_flashed_messages() %}
+					{% if flashes %}
+						{% for flash in flashes %}
+							{% if flash.category == 'success' %}
+								<div class="alert alert-success" role="alert">{{ flash }}</div>
+							{% elif flash.category == 'error' %}
+								<div class="alert alert-danger" role="alert">{{ flash }}</div>
+							{% else %}
+								<div class="alert alert-success" role="alert">{{ flash }}</div>
+							{% endif %}
+						{% endfor %}
+					{%endif%}
+				{% endwith %}
+			<h1>Notifications </h1>
+			<div class="timelineposts">
+
+				 <div class="col-md-6"s>
+					<ul class="list-group">
+						{% for notice in notices %}
+							{% if notice.note_header == 'FRQ' %}
+								<li class="list-group-item">
+									<blockquote id="delete{{notice.note_id}}">
+										<p><b>You Got Friend Request  --<span>{{ time_ago(notice.timestamp) }}</span></b> </p> 
+										<article>{{ notice.note_content }}--from----{{ notice.sender_name }}</article>
+											<btn id='accept{{ notice.note_id }}'><button onclick="myFriend(action='accept', friend='{{notice.user_id}}', section='delete{{ notice.note_id }}')" class="btn btn-default" type="button" style="color:#eb3b60;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Accept</span></button></btn>
+											<btn id='decline{{ notice.note_id }}'><button onclick="myFriend(action='decline', friend='{{notice.user_id}}', section='delete{{ notice.note_id }}')" class="btn btn-default" type="button" style="color:#ebe614;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Decline</span></button></btn>
+											{% if notice.seen == None %}
+											<btn id='seen{{ notice.note_id }}'><button onclick="check(action='seen', note='{{ notice.note_id }}' ,section='seen{{notice.note_id}}')" class="btn btn-default" type="button" style="color:#1723eb;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Seen</span></button></btn>
+											{% else %}
+											<button class="btn btn-default" onclick="check(action='deletenote', note='{{notice.note_id}}', section='delete{{notice.note_id}}')" type="button" style="color:#eb3b60;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon-heart" data-aos="flip-right"></i><span>Delete</span></button>
+											{% endif %}
+									</blockquote>
+								</li>
+							{% endif %}
+							{% if notice.note_header == 'AFR' %}
+								<li class="list-group-item">
+									<blockquote id="delete{{notice.note_id}}">
+										<b><p>You made a New Friend  --<span>{{ time_ago(notice.timestamp) }}</span></b></p>
+										<article>{{ notice.note_content }}--from----{{ notice.sender_name }}</article>
+										<btn id="unfriend{{notice.note_id}}" ><button onclick="myFriend(action='unfriend', friend='{{notice.user_id}}', section='unfriend{{ notice.note_id }}')" class="btn btn-default" type="button" style="color:#eb3b60;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Unfriend</span></button></btn>
+										<btn id="unfollow{{notice.note_id}}"><button onclick="myFriend(action='unfriend', friend='{{notice.user_id}}', section='unfollow{{ notice.note_id }}')" class="btn btn-default" type="button" style="color:#ebe614;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Unfollow</span></button></btn>
+										<btn id="seen{{notice.note_id}}"><button onclick="check(action='deletenote', note='{{ notice.note_id }}' ,section='delete{{notice.note_id}}')" class="btn btn-default" type="button" style="color:#1723eb;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Seen</span></button></btn>
+									</blockquote>
+								</li>
+							{% endif %}
+							{% if notice.note_header == 'FLW' %}
+								<li class="list-group-item">
+									<blockquote id="delete{{notice.note_id}}">
+										<b><p>{{ notice.sender_name }} followed you  --<span>{{ time_ago(notice.timestamp) }}</span></b></p>
+										<article>{{ notice.note_content }}--from----{{ notice.sender_name }}</article>
+										<btn id="unfriend{{notice.note_id}}" ><button onclick="myFriend(action='unfriend', friend='{{notice.user_id}}', section='unfriend{{ notice.note_id }}')" class="btn btn-default" type="button" style="color:#eb3b60;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Unfriend</span></button></btn>
+										<btn id="unfollow{{notice.note_id}}"><button onclick="myFriend(action='unfriend', friend='{{notice.user_id}}', section='unfollow{{ notice.note_id }}')" class="btn btn-default" type="button" style="color:#ebe614;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Unfollow</span></button></btn>
+										<btn id="seen{{notice.note_id}}"><button onclick="check(action='deletenote', note='{{ notice.note_id }}' ,section='delete{{notice.note_id}}')" class="btn btn-default" type="button" style="color:#1723eb;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Seen</span></button></btn>
+									</blockquote>
+								</li>
+							{% endif %}
+							{% if notice.note_header == 'PNF' %}
+								<li class="list-group-item">
+									<blockquote>
+										<p>You Got New Post</p>
+										<article>{{ notice.note_content }}--from----{{ notice.sender_name }}</article>
+											<button onclick="location.href='/view_post/{{ notice.user_id }}'" class="btn btn-default" type="button" style="color:#ebe614;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Decline</span></button>
+											<button onclick="location.href='/seen/{{ notice.note_id }}'" class="btn btn-default" type="button" style="color:#1723eb;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Seen</span></button>
+									</blockquote>
+								</li>
+							{% endif %}
+							{% if notice.note_header == 'NPP' %}
+								<li class="list-group-item">
+									<blockquote>
+										<p>You Got New Page Post</p>
+										<article>{{ notice.note_content }}--from----{{ notice.sender_name }}</article>
+											<button onclick="location.href='/view_post/{{ notice.user_id }}'" class="btn btn-default" type="button" style="color:#ebe614;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Decline</span></button>
+											<button onclick="location.href='/seen/{{ notice.note_id }}'" class="btn btn-default" type="button" style="color:#1723eb;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Seen</span></button>
+									</blockquote>
+								</li>
+							{% endif %}
+							{% if notice.note_header == 'NCP' %}
+								<li class="list-group-item">
+									<blockquote>
+										<p>You Got New Club Post</p>
+										<article>{{ notice.note_content }}--from----{{ notice.sender_name }}</article>
+											<button onclick="location.href='/accept/{{ notice.note_id }}'" class="btn btn-default" type="button" style="color:#eb3b60;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Accept</span></button>
+											<button onclick="location.href='/decline/{{ notice.user_id }}'" class="btn btn-default" type="button" style="color:#ebe614;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Decline</span></button>
+											<button onclick="location.href='/seen/{{ notice.note_id}}'" class="btn btn-default" type="button" style="color:#1723eb;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Seen</span></button>
+									</blockquote>
+								</li>
+							{% endif %}
+							{% if notice.note_header == 'NPL' %}
+								<li class="list-group-item">
+									<blockquote>
+										<p>You Got New Likes</p>
+										<article>{{ notice.note_content }}--from----{{ notice.sender_name }}</article>
+											<button onclick="location.href='/view-post/{{ notice.note_id }}'" class="btn btn-default" type="button" style="color:#eb3b60;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>View Post</span></button>
+											<button onclick="delete(action='delete', notice=notice.note_id )" class="btn btn-default" type="button" style="color:#1723eb;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Seen</span></button>
+									</blockquote>
+								</li>
+							{% endif %}
+							{% if notice.note_header == 'NPC' %}
+								<li class="list-group-item">
+									<blockquote>
+										<p>You Got New Comments</p>
+										<article>{{ notice.note_content }}--from----{{ notice.sender_name }}</article>
+										<button onclick="location.href='/view-post/{{ notice.note_id }}'" class="btn btn-default" type="button" style="color:#eb3b60;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>View Post</span></button>
+										<button onclick="delete(action='delete', notice=notice.note_id )" class="btn btn-default" type="button" style="color:#1723eb;background-image:url(&quot;none&quot;);background-color:transparent;"> <i class="glyphicon glyphicon" data-aos="flip-right"></i><span>Seen</span></button>
+									</blockquote>
+								</li>
+							{% endif %}
+						{% else %}
+						<p><article>No results found!!!</article></p>
+						{% endfor%}
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		
+        </div>
+      </main>
+											
+	
+{% endblock %}

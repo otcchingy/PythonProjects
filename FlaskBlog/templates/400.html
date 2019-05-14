@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  <head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>ChatAPP-error 400</title>
+    <!-- Main styles for this application-->
+    <link href="/static/template-master/css/style.css" rel="stylesheet">
+    <link href="/static/template-master/vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+  </head>
+  <body class="app flex-row align-items-center">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="clearfix">
+            <h1 class="float-left display-3 mr-4">400</h1>
+           <h4 class="pt-3">Sorry! Bad Request.</h4>
+            <p class="text-muted">The method your'e using is not acceptable.</p>
+          </div>
+		  <form method="POST" action="/offline_help">
+          <div class="input-prepend input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-search"></i>
+              </span>
+            </div>
+            <input class="form-control" id="prependedInput"  name="help_search" size="16" type="text" placeholder="What are you looking for?">
+            <span class="input-group-append">
+              <button class="btn btn-info" name="help" type="submit">Search</button>
+            </span>
+          </div></form>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

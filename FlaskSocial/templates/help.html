@@ -1,0 +1,191 @@
+{% extends 'structure.html' %} {% import "bootstrap/wtf.html" as wtf %} {% block body %}
+<main class="main">
+	<!-- Breadcrumb-->
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Help and Support
+		</li>
+	</ol>
+	<div class="container-fluid">
+		<div class="animated fadeIn"></div>
+
+		<div id="alert" class="alert.hide alert-success" role="alert"></div>
+
+		<div class="container">
+
+			<h1>Help </h1>
+			<div class="timelineposts">
+				<br/>
+				<br/>
+				<form method="POST" action="/help">
+					<div class="input-prepend input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<i class="fa fa-search"></i>
+							</span>
+						</div>
+						<input class="form-control" id="help_search" name="help_search" size="16" required='' type="text" placeholder="What do you need help with?">
+						<span class="input-group-append">
+							<button class="btn btn-info" name="help" type="submit">Get Help</button>
+						</span>
+					</div>
+				</form>
+
+				<br/>
+				<br/> {% if user.user_status == 'goduser' %} {% for result in results %}
+				<div class="card">
+					<div class="card-header">Help Result
+						<div class="card-header-actions">
+							<a class="card-header-action" href="http://coreui.io/docs/components/bootstrap-scrollspy/" target="_blank">
+								<small class="text-muted"></small>
+							</a>
+						</div>
+					</div>
+					<div class="scrollspy-example1">
+						<nav class="navbar navbar-light bg-light" id="navbar-example1" style="padding: .5rem 1rem;">
+							<a class="navbar-brand">
+								<b style="font-size:100%;">{{ result.help_topic }}</b>
+							</a>
+						</nav>
+						<div id="spy-example1" data-target="#navbar-example1" data-offset="65" style="position: relative; height: 100%; overflow: auto; margin-top: .5rem;">
+
+							<div class="container">
+								<div id="field" class="timelineposts">
+									<p>{{ result.help_content }}</p>
+								</div>
+							</div>
+						</div>
+						` </div>
+				</div>
+				{% endfor %}
+
+				<form method="POST" , action="/add_help">
+					<h4>
+						<center>Add Help Note</center>
+					</h4>
+					{{ addform.hidden_tag() }} {{ wtf.form_field(addform.helptopic) }}
+					<div class="form-group  required">
+						<textarea class="form-control" rows="10" name="helpcontent" id="helpcontent" placeholder="Help Content/Notes"></textarea>
+					</div <div class="form-group">
+					<button class="btn btn-primary btn-block" id="addhelp" type="submit" data-bs-hover-animate="shake">Add Help</button>
+			</div>
+			</form>
+
+
+			{% else %} {% for result in results %}
+
+			<div class="card">
+				<div class="card-header">Help Result
+					<div class="card-header-actions">
+						<a class="card-header-action" href="http://coreui.io/docs/components/bootstrap-scrollspy/" target="_blank">
+							<small class="text-muted"></small>
+						</a>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="scrollspy-example1">
+						<nav class="navbar navbar-light bg-light" id="navbar-example1" style="padding: .5rem 1rem;">
+							<a class="navbar-brand">
+								<b style="font-size: 100%;">{{ result.help_topic }}</b>
+							</a>
+						</nav>
+						<div id="spy-example1" data-target="#navbar-example1" data-offset="65" style="position: relative; height: 100%; overflow: auto; margin-top: .5rem;">
+
+							<p>{{ result.help_content }}</p>
+
+						</div>
+					</div>
+
+
+					` </div>
+			</div>
+
+			<div class="clear">
+
+			</div>
+		</div>
+
+
+
+		{% else %}
+		<p>
+			<center>Didn't get help?.</center>
+		</p>
+		<br>
+		<center>Try Contacting our
+			<a mailto="chatapp.gh@gmail.com">support team</a>
+		</center>
+		</br>
+		<!-- /.row-->
+		<div class="row">
+			<div class="col-sm-6 col-md-4">
+				<div class="card border-primary">
+					<div class="card-header">Card outline</div>
+					<div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+						magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
+						nisl ut aliquip ex ea commodo consequat.</div>
+				</div>
+			</div>
+			<!-- /.col-->
+			<div class="col-sm-6 col-md-4">
+				<div class="card border-secondary">
+					<div class="card-header">Card outline</div>
+					<div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+						magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
+						nisl ut aliquip ex ea commodo consequat.</div>
+				</div>
+			</div>
+			<!-- /.col-->
+			<div class="col-sm-6 col-md-4">
+				<div class="card border-success">
+					<div class="card-header">Card outline</div>
+					<div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+						magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
+						nisl ut aliquip ex ea commodo consequat.</div>
+				</div>
+			</div>
+			<!-- /.col-->
+			<div class="col-sm-6 col-md-4">
+				<div class="card border-info">
+					<div class="card-header">Card outline</div>
+					<div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+						magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
+						nisl ut aliquip ex ea commodo consequat.</div>
+				</div>
+			</div>
+			<!-- /.col-->
+			<div class="col-sm-6 col-md-4">
+				<div class="card border-warning">
+					<div class="card-header">Card outline</div>
+					<div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+						magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
+						nisl ut aliquip ex ea commodo consequat.</div>
+				</div>
+			</div>
+			<!-- /.col-->
+			<div class="col-sm-6 col-md-4">
+				<div class="card border-danger">
+					<div class="card-header">Card outline</div>
+					<div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+						magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
+						nisl ut aliquip ex ea commodo consequat.</div>
+				</div>
+			</div>
+			<!-- /.col-->
+
+			{% endfor %} {% endif %}
+
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+	</div>
+</main>
+
+
+{% endblock %}

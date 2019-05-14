@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block body %}
+
+{% with flashes = get_flashed_messages() %}
+    {% if flashes %}
+        {% for flash in flashes %}
+            {% if flash.category == 'success' %}
+                <div class="alert alert-success" role="alert">{{ flash }}</div>
+            {% elif flash.category == 'error' %}
+                <div class="alert alert-danger" role="alert">{{ flash }}</div>
+            {% else %}
+                <div class="alert alert-success" role="alert">{{ flash }}</div>
+            {% endif %}
+        {% endfor %}
+    {%endif%}
+{% endwith %}
+
+<div class="login-clean">
+        <form method="POST", action="/signup">
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
+            <div class="form-group">
+                {{ form.hidden_tag() }}
+                {{ wtf.form_field(form.firstname) }}
+                {{ wtf.form_field(form.lastname) }}
+                {{ wtf.form_field(form.username) }}
+                {{ wtf.form_field(form.dateofbirth) }}
+                {{ wtf.form_field(form.email) }}
+                {{ wtf.form_field(form.phone) }}
+                {{ wtf.form_field(form.password) }}
+                {{ wtf.form_field(form.passwordrepeat) }}
+            </div>
+               <div class="form-group">
+                <button class="btn btn-primary btn-block" id="signup" type="submit" data-bs-hover-animate="shake">Create Account</button>
+               </div><a href="/login" class="forgot"><center>Already got an account? Click here!</center></a></form>
+            </div>
+
+
+</div>
+
+{% endblock %}
+
+
+
+
+

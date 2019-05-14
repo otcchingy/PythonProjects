@@ -1,0 +1,10 @@
+
+Android :: create loader for each activity that requires network interaction // seekbar
+
+create register route and find way to add date of birth to registration
+
+create getChats , getNotifications, getFriends func in functions.py
+
+figure out load more feature and argument for getData routes
+
+create search friends, pending request, add, unfriend follow, unfollow,

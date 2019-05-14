@@ -1,0 +1,208 @@
+{% extends 'structure.html' %} {% import "bootstrap/wtf.html" as wtf %} {% block body %} 
+
+
+<main class="main">
+	<!-- Breadcrumb-->
+<script src="/static/javascript/view-profile.js"></script>
+
+
+	<div class="userid" id='{{ friend.id }}'></div>
+	<ol class="breadcrumb" >
+		<li class="breadcrumb-item">My Profile</li>
+		</li>
+	</ol>
+	<div class="container-fluid">
+		<div class="animated fadeIn"></div>
+			{% with flashes = get_flashed_messages() %} 
+			{% if flashes %} {% for flash in flashes %} {% if flash.category == 'success' %}
+			<div class="alert alert-success" role="alert">{{ flash }}</div>
+			{% elif flash.category == 'error' %}
+			<div class="alert alert-danger" role="alert">{{ flash }}</div>
+			{% else %}
+			<div class="alert alert-success" role="alert">{{ flash }}</div>
+			{% endif %} {% endfor %} {%endif%} {% endwith %}
+			<div id="alert" class="alert.hide alert-success" role="alert"></div>
+		<div class="container">
+
+			<div class="friend-one">
+
+			</div>
+			<h1>{{ friend.username }}'s Profile
+				<i class="glyphicon glyphicon-ok-sign verified" data-toggle="tooltip" title="Verified User" style="font-size:28px;color:#da052b;"></i>
+			</h1>
+		</div>
+		<div>
+		<div>
+
+			<div class="container">
+
+				<div class="row">
+
+					<div class="col-md-3">
+						<ul class="list-group">
+							<li class="list-group-item">
+								<span>
+									<strong>About Me</strong>
+								</span>
+								<p>{{ friend.about }}</p>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-6">
+						<ul id="list-group" class="list-group">
+							{% for post in friends_posts %}
+							<li class="list-group-item">
+							<blockquote>
+								<div>
+									<img style=" max-width: 50px; height: 50px; border-radius: 50em;"
+									  {% if friend.profile_pic %} 
+										src="{{ user.profile_pic }}" 
+										{% else %} 
+										  {% if friend.gender=="male" %} 
+											src="/static/avatar/block-male.png"
+										  {% elif friend.gender=="female" %} 
+											src="/static/avatar/block-female.png" 
+										  {% else %} 
+											src="/static/avatar/default-black.png"
+										  {% endif %}
+									  {% endif %} alt="Friend">
+									<b>@{{ friend.username }}</b>
+								  </div>
+								  <article>
+									{% if post.post_content['media'] != [] %}
+									  {% for media in post.post_content['media'] %}
+										{% if media['filetype'] == 'photo' %}
+											<center><img src="{{ media['path'] }}"  width="80%" height="100%" ></center>
+										{% elif media['filetype'] == 'audio' %}
+											<center><img src='/static/avatar/audio.png'  width="150" height="100" ></center>
+											<center><a  href="{{media['path']}}">Listen to {{ media['filename'] }}</a></center>
+										{% elif media['filetype'] == 'video' %}
+											<center> <img src='/static/avatar/video.png'  width="150" height="100" ></center>
+											<center><a  href="{{media['path']}}">Watch {{ media['filename'] }}</a></center>
+										{% elif media['filetype'] == 'document' %}
+											<center> <img src='/static/avatar/document.png'  width="150" height="100" ></center>
+											<center><a  href="{{media['path']}}">View {{ media['filename'] }}</a></center>
+										{% else %}
+										  <empty></empty>
+										{% endif %}
+									  {% endfor %}
+									{% endif %}<br/>
+									<div style="font-size:15px;font-style:arial;">{{ post.post_content['post'] }}</div>
+								  </article>
+								<p></p>
+								<footer>Posted --<span id='ago{{ post.post_id }}'>{{ time_ago(post.timestamp) }}</span> 
+									{% if user.id == post.user_id %} 
+									-----
+									<button class="btn" onClick="location.href='/edit/{{ post.post_id }}'">Edit Post</button>
+									-----
+									<button class="btn" onClick="myFunctions(action='delete', postid='{{post.post_id}}', section='delete{{post.post_id}}')">Delete</button>
+									{% endif %}
+									<br> {% if check_if_liked(user, post.post_id) == True %}
+									<btn id="unlike{{post.post_id}}">
+										<button class="btn btn-default" onClick="myFunctions(action='unlike', postid='{{post.post_id}}', section='unlike{{post.post_id}}')"
+											type="button" style="color:#873beb;background-image:url(&quot;none&quot;);background-color:transparent;">
+											<i class="glyphicon glyphicon-heart" data-aos="flip-right"></i>
+											<span>{{ get_likes(post.post_id, count=True) }} Likes</span>
+										</button>
+									</btn>
+									{% else %}
+									<btn id="like{{post.post_id}}">
+										<button class="btn btn-default" onClick="myFunctions(action='like', postid='{{post.post_id}}', section='like{{post.post_id}}')"
+											type="button" style="color:#eb3b60;background-image:url(&quot;none&quot;);background-color:transparent;">
+											<i class="glyphicon glyphicon-heart" data-aos="flip-right"></i>
+											<span>{{ get_likes(post.post_id, count=True) }} Likes</span>
+										</button>
+									</btn>
+									{% endif %}
+									<button class="btn btn-default comment" onclick="showCommentsModal(postid='{{post.post_id}}')" type="button" style="color:#eb3b60;background-image:url(&quot;none&quot;);background-color:transparent;">
+										<i class="glyphicon glyphicon-flash" style="color:#f9d616;"></i>
+										<span style="color:#f9d616;"> Comments</span>
+									</button>
+									<button class="btn btn-default" id="share" type="button" style="color:#eb3b8c;background-image:url(&quot;none&quot;);background-color:transparent;">
+										<i class="glyphicon glyphicon-heart" data-aos="flip-right"></i>
+										<span>Share</span>
+									</button>
+								</footer>
+							</blockquote>
+							<div class="modal" id='cbox{{ post.post_id }}' role="dialog" tabindex="-1" style="padding-top:100px;">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" onclick="hideModal(postid='{{post.post_id}}')" class="close" data-dismiss="modal" aria-label="Close">
+												<span>×</span>
+											</button>
+											<h4 class="modal-title">Comments</h4>
+										</div>
+										<div class="modal-body" id="cbody{{post.post_id}}" style="max-height: 400px; overflow-y: auto">
+										</div>
+										<div class="modal-footer">
+											<div>
+												<span style="color:#706f6b;text-align: right;">
+													<count id="span{{post.post_id}}">{{ get_comments(post.post_id, count=True ) }}</count>
+												</span>
+												<input required='' id="comment{{post.post_id}}" type="text">
+												<button class="btn btn-default" type="button" onclick="postComments(postid='{{post.post_id}}')">Post Comment</button>
+											</div>
+											<button class="btn btn-default" type="button" onclick="hideModal(postid='{{post.post_id}}')">Close</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							</li>
+							{% endfor%}
+						</ul>
+					</div>
+					<div class="col-md-3">
+						{% if friends_checker(user, friend.id) == True %}
+						<btn id="btn"><button class="btn btn-default" type="button" style="width:100%;background-image:url(&quot;none&quot;);background-color:#da052b;color:#fff;padding:16px 32px;margin:0px 0px 6px;border:none;box-shadow:none;text-shadow:none;opacity:0.9;text-transform:uppercase;font-weight:bold;font-size:13px;letter-spacing:0.4px;line-height:1;outline:none;" onclick="doThis(action='privatemessage')">Message</button></btn>
+						{% else %}
+						<btn id="btn"><button class="btn btn-default" type="button" style="width:100%;background-image:url(&quot;none&quot;);background-color:#da052b;color:#fff;padding:16px 32px;margin:0px 0px 6px;border:none;box-shadow:none;text-shadow:none;opacity:0.9;text-transform:uppercase;font-weight:bold;font-size:13px;letter-spacing:0.4px;line-height:1;outline:none;" onclick="doThis(action='addfriend')">Add Friend</button></btn>
+						{% endif %}
+						<ul class="list-group"></ul>
+					</div>
+				</div>
+			</div>
+		</div>			
+			<div class="modal" id='pmessage' role="dialog" tabindex="-1" style="padding-top:100px;">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" onclick="hideModal(postid='None')" class="close" data-dismiss="modal" aria-label="Close">
+								<span >×</span>
+							</button>
+							<h4 class="modal-title">Messages</h4>
+						</div>
+						<div class="modal-body" id="messages" onscroll="scrollCheck()" style="max-height: 400px; overflow-y: auto">
+						</div>
+						<div class="modal-footer">
+							<div>
+								<input required='' id="messagecontent" type="text">
+								<button class="btn btn-default" type="button" onclick="doThis(action='sendmessage')">Send</button>
+							</div>
+							<button class="btn btn-default" type="button" onclick="hideModal(postid='None')">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			</div>
+			</div>
+			</div>
+		</div>
+		<br/>
+		<div id="disqus_thread" class="disqus-loading">
+			<center>
+			  <div>
+				<span id="loader" class="spinner spinner_large">
+				  <span class="spinner__dot spinner__dot_1"></span>
+				  <span class="spinner__dot spinner__dot_2"></span>
+				  <span class="spinner__dot spinner__dot_3"></span>
+				</span>
+			  </div>
+			</center>
+		  </div>
+		  <br/>
+</main>
+
+
+{% endblock %}

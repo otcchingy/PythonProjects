@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block body %}
+
+
+{% with flashes = get_flashed_messages() %}
+    {% if flashes %}
+        {% for flash in flashes %}
+            {% if flash.category == 'success' %}
+                <div class="alert alert-success" role="alert">{{ flash }}</div>
+            {% elif flash.category == 'error' %}
+                <div class="alert alert-danger" role="alert">{{ flash }}</div>
+            {% else %}
+                <div class="alert alert-success" role="alert">{{ flash }}</div>
+            {% endif %}
+        {% endfor %}
+    {%endif%}
+{% endwith %}
+
+<div class="login-clean" xmlns="http://www.w3.org/1999/html">
+        <form method="POST", action="/forgot/phone">
+            <h2 class="sr-only">Forgot Password Form</h2>
+            <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
+            <div class="form-group">
+                {{ form.hidden_tag() }}
+                {{ wtf.form_field(form.user_phone) }}
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" id="recover_wp"  type="submit" data-bs-hover-animate="shake">Submit</button>
+            </div><a href="/forgot" class="forgot"><center>Try other way</center></a>
+            <a href="/" class="forgot"><center>Home</center></a>
+            <a href="/offline_help" class="forgot"><center>Contact us for help</center></a>
+        </form>
+</div>
+<div class="footer-dark navbar-fixed-bottom" style="position: relative">
+        <footer>
+            <div class="container">
+                <p> </p>
+                <p class="copyright">ChatAPP© 2018</p>
+            </div>
+        </footer>
+</div>
+
+{% endblock %}
