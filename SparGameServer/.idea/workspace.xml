@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6a1334bc-f2ab-403c-814b-9420a183298c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/assets/js/vendor/jquery-slim.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/sprites/brands.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/sprites/regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/sprites/solid.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/500px.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/algolia.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/alipay.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/amazon-pay.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/amazon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/android.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/angellist.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/bity.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/blogger.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/buromobelexperte.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/buysellads.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/cc-amazon-pay.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/cc-apple-pay.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/cc-jcb.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/creative-commons-by.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/creative-commons-nc-eu.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/creative-commons-nc-jp.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/creative-commons-nc.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/creative-commons-pd.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/creative-commons-sa.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/creative-commons-sampling-plus.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/creative-commons-sampling.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/css3-alt.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/dashcube.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/edge.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/ello.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/firstdraft.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/font-awesome-alt.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/font-awesome-logo-full.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/fonticons-fi.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/fonticons.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/free-code-camp.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/gg.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/git-square.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/gitlab.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/gitter.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/glide.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/gofore.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/google-plus-square.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/google-plus.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/grav.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/hire-a-helper.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/hotjar.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/instagram.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/itunes.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/java.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/jsfiddle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/kickstarter.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/leanpub.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/line.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/linux.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/mandalorian.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/maxcdn.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/meetup.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/microsoft.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/nimblr.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/nintendo-switch.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/odnoklassniki-square.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/odnoklassniki.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/pagelines.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/pinterest-p.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/pinterest.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/python.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/ravelry.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/readme.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/reddit.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/rev.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/rocketchat.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/sass.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/sellsy.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/servicestack.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/sith.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/snapchat-ghost.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/snapchat-square.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/soundcloud.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/stack-exchange.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/steam-square.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/steam.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/supple.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/the-red-yeti.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/themeco.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/tumblr-square.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/viber.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/vimeo-v.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/vine.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/weibo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/yelp.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/brands/yoast.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/address-book.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/address-card.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/angry.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/arrow-alt-circle-down.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/arrow-alt-circle-left.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/arrow-alt-circle-right.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/arrow-alt-circle-up.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/bell-slash.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/bell.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/bookmark.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/building.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/calendar-alt.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/calendar-check.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/calendar-minus.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/calendar-plus.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/calendar-times.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/calendar.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/caret-square-down.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/caret-square-left.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/caret-square-right.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/caret-square-up.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/chart-bar.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/check-circle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/check-square.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/circle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/clipboard.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/clock.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/clone.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/closed-captioning.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/comment-alt.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/comment-dots.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/comment.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/comments.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/compass.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/copy.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/copyright.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/credit-card.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/dizzy.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/dot-circle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/edit.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/envelope-open.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/envelope.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/eye-slash.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/eye.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/file-alt.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/file-archive.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/file-audio.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/file-code.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/file-excel.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/file-image.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/file-pdf.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/file-powerpoint.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/file-video.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/file-word.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/file.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/flag.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/flushed.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/folder-open.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/folder.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/font-awesome-logo-full.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/frown-open.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/frown.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/futbol.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/gem.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/grimace.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/grin-alt.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/grin-beam-sweat.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/grin-beam.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/grin-hearts.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/grin-squint-tears.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/grin-squint.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/grin-stars.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/grin-tears.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/grin-tongue-squint.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/grin-tongue-wink.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/grin-tongue.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/grin-wink.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/grin.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/hand-lizard.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/hand-paper.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/hand-peace.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/hand-point-down.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/hand-point-left.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/hand-point-right.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/hand-point-up.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/hand-pointer.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/hand-rock.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/hand-scissors.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/hand-spock.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/handshake.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/hdd.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/heart.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/hospital.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/hourglass.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/id-badge.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/id-card.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/image.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/images.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/keyboard.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/kiss-beam.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/kiss-wink-heart.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/kiss.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/laugh-beam.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/laugh-squint.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/laugh-wink.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/laugh.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/lemon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/life-ring.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/lightbulb.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/list-alt.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/map.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/meh-blank.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/meh-rolling-eyes.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/meh.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/minus-square.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/money-bill-alt.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/moon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/newspaper.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/object-group.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/object-ungroup.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/paper-plane.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/pause-circle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/play-circle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/plus-square.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/question-circle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/registered.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/sad-cry.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/sad-tear.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/save.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/share-square.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/smile-beam.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/smile-wink.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/smile.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/snowflake.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/square.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/star-half.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/star.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/sticky-note.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/stop-circle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/sun.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/surprise.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/thumbs-down.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/thumbs-up.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/times-circle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/tired.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/trash-alt.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/user-circle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/user.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/window-close.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/window-maximize.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/window-minimize.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/svgs/regular/window-restore.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/webfonts/fa-brands-400.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/webfonts/fa-brands-400.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/webfonts/fa-brands-400.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/webfonts/fa-brands-400.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/webfonts/fa-brands-400.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/webfonts/fa-regular-400.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/webfonts/fa-regular-400.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/webfonts/fa-regular-400.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/webfonts/fa-regular-400.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/webfonts/fa-regular-400.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/webfonts/fa-solid-900.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/webfonts/fa-solid-900.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/webfonts/fa-solid-900.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/webfonts/fa-solid-900.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/blog/vendor/fontawesome-free/webfonts/fa-solid-900.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/animate/animate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/animsition/css/animsition.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/animsition/css/animsition.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/animsition/js/animsition.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/animsition/js/animsition.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/css/bootstrap-grid.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/css/bootstrap-grid.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/css/bootstrap-grid.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/css/bootstrap-grid.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/css/bootstrap-reboot.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/css/bootstrap-reboot.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/css/bootstrap-reboot.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/css/bootstrap-reboot.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/css/bootstrap.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/css/bootstrap.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/js/popper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/js/popper.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/bootstrap/js/tooltip.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/countdowntime/countdowntime.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/css-hamburgers/hamburgers.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/css-hamburgers/hamburgers.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/daterangepicker/daterangepicker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/daterangepicker/daterangepicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/daterangepicker/moment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/daterangepicker/moment.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/jquery/jquery-3.2.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/perfect-scrollbar/perfect-scrollbar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/perfect-scrollbar/perfect-scrollbar.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/select2/select2.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/select2/select2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/select2/select2.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/change/vendor/select2/select2.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/LICENSE.TXT" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/changelog.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/jquery.tinymce.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/langs/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/license.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/plugins/anchor/plugin.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/plugins/bbcode/plugin.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/plugins/code/plugin.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/plugins/help/img/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/plugins/help/plugin.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/plugins/hr/plugin.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/plugins/image/plugin.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/plugins/link/plugin.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/plugins/lists/plugin.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/plugins/media/plugin.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/plugins/paste/plugin.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/plugins/print/plugin.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/plugins/save/plugin.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/plugins/table/plugin.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/plugins/toc/plugin.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/content.inline.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/content.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/content.mobile.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-mobile.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce-small.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/fonts/tinymce.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/img/anchor.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/img/loader.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/img/object.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/img/trans.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/skin.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/skins/lightgray/skin.mobile.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/themes/inlite/theme.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/themes/mobile/theme.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/themes/modern/theme.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/tinymce/js/tinymce/tinymce.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/HELP-US-OUT.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/css/font-awesome.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/css/font-awesome.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/fonts/FontAwesome.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/less/animated.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/less/bordered-pulled.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/less/core.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/less/fixed-width.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/less/font-awesome.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/less/icons.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/less/larger.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/less/list.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/less/mixins.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/less/path.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/less/rotated-flipped.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/less/screen-reader.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/less/stacked.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/less/variables.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/scss/_animated.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/scss/_bordered-pulled.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/scss/_core.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/scss/_fixed-width.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/scss/_icons.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/scss/_larger.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/scss/_list.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/scss/_mixins.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/scss/_path.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/scss/_rotated-flipped.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/scss/_screen-reader.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/scss/_stacked.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/scss/_variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/font-awesome-4.7.0/scss/font-awesome.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/iconic/fonts/Material-Design-Iconic-Font.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/iconic/fonts/Material-Design-Iconic-Font.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/iconic/fonts/Material-Design-Iconic-Font.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-Black.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-BlackItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-BoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-ExtraBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-ExtraBoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-ExtraLight.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-ExtraLightItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-Italic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-LightItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-Medium.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-MediumItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-SemiBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-SemiBoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-Thin.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/fonts/poppins/Poppins-ThinItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/images/bg-01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/images/icons/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/animate/animate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/animsition/css/animsition.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/animsition/css/animsition.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/animsition/js/animsition.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/animsition/js/animsition.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/css/bootstrap-grid.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/css/bootstrap-grid.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/css/bootstrap-grid.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/css/bootstrap-grid.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/css/bootstrap-reboot.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/css/bootstrap-reboot.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/css/bootstrap-reboot.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/css/bootstrap-reboot.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/css/bootstrap.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/css/bootstrap.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/js/popper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/js/popper.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/bootstrap/js/tooltip.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/countdowntime/countdowntime.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/css-hamburgers/hamburgers.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/css-hamburgers/hamburgers.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/daterangepicker/daterangepicker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/daterangepicker/daterangepicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/daterangepicker/moment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/daterangepicker/moment.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/jquery/jquery-3.2.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/perfect-scrollbar/perfect-scrollbar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/perfect-scrollbar/perfect-scrollbar.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/select2/select2.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/select2/select2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/select2/select2.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskBlog/static/verify/vendor/select2/select2.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskSocial/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskSocial/Procfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskSocial/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskSocial/database.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FlaskSocial/edited-requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyvarpLanguageInterpretor/Myvarp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyvarpLanguageInterpretor/Myvarp.spec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyvarpLanguageInterpretor/MyvarpCompiler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyvarpLanguageInterpretor/MyvarpExpressions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyvarpLanguageInterpretor/MyvarpRunner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyvarpLanguageInterpretor/test.mv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyvarpLanguageInterpretor/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyvarpLanguageInterpretor/test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyvarpLanguageInterpretor/todo" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="70">
+              <caret line="1821" column="4" selection-start-line="1821" selection-start-column="4" selection-end-line="1821" selection-end-column="4" />
+              <folding>
+                <element signature="e#0#112#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>UM</find>
+      <find>DOCUnread_MessagesENTS</find>
+      <find>@login_required</find>
+      <find>Boo</find>
+      <find>Document</find>
+      <find>DOC</find>
+      <find>get_u</find>
+      <find>get_use</find>
+      <find>get_user</find>
+      <find>JSONB</find>
+      <find>get_</find>
+      <find>@jwt_required</find>
+      <find>post_id</find>
+      <find>story_id</find>
+      <find>postid</find>
+      <find>storyid</find>
+      <find>get_lik</find>
+      <find>'reachedMax'</find>
+      <find>int(received['friend'])</find>
+      <find>edit_post</find>
+      <find>received['story']</find>
+      <find>Likes(post_id</find>
+      <find>section</find>
+      <find>po</find>
+      <find>def edit_pos</find>
+      <find>edit_pos</find>
+      <find>def update</find>
+      <find>post_content</find>
+      <find>nUnread_Messagesber</find>
+      <find>Unread_Messages</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>' : '</replace>
+      <replace>' :</replace>
+      <replace>': '</replace>
+      <replace>'status'</replace>
+      <replace>Unread_Messages</replace>
+      <replace>documents</replace>
+      <replace>f.get_user</replace>
+      <replace>@jwt_required()</replace>
+      <replace>stroy_id</replace>
+      <replace>story_id</replace>
+      <replace>storyid</replace>
+      <replace>received['friend']</replace>
+      <replace>get_user(username=received['friend']).id</replace>
+      <replace>received['storyid']</replace>
+      <replace>def put</replace>
+      <replace>story_content</replace>
+      <replace>number</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/StoryLane.py" />
+        <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/socketserver.py" />
+        <option value="$PROJECT_DIR$/__init__.py" />
+        <option value="$PROJECT_DIR$/storylane.py" />
+        <option value="$PROJECT_DIR$/functions.py" />
+        <option value="$PROJECT_DIR$/static/turtletest.py" />
+        <option value="$PROJECT_DIR$/database.py" />
+        <option value="$PROJECT_DIR$/todo" />
+        <option value="$PROJECT_DIR$/application.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="10" />
+    <option name="y" value="2" />
+    <option name="width" value="635" />
+    <option name="height" value="728" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="StoryLaneChatServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StoryLaneChatServer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StoryLaneChatServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StoryLaneChatServer" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="StoryLaneChatServer" sdk-home="C:\Users\Otc_Chingy\.virtualenvs\PyVenv36\Scripts\python.exe">
+        <option name="mySdkHome" value="C:\Users\Otc_Chingy\.virtualenvs\PyVenv36\Scripts\python.exe" />
+        <option name="myModuleName" value="StoryLaneChatServer" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Otc_Chingy\AndroidStudioProjects\StoryLaneChatServer" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.application">
+    <configuration name="application" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="StoryLaneChatServer" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Otc_Chingy\.virtualenvs\PyVenv36\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/application.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="database" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="StoryLaneChatServer" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Otc_Chingy\.virtualenvs\PyVenv36\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/database.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.database" />
+      <item itemvalue="Python.application" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.application" />
+        <item itemvalue="Python.database" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6a1334bc-f2ab-403c-814b-9420a183298c" name="Default Changelist" comment="" />
+      <created>1554753509141</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1554753509141</updated>
+    </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <created>1555515660099</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1555515660099</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <layout>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.14583333" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.3289689" />
+      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="2" weight="0.3289689" />
+      <window_info anchor="bottom" id="Message" order="3" />
+      <window_info anchor="bottom" id="Find" order="4" weight="0.3289689" />
+      <window_info anchor="bottom" id="Version Control" order="5" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.3453355" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.16443452" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.3289689" />
+      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="2" weight="0.3289689" />
+      <window_info anchor="bottom" id="Message" order="3" />
+      <window_info anchor="bottom" id="Find" order="4" weight="0.3289689" />
+      <window_info anchor="bottom" id="Version Control" order="5" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.3371522" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/main.py" />
+    <entry file="file://$PROJECT_DIR$/socketserver.py" />
+    <entry file="file://$PROJECT_DIR$/__init__.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/flask_jwt/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="176" column="20" selection-start-line="176" selection-start-column="20" selection-end-line="176" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storylane.py" />
+    <entry file="file://$PROJECT_DIR$/functions.py" />
+    <entry file="file://$PROJECT_DIR$/static/turtletest.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/eventlet/greenio/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="380" selection-start-line="380" selection-end-line="380" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/eventlet/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="577" selection-start-line="577" selection-end-line="577" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="418" column="5" selection-start-line="418" selection-start-column="5" selection-end-line="418" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/twilio_app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="86" lean-forward="true" selection-start-line="10" selection-start-column="86" selection-end-line="10" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/todo">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="1821" column="4" selection-start-line="1821" selection-start-column="4" selection-end-line="1821" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#112#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

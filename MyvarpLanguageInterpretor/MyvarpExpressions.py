@@ -1,5 +1,6 @@
 import re
-from collections import deque
+
+from MyvarpLanguageInterpretor.utils.collections.stack import Stack
 
 assignment = re.compile("(\w+ *?\=)")
 statement = re.compile("\w+.+\w+.")
@@ -31,40 +32,6 @@ boolean = re.compile(
 
 
 # p = re.compile('ab*', re.IGNORECASE)
-
-
-class Stack:
-    DATA = deque()
-
-    def __init__(self):
-        self.DATA = deque()
-
-    @classmethod
-    def push(cls, data):
-        cls.DATA.appendleft(data)
-
-    @classmethod
-    def pop(cls):
-        ret = cls.DATA.popleft()
-        return ret
-
-    @classmethod
-    def top(cls):
-        if cls.isEmpty():
-            return None
-        return cls.DATA[0]
-
-    @classmethod
-    def isEmpty(cls):
-        return cls.size() == 0 or cls.DATA is None
-
-    @classmethod
-    def size(cls):
-        return len(cls.DATA)
-
-    @classmethod
-    def __str__(cls):
-        return str(cls.DATA)
 
 
 def has_paranthesis(line):
@@ -222,9 +189,7 @@ def is_operator(line):
     op = ['++', '--', '**', '//', '+=', '-=',
           '*=', '/=', '==', '>=', '<=', '!=', '=',
           '/', '*', '+', '-', '%', '>', '<', '!']
-    for i in op:
-        if i == line:
-            return True
+    return line in op
 
 
 def isBoolean(line):
@@ -345,16 +310,18 @@ def is_holder(c):
     if c == '[' or c == '{' or c == '(' or c == ')' or c == '}' or c == ']':
         return True
 
+
 def is_opener(c):
     if c == '[' or c == '{' or c == '(':
         return True
+
 
 def is_closer(c):
     if c == ')' or c == '}' or c == ']':
         return True
 
-def validateParanthesis(line):
 
+def validateParanthesis(line):
     PARANTHESIS = {
         "{": "}",
         "(": ")",
@@ -407,8 +374,8 @@ def IsPrime(num):
                 i += 2
         return True
 
-def line_is_tuple(line):
 
+def line_is_tuple(line):
     PARANTHESIS = {
         "(": ")",
         "'": "'",
@@ -447,8 +414,8 @@ def line_is_tuple(line):
         return False
     return False
 
-def line_is_dict(line):
 
+def line_is_dict(line):
     PARANTHESIS = {
         "{": "}",
         "'": "'",
@@ -487,8 +454,8 @@ def line_is_dict(line):
         return False
     return False
 
-def line_is_list(line):
 
+def line_is_list(line):
     PARANTHESIS = {
         "[": "]",
         "'": "'",
@@ -527,8 +494,8 @@ def line_is_list(line):
         return False
     return False
 
-def getOperationArguments(line):
 
+def getOperationArguments(line):
     operation_args = []
     stack = Stack()
     _operation = ""
@@ -562,8 +529,8 @@ def getOperationArguments(line):
 
     return operation_args
 
-def getParameterArguments(line):
 
+def getParameterArguments(line):
     raw_args_data = []
 
     if validateParanthesis(line):
@@ -598,59 +565,4 @@ def getParameterArguments(line):
 
     return raw_args_data
 
-# print(line_is_tuple("(dasdsddasd)"))
-# print(line_is_tuple("(dasds,ddasd)"))
-# print(line_is_tuple("(da+(sd)+sd+(da)+sd)"))
-# print(line_is_tuple("(da)+(sd)+sd+(da)+(sd)"))
-# print(line_is_tuple("(12+45)+(567-8)*7+(2*3)+square(2)"))
-# print(line_is_tuple("((12+45)+(567-8)*7+(2*3)+square(2))"))
-# print(line_is_tuple("dfsdfsdfsddfsfdf"))
 
-print(getParameterArguments("((12+45)+(567-8)*7+(2*3)+square(2)), 'sasas'"))
-
-print(getParameterArguments("((12+45)+(567-8)*7+(2*3)+square(2))"))
-
-print(getOperationArguments("'name' + (12+45)+(567-8)*7+(2*3)+square(5+(2+3))"))
-
-# print(validateParanthesis("({[ ])}"),
-#       validateParanthesis(")(( )){([( )])}"),
-#       validateParanthesis("((('')(( )){([( )])}))"),
-#       validateParanthesis("( )(( )){([( )])}"),
-#       validateParanthesis('()("name is bernard()()")'))
-
-# print(has_paranthesis("()"))
-# print(has_paranthesis("(true)"))
-# print(has_paranthesis("(( sdfasd ))"))
-# print(has_paranthesis("(sdf+asd)"))
-# print(has_paranthesis("(sdf)+(asd)"))
-# print(has_paranthesis("(sdf)(asd)"))
-
-# print(getBooleanParam("else if (false){ return 0}"))
-# print(getBooleanParam("else{ return 0}"))
-# print(getBooleanParam("if (1 == 5){ return 0}"))
-# print(getBooleanParam("else if (1 > 5){ return 0}"))
-# print(getBooleanParam("else if (1 < 7){ return 0}"))
-# print(getBooleanParam("else if (1 >= 3){ return 0}"))
-# print(getBooleanParam("else if (1 <= 4){ return 0}"))
-# print(getBooleanParam("else if (1 in 2){ return 0}"))
-# print(getBooleanParam("else if (1 is 1){ return 0}"))
-# print(getBooleanParam("else if (new){ return 0}"))
-# print(getBooleanParam("else if (old()){ return 0}"))
-# print(getBooleanParam("else if (name('bernard')){ return 0}"))
-# print(getBooleanParam("else if (not new){ return 0}"))
-# print(getBooleanParam("else if (not new(ones)){ return 0}"))
-# print(getBooleanParam("else if (not 1 == 1){ return 0}"))
-# print(getBooleanParam("else if (not 1 == 2){ return 0}"))
-
-# unEvenClosers("([['sdfd','sdfsdf]'],['sdfsdfsd'])")
-# unEvenClosers("['sdfd','sdfsdf]'],['sdfsdfsd]']")
-
-
-# print(isCollection("[]"))
-# print(isCollection("[1,2,3,4]"))
-# print(isCollection("(1)"))
-# print(isCollection("{'name':1,'age':2}"))
-# print(isCollection("[name]"))
-
-
-# use stacks for everything

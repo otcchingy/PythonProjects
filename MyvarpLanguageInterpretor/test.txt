@@ -1,51 +1,55 @@
-[1,2,3,4,5]
+###
+name = string
+age = int
+magic num = int
+###
 
-if (true){
-else if (true){
-else (true)){
-while (true){
-when (true){
+display("Welcome to Tell Me The Lucky Number")
 
-}
+name = input("Enter your name : ")
 
+display("welcome..Hope have fun ",name)
 
-if vbvb(hgh) == 111{
-else if (vbvb >= ddf()){
-else vbvb <= ddf{
-while (vbvb > ddf){
-when (vbvb < ddf){
+age = input("Enter your your for the lucky number : ")
 
+luckynum = int(age)*12//2
 
-name = "atinga";age=25
+display("your luck number is  ", luckynum)
 
-display(name)
-name = name * 2
-display('The new name is ')
-display(name)
+# ADD TWO NUMBERS
 
-name = bernard;name = "bernard ';' is cool";egg = 5+5+5+3;
+display("Enter two number to add")
+num1 = input("Enter the First num  :   ")
+num2 = input("Enter the Second num  :   ")
+total = int(num1)+int(num2)
+display("the total is ", total)
 
-display('\n\n')
-names = 'benrard', 'atinga', 'azumanh'
-display(names)
+nums = [1,2,3,4,5,6,7]; names = "bernard", "chris", "micheal","jacob";
+display(nums);display(names);display(names, nums)
 
-sum = 5+5-5*5+5+5
-display('the sum is',sum)
+index = nums[3]
 
- num = input('Enter your number : ')
- total = ffvsdf
+display("nums[3]  = " , index)
 
- func add(a,b){
+###
+
+will work on function creation in the future
+
+ func add(a = int,b = string){
 	return a+b
  }
 
- sum = add(a,b)
- display(sum)
+or 
 
-name.jhj()
-name.hjhj(vnvjhjhghg,hgfhjg)
+func add(a,b,{
+	return a+b
+})
 
-name()
+func add(a = int, b = string,{
+	return a+b
+})
 
-### jkgjhdslkjflksdjf ### name ###
-### jkgjhdslkjflksdjf ###  ### vksdfhkbdb ### 
+sum = add(a,b)
+display(sum)
+
+###

@@ -1,5 +1,7 @@
 import sys
-from MyvarpRunner import MyvarpRun
+from MyvarpLanguageInterpretor.MyvarpRunner import MyvarpRun
+from MyvarpLanguageInterpretor.MyvarpScriptManager import MyvarpScriptRunner
+
 
 class MyvarpCompile:
 
@@ -9,5 +11,19 @@ class MyvarpCompile:
         with open(str(file_path), 'r') as file:
             for i, line in enumerate(file):
                 self.session.run(line)
-                if 'Error' in str(self.session._output) or 'Exception' in str(self.session._output):
-                    sys.exit(self.session._output+"  at [line {}]".format(i+1))
+                if 'Error' in str(self.session.output) or 'Exception' in str(self.session.output):
+                    sys.exit(self.session.output + "  at [line {}]".format(i + 1))
+
+
+class NewMyvarpCompile:
+
+    session: MyvarpScriptRunner
+
+    def __init__(self, file_path):
+        with open(str(file_path), 'r') as file:
+            self.session = MyvarpScriptRunner(name=file.name, path=file_path)
+            for i, line in enumerate(file):
+                self.session.run(line)
+
+
+c = NewMyvarpCompile('C:/Users/Otc_Chingy/PycharmProjects/MyvarpLanguageInterpretor/test.txt')

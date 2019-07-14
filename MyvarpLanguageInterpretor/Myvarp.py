@@ -1,3 +1,14 @@
+import os
+import sys
+
+from MyvarpLanguageInterpretor.MyvarpCompiler import MyvarpCompile
+from MyvarpLanguageInterpretor.MyvarpRunner import MyvarpRun
+
+
+args = sys.argv
+
+
+
 """
 
 Author : chingy
@@ -6,15 +17,9 @@ could be a word or a bunch of words
 use Myvarp.py -h or --help for help
 
 """
-import os
-import sys
-args = sys.argv
 
-from MyvarpCompiler import MyvarpCompile
-from MyvarpRunner import MyvarpRun
 
 def main(argv):
-
     if len(argv) > 0:
         if argv[0] == "-h" or argv[0] == "-help":
             print("\nhelp on Myvarp ..how to run how to convert to python file")
@@ -29,12 +34,12 @@ def main(argv):
         session = MyvarpRun()
         session.read("", _return=True)
         while True:
-            if session._output == "...":
+            if session.output == "...":
                 line = input('   ... ')
                 session.read(line, _return=True)
             else:
                 line = input('mv >>> ')
-                
+
                 if str(line) == 'exit()' or str(line) == 'quit()' or str(line) == ':q':
                     break
                 elif str(line) == 'clear()' or str(line) == 'clean()':
@@ -45,7 +50,6 @@ def main(argv):
 
 if __name__ == "__main__":
     main(args[1:])
-
 
 # # !/usr/bin/python3
 # import sys, getopt

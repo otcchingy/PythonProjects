@@ -2,12 +2,12 @@
 # import datetime
 import logging
 # import subprocess
+import time
 from collections import namedtuple
 from typing import Optional, List
+from MyvarpLanguageInterpretor.MyvarpExpressions import *
 
-import time
 
-from MyvarpExpressions import *
 
 # Main Logger Configurations
 # logging.basicConfig(format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s",
@@ -50,7 +50,7 @@ class MyvarpRun:
     _temp = None
     _return = None
     _lines = ""
-    _output = None
+    output = None
     _status = None
     _builtins = None
     _environ = None
@@ -228,13 +228,13 @@ class MyvarpRun:
                 logging.debug("processing line  : {} ".format(line))
                 self.process(line) if line != "" else self._pass_()
                 logging.debug("Environ Variables : {}".format(self._environ['variables']))
-                logging.debug("Output :: {}".format(self._output))
+                logging.debug("Output :: {}".format(self.output))
                 logging.debug("Temp :: {}".format(self._temp))
                 if self._return:
-                    print(self._output) if self._output is not None else self._pass_()
-                self._output = (None if self._return else self._output)
+                    print(self.output) if self.output is not None else self._pass_()
+                self.output = (None if self._return else self.output)
             return self
-        self._output = "..."
+        self.output = "..."
 
     def assign(self, obj, _return=None):
         if isinstance(obj, MyvarpRun):
@@ -332,10 +332,10 @@ class MyvarpRun:
                     nline = nline.strip().rstrip()
                 logging.debug("result from continue collecting = {}".format(nline))
                 logging.debug("multicommenting status in continue collecting = {}".format(self._multicomment))
-                self._output = None
+                self.output = None
                 return self.stripComments(nline)
             else:
-                self._output = "..."
+                self.output = "..."
         else:
             line = self.stripComments(line)
             self._lines += line
@@ -357,14 +357,14 @@ class MyvarpRun:
                 if hf != False:
                     self.run_function(p)
                 else:
-                    self._output = "CallError :: Callable object {} does not exist ".format(p.object)
+                    self.output = "CallError :: Callable object {} does not exist ".format(p.object)
             elif p.type == "m.callable":
                 hf = self.is_function(p.method)
                 if hf:
                     pass
                 else:
-                    self._output = "CallError :: Callable object {} or Method {} does not exist ".format(p.object,
-                                                                                                         p.method)
+                    self.output = "CallError :: Callable object {} or Method {} does not exist ".format(p.object,
+                                                                                                        p.method)
             elif p.type == "operation":
                 if p.object == "expression":
                     p = assignP(p, result=self.get_arg_values(p.args))
@@ -372,28 +372,28 @@ class MyvarpRun:
                     operator = self._builtins['operators'][p.method]
                     operate = operator['function']
                     p = assignP(p, result=operate(p))
-                self._output = p.result
+                self.output = p.result
                 self._temp = p
             elif p.type == "expression":
                 try:
                     if self.exist_var(line):
-                        self._output = self.get_var(line)
+                        self.output = self.get_var(line)
                     elif self.get_arg_values(line) is not None:
                         self._temp = self.get_arg_values(line)
-                        self._output = self._temp
+                        self.output = self._temp
                     elif '[' in line and ']' in line:
                         self._index_(line)
                     else:
-                        self._output = 'NameException :: Undefined Name'
+                        self.output = 'NameException :: Undefined Name'
                 except Exception as e:
-                    self._output = "Error :: {}".format(e)
+                    self.output = "Error :: {}".format(e)
             elif str(p.type).__contains__("datatype"):
                 p = assignP(p, result=self.get_arg_values(p.object))
-                self._output = p.result
+                self.output = p.result
                 self._temp = p
             elif p.type == 'exception':
                 # throwException(p)
-                self._output = p.object
+                self.output = p.object
 
     def getProcess(self, line):
 
@@ -436,7 +436,7 @@ class MyvarpRun:
             elif hk:
                 pass
             else:
-                self._output = 'SyntaxError :: Cannot run command : Invalid syntax at {} '.format(line)
+                self.output = 'SyntaxError :: Cannot run command : Invalid syntax at {} '.format(line)
         return Process("expression", line, None, None, None)
 
     def getAssignmentArgs(self, line):
@@ -749,7 +749,7 @@ class MyvarpRun:
             else:
                 return (self._environ['variables'])['{}'.format(name)]
         except KeyError:
-            self._output = "NameException :: Undefined Name"
+            self.output = "NameException :: Undefined Name"
 
     def set_var(self, name, value):
         if self.is_builtin(name) == False:
@@ -767,7 +767,7 @@ class MyvarpRun:
             #     (self._environ['variables'])['{}'.format(name)] = value
         else:
             print('AssignError :: Cannot assign to name {} : failed Syntax'.format(name))
-            self._output = 'AssignError :: Cannot assign to name {} : failed Syntax'.format(name)
+            self.output = 'AssignError :: Cannot assign to name {} : failed Syntax'.format(name)
 
     def get_args(self, fname, line):
         args = ''
@@ -858,7 +858,7 @@ class MyvarpRun:
                         if k in args:
                             arg + '{}'.format(k)
                         else:
-                            self._output = 'InvalidKeywordArgument ::  Keyword does not exits for this  function {}'
+                            self.output = 'InvalidKeywordArgument ::  Keyword does not exits for this  function {}'
                             return None
                 for k in defargs:
                     if k not in provided:
@@ -888,7 +888,7 @@ class MyvarpRun:
                 try:
                     func = (self._environ['functions'][p.method])
                 except KeyError:
-                    self._output = "CallError :: function {} does not exist".format(p.method)
+                    self.output = "CallError :: function {} does not exist".format(p.method)
         return func
 
     def run_function(self, p):
@@ -903,16 +903,16 @@ class MyvarpRun:
                 else:
                     args = self.get_arg_values(p.args)
                     p = assignP(p, result=func(p.args))
-                self._output = p.result
+                self.output = p.result
                 self._temp = p
                 return p
             else:
-                self._output = "Invalid :: Call Parameters"
+                self.output = "Invalid :: Call Parameters"
 
     def run_method(self, p):
         func = (self._builtins['functions'][p.method])['function']
         p = assignP(p, result=func(p.args))
-        self._output = p.result
+        self.output = p.result
         self._temp = p
         return p
 
@@ -934,10 +934,10 @@ class MyvarpRun:
                 if name.isidentifier():
                     self.set_var(name, value)
                 else:
-                    self._output = 'SyntaxError :: Invalid Variable Name'
-            self._output = "NameError :: Can't find value for {}".format(p.args)
+                    self.output = 'SyntaxError :: Invalid Variable Name'
+            self.output = "NameError :: Can't find value for {}".format(p.args)
         except Exception:
-            self._output = 'AssignError :: Failed to assign {} to {}: failed Syntax'.format(p.args, name)
+            self.output = 'AssignError :: Failed to assign {} to {}: failed Syntax'.format(p.args, name)
 
     def _add_(self, p):
         temp = 0
@@ -1184,18 +1184,18 @@ class MyvarpRun:
         arg = self.get_index(args)
         name = args.replace(arg, '')
         try:
-            self._output = eval("self.get_var('{}'){}".format(name, arg))
-            return self._output
+            self.output = eval("self.get_var('{}'){}".format(name, arg))
+            return self.output
         except TypeError:
-            self._output = 'TypeError :: The object {} is  no subscriptable'.format(self.get_var(name))
+            self.output = 'TypeError :: The object {} is  no subscriptable'.format(self.get_var(name))
         except IndexError:
-            self._output = "IndexError :: The index you're trying to reach is out of Bounds"
+            self.output = "IndexError :: The index you're trying to reach is out of Bounds"
 
     def _int_(self, val):
         try:
             return int(self.get_arg_values(val))
         except Exception as e:
-            self._output = "ValueError :: " + str(e)
+            self.output = "ValueError :: " + str(e)
             return 'none'
 
     def _string_(self, val):
@@ -1234,7 +1234,7 @@ class MyvarpRun:
             else:
                 return 'none'
         except Exception:
-            self._output = "ValueEror :: Cannot convert object {} to bool".format(val)
+            self.output = "ValueEror :: Cannot convert object {} to bool".format(val)
 
     def _float_(self, val):
         val = self.get_arg_values(val)
@@ -1265,7 +1265,7 @@ class MyvarpRun:
 
     def _getvar_(self, val):
         val = self.get_arg_values(val)
-        self._output = val
+        self.output = val
         return val
 
     def _if_(self, a, b):
@@ -1295,7 +1295,7 @@ class MyvarpRun:
         # arg = eval(arg)
         arg = self.get_arg_values(arg)
         self._temp = input(arg)
-        self._output = self._temp
+        self.output = self._temp
         return '"' + self._temp + '"'
 
     def _type_(self, obj):
@@ -1348,4 +1348,4 @@ class MyvarpRun:
         exit(arg)
 
     def __str__(self):
-        return self._output
+        return self.output

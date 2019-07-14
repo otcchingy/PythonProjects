@@ -26,7 +26,7 @@ app.config['SECRET_KEY'] = "iamotc&ifuckingrule@#techup#"
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://jfvhvyrisvbkzk:8134222a346acf6484020a4c07a805b0fa6e4f6ca97b3f51105a745b601f8027@ec2-107-21-98-165.compute-1.amazonaws.com:5432/d4s49sa8pb9hb'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:Asdwe111@localhost:5432/spar'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:Asdwe111@localhost:5432/storylane'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config.from_pyfile('config.cfg')
 Bootstrap(app)
@@ -57,58 +57,6 @@ api = Api(app)
 # global vars
 online_users = hang_users = chat_buddy = explore_seen = ago_list = {}
 
-
-class GamePreference:
-    status = None
-    max_score = 20
-    max_number_of_players = 4
-    detect_cheating = 1
-    play_multiple_cards = 1
-    allow_user_fold = 1
-    cards_to_ignore = "2345A"
-    play_with_no_ten = 1
-    play_with_hands = 0
-    show_card_on_board = 1
-    show_messages_during_game = 1
-    allow_texting_in_game = 1
-
-    def __init__(self, data):
-        if isinstance(data, str):
-            data = jsonify(data)
-        try:
-            self.max_score = data['max_score']
-            self.max_score = data['max_number_of_players']
-            self.detect_cheating = data['detect_cheating']
-            self.play_multiple_cards = data['play_multiple_cards']
-            self.allow_user_fold = data['allow_user_fold']
-            self.cards_to_ignore = data['cards_to_ignore']
-            self.play_with_no_ten = data['play_with_no_ten']
-            self.play_with_hands = data['play_with_hands']
-            self.show_card_on_board = data['show_card_on_board']
-            self.show_messages_during_game = data['show_messages_during_game']
-            self.allow_texting_in_game = data['allow_texting_in_game']
-            self.status = 'done'
-        except Exception:
-            self.status = "failed"
-
-    def toDict(self):
-        return {
-            'status': 'done',
-            'max_score': self.max_score,
-            'max_number_of_players': self.max_score,
-            'detect_cheating': self.detect_cheating,
-            'play_multiple_cards' : self.play_multiple_cards,
-            'allow_user_fold': self.allow_user_fold,
-            'cards_to_ignore': self.cards_to_ignore,
-            'play_with_no_ten': self.play_with_no_ten,
-            'play_with_hands': self.play_with_hands,
-            'show_card_on_board': self.show_card_on_board,
-            'show_messages_during_game': self.show_messages_during_game,
-            'allow_texting_in_game': self.allow_texting_in_game,
-        }
-
-    def toJson(self):
-        return jsonify(self.toDict())
 
 def authenticate(username, password):
     user = Users.query.filter_by(username=username).first()
@@ -163,8 +111,13 @@ class MyModelView(sqla.ModelView):
 
 
 class UsersAdmin(ModelView):
-    column_searchable_list = ('username', 'email', 'phone', 'access_level')
-    column_filters = ('username', 'email', 'phone', 'access_level')
+    column_searchable_list = ('username', 'email', 'firstname', 'lastname', 'gender', 'status', 'user_status')
+    column_filters = ('firstname', 'lastname', 'username', 'email', 'gender', 'status', 'user_status')
+
+
+class HelpAdmin(ModelView):
+    column_searchable_list = ('help_topic', 'help_content')
+    column_filters = ('help_topic', 'help_content')
 
 
 # Create customized index view class that handles login 
@@ -191,15 +144,20 @@ class MyAdminIndexView(admins.AdminIndexView):
             abort(404)
         abort(404)
 
+
 admin = Admin(app, 'ChatAPP', index_view=MyAdminIndexView(), base_template='my_master.html')
 
 admin.add_view(UsersAdmin(Users, db.session))
 admin.add_view(MyModelView(Friends, db.session))
+admin.add_view(MyModelView(Follows, db.session))
+admin.add_view(MyModelView(Storys, db.session))
 admin.add_view(MyModelView(Notifications, db.session))
+admin.add_view(HelpAdmin(Help, db.session))
 admin.add_view(MyModelView(Gallery, db.session))
+admin.add_view(MyModelView(Likes, db.session))
 admin.add_view(MyModelView(Messages, db.session))
-admin.add_view(MyModelView(GameRoom, db.session))
-admin.add_view(MyModelView(GameRecords, db.session))
+admin.add_view(MyModelView(Comments, db.session))
+admin.add_view(MyModelView(Comment_likes, db.session))
 
 
 # ****END OF ADMIN ROUTES*******#
@@ -264,7 +222,7 @@ def buildJson(tag: str, list_data: list):
     return jsondata
 
 
-def get_suggestions(friends=None):
+def get_suggestions(friends=None, clubs=None, pages=None, apps=None, games=None):
     pass
 
 
@@ -319,6 +277,91 @@ def friends_checker(user, other_user):
             return True
         else:
             return False
+
+
+def like(user, sectionid, comment=None):
+    if comment:
+        comment_ = Comments.query.filter_by(comment_id=sectionid).first()
+        if comment_:
+            check = check_if_liked(user, sectionid, comment=True)
+            if check == False:
+                new_like = Comment_likes(comment_id=sectionid, liker=user.id, timestamp=datetime.datetime.now())
+                db.session.add(new_like)
+                db.session.commit()
+                return 'done'
+            return 'failed'
+        return 'failed'
+    else:
+        post = Storys.query.filter_by(story_id=sectionid).first()
+        if post:
+            check = check_if_liked(user, sectionid)
+            if check == False:
+                new_like = Likes(story_id=sectionid, liker=user.id, timestamp=datetime.datetime.now())
+                db.session.add(new_like)
+                db.session.commit()
+                return 'done'
+            return 'failed'
+        return 'failed'
+
+
+def unlike(user, sectionid, comment=None):
+    if comment:
+        comment_ = Comments.query.filter_by(comment_id=sectionid).first()
+        if comment_:
+            check = check_if_liked(user, sectionid, comment=True)
+            if check == True:
+                like = Comment_likes.query.filter(Comment_likes.comment_id == sectionid,
+                                                  Comment_likes.liker == user.id).first()
+                if like:
+                    db.session.delete(like)
+                    db.session.commit()
+                    return 'done'
+                return 'failed'
+            return 'failed'
+        return 'failed'
+    else:
+        post = Storys.query.filter_by(story_id=sectionid).first()
+        if post:
+            check = check_if_liked(user, sectionid)
+            if check == True:
+                like = Likes.query.filter(Likes.story_id == sectionid, Likes.liker == user.id).first()
+                if like:
+                    db.session.delete(like)
+                    db.session.commit()
+                    return 'done'
+                return 'failed'
+            return 'failed'
+        return 'failed'
+
+
+def comment(user, storyid, content):
+    post = Storys.query.filter_by(story_id=storyid).first()
+    if post:
+        if content.isspace() == False and content != '':
+            comment = Comments(user_id=user.id, post_id=storyid, comment_content=content,
+                               timestamp=datetime.datetime.now())
+            db.session.add(comment)
+            db.session.commit()
+            return 'done'
+        return 'failed'
+    return 'failed'
+
+
+def check_if_liked(user, sectionid, comment=None):
+    if comment:
+        check = Comment_likes.query.filter(Comment_likes.liker == user.id,
+                                           Comment_likes.comment_id == sectionid).first()
+        if check:
+            return True
+        else:
+            return False
+    else:
+        check = Likes.query.filter(Likes.liker == user.id, Likes.story_id == sectionid).first()
+        if check:
+            return True
+        else:
+            return False
+
 
 def get_user(userid=None, username=None, email=None, phone=None, auth=None, noteid=None, storyid=None, messageid=None,
              commentid=None):
@@ -420,6 +463,30 @@ def get_user(userid=None, username=None, email=None, phone=None, auth=None, note
     else:
         return None
 
+
+def get_likes(sectionid, comment=None, count=None):
+    if comment:
+        likers = Comment_likes.query.filter(Comment_likes.comment_id == sectionid).all()
+    else:
+        likers = Likes.query.filter(Likes.story_id == sectionid).all()
+    if count:
+        count_likes = len(likers)
+        return count_likes
+    else:
+        return likers
+
+
+def get_comments(storyid, count=None):
+    commenters = Comments.query.filter(Comments.story_id == storyid).all()
+    if count:
+        count_comments = Comments.query.filter(Comments.story_id == storyid).count()
+        return count_comments
+    else:
+        if commenters:
+            return commenters
+        return 'failed'
+
+
 def add_friend(user, friend):
     check = get_friendship(user, friend)
     if check is None and friend != user.id:
@@ -432,6 +499,65 @@ def add_friend(user, friend):
         db.session.commit()
         return 'done'
     return 'failed'
+
+
+def get_stories(user, start, category=None):
+    category = str(category)
+    start = int(start)
+    x = 0
+    index = start
+    stream = []
+    streams = []
+    ago = []
+    lists = friends_id_list(user)
+    if category == "self":
+        limit = 5
+        streamz = Storys.query.filter(Storys.user_id == user.id, Storys.privacy == 'public') \
+            .order_by(desc('timestamp')).all()
+    elif category == "explore":
+        lists.append(user.id)
+        try:
+            seen = explore_seen[user.id]
+        except KeyError:
+            seen = []
+        streams = Storys.query.filter(Storys.user_id.notin_(lists), Storys.story_id.notin_(seen)) \
+            .order_by(func.random()).limit(5).all()
+        if streams != []:
+            for stream in streams:
+                seen.append(stream.story_id)
+            return streams
+        return 'failed'
+    else:
+        stream += Storys.query.filter_by(user_id=user.id).all()
+        for ids in lists:
+            get_post = Storys.query.filter_by(user_id=ids).order_by(desc('timestamp')).limit(10).all()
+            stream += get_post
+        limit = 3
+        streamz = sorted(stream, key=attrgetter('timestamp'), reverse=True)
+
+    if streamz == []:
+        return 'failed'
+    else:
+        while x != limit:
+            try:
+                post = streamz[index]
+                streams.append(post)
+                index += 1
+                if index >= len(streamz):
+                    for data in streams:
+                        ago.append(data.story_id)
+                    ago_list[user.id] = ago
+                    streams.append('reachedMax')
+                    return streams
+                else:
+                    x += 1
+            except Exception as e:
+                print(e)
+                return 'failed'
+        for data in streams:
+            ago.append(data.story_id)
+        ago_list[user.id] = ago
+        return streams
 
 
 def get_messages(user, friend, start):
@@ -501,6 +627,58 @@ def decline(user, friend):
         db.session.commit()
         return 'done'
     return 'failed'
+
+
+def follow(user, friend):
+    person = get_user(userid=friend)
+    if person:
+        check = check_if_following(user, friend)
+        if not check:
+            followcode = '{}+{}'.format(user.id, person.id)
+            follow_friend = Follows(follower=user.id, following=person.id, add_code=followcode)
+            notify = Notifications(user_id=user.id, sender_name=user.username, note_header='FLW',
+                                   note_receiver=person.id, note_content='I jux Followed you?',
+                                   timestamp=datetime.datetime.now())
+            db.session.add(follow_friend)
+            db.session.add(notify)
+            db.session.commit()
+            return 'done'
+        return 'failed'
+    return 'failed'
+
+
+def unfollow(user, other_user):
+    person = get_user(userid=other_user)
+    if person:
+        match = "{}+{}".format(user.id, person.id)
+        unfollow_request = Follows.query.filter_by(add_code=match).first()
+        if unfollow_request:
+            db.session.delete(unfollow_request)
+            db.session.commit()
+            return 'done'
+        return 'failed'
+    return 'failed'
+
+
+def get_followers(user, count=None):
+    followers = Follows.query.filter(Follows.following == user.id).count()
+    if count:
+        return len(followers)
+    return followers
+
+
+def check_if_following(user, friend):
+    person = get_user(userid=friend)
+    try:
+        if person:
+            check = Follows.query.filter(Follows.follower == user.id, Follows.following == person.id).first()
+            if check:
+                return True
+            return False
+        return 'failed'
+    except Exception:
+        return 'failed'
+
 
 def get_mutual_friends(user, friend, count=None):
     try:
@@ -857,11 +1035,14 @@ def get_online_friends(user, online_users=online_users):
     return online_friends
 
 
-def countit(nc=None, mc=None):
+def countit(nc=None, pc=None, mc=None):
     user = get_user(userid=1)
     if nc:
         notices = Notifications.query.filter(Notifications.note_receiver == user.id, Notifications.seen == None).count()
         return notices
+    elif pc:
+        # new_post = Posts.query.filter(user_id=user.id).order_by(desc(Posts.timestamp)).count()
+        pass
     elif mc:
         count = 0
         messages = Unread_Messages.query.filter_by(receiver_id=user.id).all()
@@ -909,6 +1090,62 @@ def unread_messages(sender, friend, action=None):
             return 'done'
     else:
         return 'error'
+
+
+def post(user, story, files):
+    src = [{'filetype': 'None', 'path': 'None'}]
+    if 'media' in files:  # request.files
+        media = files.getlist('media')
+        process = upload(user, media, privacy=story['privacy'], used_as='post')
+        if process['status'] == 'done':
+            path = process['path']
+            type_ = process['filetype']
+            postname = process['postname']
+            src = [{'path': path, 'filetype': type_, 'filename': postname}]
+
+    new_post = Storys(user_id=user.id, story_content={
+        'title': story['title'], 'description': story['description'],
+        'content': story['content'], 'media': src},
+                      privacy=story['privacy'], timestamp=datetime.datetime.now())
+
+    db.session.add(new_post)
+    db.session.commit()
+    flash("Post successfull!", "success")
+    return 'done'
+
+
+def edit_post(user, story, files):
+    old_post = Storys.query.filter_by(story_id=story['storyid']).first()
+    if user.id == old_post.user_id:
+        edit = old_post
+        if edit:
+            post_media = (edit.story_content)['media']  # check if new media then change details for media else pass
+            privacy = story['privacy']
+            if 'media' in files:
+                media = files.getlist('media')
+                old_media = Gallery.query.filter(Gallery.user_id == user.id, Gallery.upload_used_as == 'post',
+                                                 Gallery.upload_path == cast(
+                                                     ((((edit.story_content)['media'])[0])['path']), JSONB)).first()
+                deleteIt(user, galleryid=old_media.gallery_id)
+                process = upload(user, media, privacy=story['privacy'], used_as='post')
+                if process['status'] == 'done':
+                    path = process['path']
+                    type_ = process['filetype']
+                    postname = process['postname']
+                    post_media = [{'path': path, 'filetype': type_, 'filename': postname}]
+                pass
+
+            edit.story_content = {'title': story['title'], 'description': story['description'],
+                                  'content': story['content'], 'media': post_media}
+            edit.privacy = story['privacy']
+            edit.timestamp = datetime.datetime.now()
+            edit.edited = 'true'
+            db.session.add(edit)
+            db.session.commit()
+        flash("The post has been succesfully updated", 'success')
+        return 'done'
+    flash("you don't have permission to edit this!!!", 'error')
+    return 'failed'
 
 
 def view_mutual_friends(user, friendid):
@@ -1223,8 +1460,56 @@ def processor(user, received):
                 return jsonify({'status': 'declined'})
             else:
                 return jsonify({'status': 'failed'})
+        elif action == 'follow':
+            do_before(user, friend=friend, action='follow')
+            process = follow(user, friend)
+            if process == 'done':
+                return jsonify({'status': 'followed', 'friend': friend})
+            else:
+                return jsonify({'status': 'failed'})
+        elif action == 'unfollow':
+            do_before(user, friend=friend, action='unfollow')
+            process = unfollow(user, friend)
+            if process == 'done':
+                return jsonify({'status': 'unfollowed', 'friend': friend})
+            else:
+                return jsonify({'status': 'failed'})
+        elif action == 'like':
+            process = like(user, storyid)
+            count = get_likes(storyid, count=True)
+            if process == 'done':
+                return jsonify({'status': 'liked', 'current_likes_count': count, 'storyid': storyid})
+            else:
+                return jsonify({'status': 'failed'})
+        elif action == 'unlike':
+            process = unlike(user, storyid)
+            count = get_likes(storyid, count=True)
+            if process == 'done':
+                return jsonify({'status': 'unliked', 'current_likes_count': count, 'storyid': storyid})
+            else:
+                return jsonify({'status': 'failed'})
         elif action == 'delete':
             process = deleteIt(user, storyid=storyid)
+            if process == 'done':
+                return jsonify({'status': 'deleted'})
+            else:
+                return jsonify({'status': 'failed'})
+        elif action == 'c_like':
+            process = like(user, storyid, comment=True)
+            count = get_likes(storyid, count=True, comment=True)
+            if process == 'done':
+                return jsonify({'status': 'c_liked', 'countlikes': count, 'storyid': storyid})
+            else:
+                return jsonify({'status': 'failed'})
+        elif action == 'c_unlike':
+            process = unlike(user, storyid, comment=True)
+            count = get_likes(storyid, count=True, comment=True)
+            if process == 'done':
+                return jsonify({'status': 'c_unliked', 'countlikes': count, 'storyid': storyid})
+            else:
+                return jsonify({'status': 'failed'})
+        elif action == 'c_delete':
+            process = deleteIt(user, commentid=storyid)
             if process == 'done':
                 return jsonify({'status': 'deleted'})
             else:
@@ -1248,6 +1533,24 @@ def processor(user, received):
                 return jsonify({'status': ''})
             else:
                 return jsonify({'status': 'failed'})
+        elif action == 'getcomments':
+            process = get_comments(storyid=storyid)
+            if process != 'failed':
+                return jsonify({'status': 'done', 'storyid': storyid, 'count': get_comments(int(storyid), count=True)})
+            else:
+                return jsonify({'status': 'failed', 'storyid': storyid})
+        elif action == 'postcomments':
+            process = comment(user, storyid, content)
+            if process != 'failed':
+                return jsonify({'status': content, 'storyid': str(storyid), 'username': user.username})
+            else:
+                return jsonify({'status': 'failed'})
+        elif action == 'loadmorepost':
+            process = get_stories(user, start)
+            if process == 'failed':
+                return jsonify({'status': 'failed'})
+            else:
+                return jsonify(buildJson("Story", process))
         elif action == 'loadgallery':
             process = get_gallery(user, get=media)
             if process == 'failed':
@@ -1256,6 +1559,16 @@ def processor(user, received):
                 return jsonify({'status': ''})
         elif action == 'explorestories':
             process = get_stories(user, start, category="explore")
+            if process == 'failed':
+                return jsonify({'status': 'failed'})
+            else:
+                return jsonify(buildJson("Story", process))
+        elif action == 'loaduserpost':
+            if friend == 'None':
+                person = user
+            else:
+                person = get_user(username=friend)
+            process = get_stories(person, start, category="self")
             if process == 'failed':
                 return jsonify({'status': 'failed'})
             else:
@@ -1575,6 +1888,68 @@ class ActivitySignup(Resource):
             # redirect(url_for('send_confirmation_link', phone=data, _external=True))
             return jsonify({'status': 'done', 'result': str(new_user.toDict()).replace("'", '"')})
 
+
+class ActivityStories(Resource):
+
+    @jwt_required()
+    def get(self, start, category=None):
+        stories = get_stories(current_identity, start, category)
+        if stories != 'failed':
+            return jsonify(buildJson("Story", stories))
+        return jsonify({'status': 'failed', 'result': 'no stories found'})
+
+    @jwt_required()
+    def post(self):
+        files = request.files
+        story = request.json
+        status = post(current_identity, story, files)
+        if status == 'done':
+            return jsonify({'status': 'done', 'result': 'post successful'})
+        return jsonify({'status': 'failed'})
+
+    @jwt_required()
+    def put(self):
+        story = request.json
+        files = request.files
+        status = edit_post(current_identity, story, files)
+        if status == 'done':
+            return jsonify({'status': 'done', 'result': 'post update successful'})
+        return jsonify({'status': 'failed'})
+
+    @jwt_required()
+    def delete(self, storyid):
+        status = deleteIt(current_identity, storyid=storyid)
+        if status == 'done':
+            return jsonify({'status': 'done', 'result': 'post delete successful'})
+        return jsonify({'status': 'failed'})
+
+
+class ActivityStoryItem(Resource):
+
+    @jwt_required()
+    def get(self, storyid):
+        pass
+
+    def delete(self, storyid):
+        pass
+
+
+class ActivityComments(Resource):
+
+    @jwt_required()
+    def get(self, method, limit):
+        pass
+
+    def post(self, story):
+        pass
+
+    def put(self, story):
+        pass
+
+    def delete(self, storyid):
+        pass
+
+
 class ActivityFriends(Resource):
 
     @jwt_required()
@@ -1584,6 +1959,26 @@ class ActivityFriends(Resource):
         other_friends = Friends.query.filter(Friends.friend_id == user.id, Friends.pending == 'done').all()
         friends = added_friends + other_friends
         return jsonify(buildJson('friend', friends))
+
+    def post(self, friend):
+        pass
+
+    def put(self, friend):
+        pass
+
+    def delete(self, friend_id):
+        pass
+
+
+class ActivityFollowers(Resource):
+
+    @jwt_required()
+    def get(self, friend_id):
+        user = current_identity
+        ufriends = Friends.query.filter(Friends.user_id == user.id, Friends.pending == 'done').all()
+        ofriends = Friends.query.filter(Friends.friend_id == user.id, Friends.pending == 'done').all()
+        friends = ufriends + ofriends
+        return jsonify(dict(friends))
 
     def post(self, friend):
         pass
@@ -1690,6 +2085,22 @@ class ActivityGallery(Resource):
     def delete(self, gallery_id):
         pass
 
+
+class ActivityExplore(Resource):
+
+    @jwt_required()
+    def get(self, search):
+        user = current_identity
+        explore_seen[user.id] = []
+        if not search == '' or search is not None:
+            search_discover = Storys.query.filter((and_(Storys.privacy == 'public')), Storys.story_content
+                                                  .like("%{}%".format(search))) \
+                .order_by(desc('timestamp')).limit(50).all()
+            return jsonify({'status': 'done'})
+        discover = get_stories(user, start=0, explore=True)
+        return jsonify({'status': 'done', 'data': discover})
+
+
 class ActivitySearch(Resource):
 
     @jwt_required()
@@ -1718,8 +2129,12 @@ class RequestProcessor(Resource):
 
 
 api.add_resource(Authenticate, '/login')
-api.add_resource(ActivitySignup, '/signup/<email>/<username>/<password>/<email>/<phone>')
+api.add_resource(ActivitySignup, '/signup/<firstname>/<lastname>/<email>/<username>/<password>')
 api.add_resource(UserManager, '/manage/get_user/<username>')
+api.add_resource(ActivityStories,
+                 '/get_stories/<start>/<category>', '/post_story',
+                 '/update_story', '/delete_story/<storyid>'
+                 )
 api.add_resource(ActivityFriends, '/friends')
 api.add_resource(ActivityNotifications, '/notifications/<method>/<limit>')
 api.add_resource(RequestProcessor, '/process')
