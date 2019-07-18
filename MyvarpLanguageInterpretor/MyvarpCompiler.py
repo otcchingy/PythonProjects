@@ -1,6 +1,6 @@
 import sys
 from MyvarpLanguageInterpretor.MyvarpRunner import MyvarpRun
-from MyvarpLanguageInterpretor.MyvarpScriptManager import MyvarpScriptRunner
+from MyvarpLanguageInterpretor.MyvarpScriptManager import MyvarpScriptReader
 
 
 class MyvarpCompile:
@@ -17,11 +17,11 @@ class MyvarpCompile:
 
 class NewMyvarpCompile:
 
-    session: MyvarpScriptRunner
+    session: MyvarpScriptReader
 
     def __init__(self, file_path):
         with open(str(file_path), 'r') as file:
-            self.session = MyvarpScriptRunner(name=file.name, path=file_path)
+            self.session = MyvarpScriptReader(name=file.name, path=file_path)
             for i, line in enumerate(file):
                 self.session.run(line)
 

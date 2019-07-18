@@ -306,13 +306,13 @@ class Walker(Enumerator):
     _stack: Stack
     _expected: str
     _string_active: bool
-    _multiple_line_string_active: int
+    _multiple_char_grouper_active: dict
     _pointer: int
 
     def __init__(self, groupers: dict = None, breakers: set = None):
 
         self._string_active = False
-        self._multiple_line_string_active = 0
+        self._multiple_char_grouper_active = {}
         self._is_breaker_word_part = True
         self._is_grouper_word_part = True
         self._stack = Stack()
@@ -387,11 +387,17 @@ class Walker(Enumerator):
     def get_breakers(self):
         return self._breakers
 
-    def set_groupers(self, groupers: dict):
-        self._groupers = groupers
+    def set_groupers(self, grouper_dict: dict):
+        self._groupers = grouper_dict
 
     def add_groupers(self, opener: str, closer: str):
         self._groupers[opener] = closer
+
+    def remove_grouper(self, opener: str):
+        try:
+            self._groupers.pop(opener)
+        except KeyError:
+            pass
 
     def get_groupers(self):
         return self._groupers
@@ -438,30 +444,53 @@ class Walker(Enumerator):
 
         return line in self.get_expected()
 
+    def is_valid_multi_line_grouper(self, char):
+        large_groupers = filter(lambda x: len(str(x)) > 1 and char == x[0], list(self._groupers.keys()))
+
+        try:
+            data = next(large_groupers)
+
+            while data:
+                test = True
+                for i in range(1, len(data)):
+                    if self._enumerator.peek(self._enumerator.get_current_item_number() + i) != data[i]:
+                        test = False
+                        break
+                if test:
+                    self._multiple_char_grouper_active = {data: self._groupers[data], 'open': '', 'close': ''}
+                    return True
+                data = next(large_groupers)
+        except StopIteration:
+            pass
+
     def generate_words(self):
         while self._enumerator.has_next():
             data = self._enumerator.get_next()
 
-            if self._multiple_line_string_active:
+            if not self.is_current_word_in_string() and \
+                    self._multiple_char_grouper_active or self.is_valid_multi_line_grouper(data):
 
-                if self.is_expecting(data):
-                    if self._enumerator.peek(self._enumerator.get_current_item_number() + 1) == data and \
-                            self._enumerator.peek(self._enumerator.get_current_item_number() + 2) == data:
-                        self._multiple_line_string_active = 0
+                opener = list(self._multiple_char_grouper_active.keys())[0]
+
+                self._current_word += data
+
+                if opener != self._multiple_char_grouper_active['open']:
+                    self._multiple_char_grouper_active['open'] += opener[len(self._multiple_char_grouper_active['open'])]
+                    if opener == self._multiple_char_grouper_active['open']:
                         self.make_word()
-                        if self._is_grouper_word_part:
-                            self._current_word += self._enumerator.get_next()
-                            self._stack.pop()
-                            self._current_word += self._enumerator.get_next()
-                            self._stack.pop()
-                            self._current_word += data
-                            self._stack.pop()
-                            self.make_word()
-                    else:
-                        self._current_word += data
 
-                else:
-                    self._current_word += data
+                if opener == self._multiple_char_grouper_active['open']:
+                    closer = self._multiple_char_grouper_active[f'{opener}']
+                    if data == closer[len(self._multiple_char_grouper_active['close'])]:
+                        self._multiple_char_grouper_active['close'] = self._multiple_char_grouper_active['close'] + data
+                        if self._multiple_char_grouper_active['close'] == closer:
+                            self._current_word = self._current_word.replace(closer, '')
+                            self.make_word()
+                            self._current_word = closer
+                            self.make_word()
+                            self._multiple_char_grouper_active = {}
+                    else:
+                        self._multiple_char_grouper_active['close'] = ''
 
             elif self.is_current_word_in_string():
 
@@ -491,24 +520,13 @@ class Walker(Enumerator):
                     self._stack.pop()
                 elif self._stack.isEmpty() or self._stack.top() != data:
                     if data == "'" or data == '"':
-
-                        if self._enumerator.peek(self._enumerator.get_current_item_number() + 1) == data and \
-                                self._enumerator.peek(self._enumerator.get_current_item_number() + 2) == data:
-                            self._multiple_line_string_active = 3
-                        else:
-                            self._string_active = True
+                        self._string_active = True
                     if self.is_group_opener(data):
                         self._stack.push(data)
-                    if self._multiple_line_string_active:
-                        self._stack.push(self._enumerator.get_next())
-                        self._stack.push(self._enumerator.get_next())
 
                 self.make_word()
                 if self._is_grouper_word_part:
                     self._current_word += data
-                    if self._multiple_line_string_active:
-                        self._current_word += data
-                        self._current_word += data
                     self.make_word()
             else:
                 self._current_word += data
@@ -542,12 +560,29 @@ class DefaultWalker(Walker):
 
 
 # s = DefaultWalker("""
-# '''
-#     sdasdafa
-#     My name is a  man 'i am him "lets gp" '
-#     afdafadfaj jhjhb
-# '''
-# """)
+#     def is_group_opener(self, grouper: str):
+#         return list(self._groupers.keys()).__contains__(grouper)
 #
-# while (s.has_next()):
+#     def is_group_closer(self, grouper: str):
+#         return list(self._groupers.values()).__contains__(grouper) #test ### double test ###
+#
+#         /*
+#         tell the world that pada adss sfsf sfs leave
+#         */
+#
+#     def new_function(args='', **kwargs):{
+#         # function to steal money
+#         if (is_pastor() and says_amen_alot()):
+#             return "very funny";
+#     }
+#
+#     '''
+#         multiline string
+#         soo many lines
+#         mainrains structure
+#     '''
+#
+#     """)
+#
+# while s.has_next():
 #     print(s.get_next())

@@ -22,10 +22,10 @@ class ScriptReader(StringEnumerator):
                str(self.peek_next_not_space()).lower() in ['true', 'false', 'none'] or self.is_next_string()
 
     def is_next_string(self):
-        return str(self.peek_next_not_space()) in ['"', "'", '"""']
+        return str(self.peek_next_not_space()) in ['"', "'", '"""', "'''"]
 
     def is_next_comment(self):
-        return str(self.peek_next_not_space()) in ['#', "###", '/*', '*\\', '//']
+        return str(self.peek_next_not_space()) in ['#', "###", '/*', '*/']
 
     def is_next_collection(self):
         if str(self.peek_next_not_space()) in ['[', "(", '{']:
@@ -77,7 +77,7 @@ class ScriptReader(StringEnumerator):
     def is_next_function_call(self):
         return self.is_next_parenthesis_opener('(')
 
-    def is_next_method_call(self):
+    def is_next_dot_operator(self):
         return self.peek_next_not_space() in ['.'] and str(self.peek_next_not_in(" . \n\t\b\a")).isidentifier()
 
     def is_next_assignment(self):
@@ -90,10 +90,7 @@ class ScriptReader(StringEnumerator):
         return self.peek_next_not_space() in ['}', 'endif', 'endfor', 'endwhile', 'endforeach', ';']
 
     def is_next_group(self):
-        return self.is_next_collection()
-
-    def is_next_group_item(self):
-        pass
+        return self.peek_next_not_space() in ['"', "'", '/*', '*/', '"""', "'''", '###']
 
     def is_next_new_line(self):
         return self.peek_next() in ['\n']

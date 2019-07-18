@@ -27,7 +27,7 @@ from MyvarpLanguageInterpretor.MyvarpExpressions import *
 
 
 logging.basicConfig(format="%(levelname)-8s [%(lineno)d] %(message)s", level=logging.DEBUG)
-# logging.disable(logging.DEBUG)
+logging.disable(logging.DEBUG)
 logging = logging.getLogger(__name__)
 
 Process = namedtuple("Process", ["type", "object", "method", "args", "result"])
@@ -1349,3 +1349,4 @@ class MyvarpRun:
 
     def __str__(self):
         return self.output
+

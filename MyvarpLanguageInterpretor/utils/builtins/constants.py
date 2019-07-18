@@ -1,5 +1,87 @@
 from MyvarpLanguageInterpretor.utils.builtins.funtions import Display
 
+OPERATORS = {
+    '++': '',
+    '--': '',
+    '**': '',
+    '//': '',
+    '+=': '',
+    '-=': '',
+    '*=': '',
+    '/=': '',
+    '==': '',
+    '>=': '',
+    '<=': '',
+    '!=': '',
+    '=': '',
+    '/': '',
+    '*': '',
+    '+': '',
+    '-': '',
+    '%': '',
+    '>': '',
+    '<': '',
+    '!': '',
+    '.': ''
+}
+
+KEYWORDS = {
+    'if': '',
+    'else': '',
+    'elseif': '',
+    'func': '',
+    'endif': '',
+    'endfunc': '',
+    'class': '',
+    'interface': '',
+    'abstract': '',
+    'return': '',
+    'when': '',
+    'with': '',
+    'endwith': '',
+    'as': '',
+    'from': '',
+    'import': '',
+    'in': '',
+    'for': '',
+    'endfor': '',
+    'do': '',
+    'then': '',
+    'foreach': '',
+    'endforeach': '',
+    'try': '',
+    'public': '',
+    'private': '',
+    'protected': '',
+    'static': '',
+    'final': '',
+    'const': '',
+    'except': '',
+    'break': '',
+    'continue': '',
+}
+
+TYPES = {
+    'number': '',
+    'int': '',
+    'float': '',
+    'string': '',
+    'list': '',
+    'dict': '',
+    'set': '',
+    'tuple': '',
+    'bool': '',
+    'byte': '',
+    'object': '',
+    'true': True,
+    'false': False,
+    'none': None
+}
+
+FUNCTIONS = {
+    'display': Display()
+}
+
 DEFAULT_ENVIRON = {
     'info': {
         'script_name': '',  # get_script_name from kwargs
@@ -11,72 +93,13 @@ DEFAULT_ENVIRON = {
     'temp': {},
 
     'builtins': {
-        'operators': {
-            '++': '',
-            '--': '',
-            '**': '',
-            '//': '',
-            '+=': '',
-            '-=': '',
-            '*=': '',
-            '/=': '',
-            '==': '',
-            '>=': '',
-            '<=': '',
-            '!=': '',
-            '=': '',
-            '/': '',
-            '*': '',
-            '+': '',
-            '-': '',
-            '%': '',
-            '>': '',
-            '<': '',
-            '!': ''
-        },
+        'operators': OPERATORS,
 
-        'keywords': {
-            'if': '',
-            'else': '',
-            'else if': '',
-            'func': '',
-            'class': '',
-            'return': '',
-            'when': '',
-            'with': '',
-            'as': '',
-            'loop': '',
-            'from': '',
-            'for': '',
-            'do': '',
-            'then': '',
-            'foreach': '',
-            'try': '',
-            'except': '',
-            'break': '',
-            'continue': '',
-        },
+        'keywords': KEYWORDS,
 
-        'types': {
-            'number':  '',
-            'int': '',
-            'float': '',
-            'string': '',
-            'list': '',
-            'dict': '',
-            'set': '',
-            'tuple': '',
-            'bool': '',
-            'byte': '',
-            'object': '',
-            'true': True,
-            'false': False,
-            'none': None
-        },
+        'types': TYPES,
 
-        'functions': {
-            'display': Display()
-        }
+        'functions': FUNCTIONS
     },
 
     'classes': {},

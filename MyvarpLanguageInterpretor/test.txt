@@ -4,6 +4,17 @@ age = int
 magic num = int
 ###
 
+
+name = "bernard azumah"
+
+long_string = '''
+
+some long test as string
+hope it works fine
+i know it will
+
+'''
+
 display("Welcome to Tell Me The Lucky Number")
 
 name = input("Enter your name : ")
@@ -24,6 +35,13 @@ num2 = input("Enter the Second num  :   ")
 total = int(num1)+int(num2)
 display("the total is ", total)
 
+/*
+
+more multiple line commenting
+ow yeah bless me okay
+
+*/
+
 nums = [1,2,3,4,5,6,7]; names = "bernard", "chris", "micheal","jacob";
 display(nums);display(names);display(names, nums)
 
@@ -39,17 +57,20 @@ will work on function creation in the future
 	return a+b
  }
 
-or 
 
-func add(a,b,{
+func add(a = int, b = string){
 	return a+b
-})
+}
 
-func add(a = int, b = string,{
-	return a+b
-})
+if (name == 'ben'):
+    """
+    method doc : do everything in here
+    using an intepretor session
+    """
+endif
 
 sum = add(a,b)
+
 display(sum)
 
 ###
