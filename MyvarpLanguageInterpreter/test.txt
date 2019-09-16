@@ -1,0 +1,6 @@
+name = "bernard"
+bernard_name = name
+bernard_name = "chris"
+newname = name
+bless = bernard_name
+bless

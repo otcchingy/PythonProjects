@@ -2,19 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8ea9c85-ffcb-4566-aec4-99632a8ef551" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpScriptProcessor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/builtins/helper_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpCompiler.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpCompiler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpExpressions.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_expressions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpRunner.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpRunner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpScriptManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpScriptManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpScriptManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_script_Reader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/test.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpFunction.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpFunction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpObject.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpObject.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpOperator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpScript.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpFunction.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_function.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpImporter.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_importer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpObject.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpScriptProcessor.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_script_interpreter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpVariable.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_variable.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/builtins/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/builtins/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/builtins/funtions.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/builtins/funtions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/collections/enumerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/collections/enumerator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/collections/script_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/collections/script_reader.py" afterDir="false" />
     </list>
@@ -26,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpScriptManager.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_script_reader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="65" column="16" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
+            <state relative-caret-position="107">
+              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
               <folding>
                 <element signature="e#52#66#0" expanded="true" />
                 <element signature="e#5640#6776#0" />
@@ -45,64 +46,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/builtins/constants.py">
+        <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_script_interpreter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="128" column="1" lean-forward="true" selection-start-line="128" selection-start-column="1" selection-end-line="128" selection-end-column="1" />
+            <state relative-caret-position="566">
+              <caret line="190" lean-forward="true" selection-start-line="190" selection-end-line="190" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpScriptProcessor.py">
+        <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/collections/script_reader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/builtins/helper_functions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="45" lean-forward="true" selection-start-column="44" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpFunction.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-454">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpClass.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2">
-              <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpObject.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="67" column="13" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/test.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="124">
+              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="29" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -110,11 +66,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpCompiler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="25" column="38" lean-forward="true" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+            <state relative-caret-position="266">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/test.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-689">
+              <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -130,8 +95,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>matcher</find>
-      <find>qrouper</find>
       <find>breaker</find>
       <find>.pop()</find>
       <find>super()</find>
@@ -157,9 +120,11 @@
       <find>has_s</find>
       <find>|</find>
       <find>):</find>
-      <find>self.</find>
       <find>_environ</find>
       <find>self,</find>
+      <find>self.</find>
+      <find>name = string</find>
+      <find>peek_next_not_space</find>
     </findStrings>
     <replaceStrings>
       <replace>1</replace>
@@ -185,6 +150,8 @@
       <replace>,</replace>
       <replace>, item):</replace>
       <replace>DEFAULT_ENVIRON</replace>
+      <replace>self._script_reader.</replace>
+      <replace>peek_next</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -222,25 +189,28 @@
         <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/Myvarp.py" />
         <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpScriptPreparer.py" />
         <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/collections/script_enumerator.py" />
-        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpExpressions.py" />
         <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpScript.py" />
         <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/builtins/functions/display.py" />
         <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/builtins/funtions.py" />
         <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/builtins/classes.py" />
         <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/collections/test.txt" />
-        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/collections/enumerator.py" />
-        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/collections/script_reader.py" />
         <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpRunner.py" />
         <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpScript.py" />
         <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpClass.py" />
         <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpObject.py" />
         <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpFunction.py" />
-        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpCompiler.py" />
-        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/test.txt" />
-        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/builtins/constants.py" />
         <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/builtins/helper_functions.py" />
-        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpScriptProcessor.py" />
+        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/collections/enumerator.py" />
         <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpScriptManager.py" />
+        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpScriptProcessor.py" />
+        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpCompiler.py" />
+        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_class.py" />
+        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpExpressions.py" />
+        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/builtins/constants.py" />
+        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_expressions.py" />
+        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/collections/script_reader.py" />
+        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_script_interpreter.py" />
+        <option value="$PROJECT_DIR$/MyvarpLanguageInterpretor/test.txt" />
       </list>
     </option>
   </component>
@@ -268,6 +238,33 @@
               <item name="PycharmProjects" type="462c0819:PsiDirectoryNode" />
               <item name="MyvarpLanguageInterpretor" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="PycharmProjects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PycharmProjects" type="462c0819:PsiDirectoryNode" />
+              <item name="MyvarpLanguageInterpretor" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PycharmProjects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PycharmProjects" type="462c0819:PsiDirectoryNode" />
+              <item name="MyvarpLanguageInterpretor" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="base" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PycharmProjects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PycharmProjects" type="462c0819:PsiDirectoryNode" />
+              <item name="MyvarpLanguageInterpretor" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="builtins" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PycharmProjects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PycharmProjects" type="462c0819:PsiDirectoryNode" />
+              <item name="MyvarpLanguageInterpretor" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="collections" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -280,17 +277,17 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Otc_Chingy\PycharmProjects\MyvarpLanguageInterpretor\utils\collections" />
+      <recent name="C:\Users\Otc_Chingy\PycharmProjects\MyvarpLanguageInterpretor\utils" />
+      <recent name="C:\Users\Otc_Chingy\PycharmProjects" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Otc_Chingy\PycharmProjects\MyvarpLanguageInterpretor\utils\base" />
       <recent name="C:\Users\Otc_Chingy\PycharmProjects\MyvarpLanguageInterpretor\utils" />
       <recent name="C:\Users\Otc_Chingy\PycharmProjects\MyvarpLanguageInterpretor" />
       <recent name="C:\Users\Otc_Chingy\PycharmProjects\FlaskSocial" />
       <recent name="C:\Users\Otc_Chingy\PycharmProjects\FlaskBlog" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Otc_Chingy\PycharmProjects\MyvarpLanguageInterpretor\utils\collections" />
-      <recent name="C:\Users\Otc_Chingy\PycharmProjects\MyvarpLanguageInterpretor\utils" />
-      <recent name="C:\Users\Otc_Chingy\PycharmProjects" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -360,7 +357,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpScriptManager.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Otc_Chingy\PycharmProjects\MyvarpLanguageInterpretor\utils\base\myvarp_script_reader.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -488,13 +485,20 @@
       <option name="project" value="LOCAL" />
       <updated>1563139946566</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="working on new classes for myvarp compiler">
+      <created>1563483274555</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1563483274555</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918166" visible="true" weight="0.17708333" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49918166" visible="true" weight="0.17708333" />
       <window_info id="Structure" order="1" sideWeight="0.5008183" side_tool="true" weight="0.17708333" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -733,14 +737,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpImporter.py">
+    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_importer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpVariable.py">
+    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_variable.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret lean-forward="true" />
@@ -773,48 +777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpExpressions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="48" column="19" lean-forward="true" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#1539#1791#0" />
-            <element signature="e#1825#1883#0" />
-            <element signature="e#1912#1970#0" />
-            <element signature="e#2278#3002#0" />
-            <element signature="e#3029#3094#0" />
-            <element signature="e#3119#3182#0" />
-            <element signature="e#3211#3311#0" />
-            <element signature="e#3335#3426#0" />
-            <element signature="e#3463#3493#0" />
-            <element signature="e#3524#3585#0" />
-            <element signature="e#3614#3668#0" />
-            <element signature="e#3693#3717#0" />
-            <element signature="e#3743#3770#0" />
-            <element signature="e#3801#3861#0" />
-            <element signature="e#3888#3914#0" />
-            <element signature="e#3941#3967#0" />
-            <element signature="e#3992#4017#0" />
-            <element signature="e#4042#4067#0" />
-            <element signature="e#4091#4115#0" />
-            <element signature="e#4141#4167#0" />
-            <element signature="e#4196#4224#0" />
-            <element signature="e#4252#4279#0" />
-            <element signature="e#4310#4515#0" />
-            <element signature="e#4545#4709#0" />
-            <element signature="e#4737#4786#0" />
-            <element signature="e#4816#4845#0" />
-            <element signature="e#4876#4936#0" />
-            <element signature="e#4967#5452#0" />
-            <element signature="e#5478#5993#0" />
-            <element signature="e#6024#6152#0" />
-            <element signature="e#6186#8022#0" />
-            <element signature="e#8047#8139#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3604">
@@ -827,20 +789,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/collections/enumerator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="237" selection-start-line="237" selection-end-line="237" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/collections/script_reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
@@ -884,45 +832,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpObject.py">
+    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_object.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="427">
           <caret line="67" column="13" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpClass.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2">
-          <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpCompiler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="25" column="38" lean-forward="true" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/test.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/builtins/constants.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="128" column="1" lean-forward="true" selection-start-line="128" selection-start-column="1" selection-end-line="128" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpFunction.py">
+    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_function.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-454">
           <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
@@ -936,17 +853,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/MyvarpScriptProcessor.py">
+    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="102">
+          <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpScriptManager.py">
+    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_expressions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="65" column="16" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
+        <state relative-caret-position="104">
+          <caret line="313" column="13" selection-start-line="313" selection-start-column="4" selection-end-line="313" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#6186#8022#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/builtins/constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="138" column="19" selection-start-line="138" selection-start-column="19" selection-end-line="138" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/collections/enumerator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="190" selection-start-line="190" selection-end-line="190" />
+          <folding>
+            <element signature="e#8841#16875#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/MyvarpCompiler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/collections/script_reader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_script_reader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="e#52#66#0" expanded="true" />
             <element signature="e#5640#6776#0" />
@@ -956,6 +918,20 @@
             <element signature="e#9627#9763#0" />
             <element signature="e#9804#9972#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/utils/base/myvarp_script_interpreter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="190" lean-forward="true" selection-start-line="190" selection-end-line="190" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyvarpLanguageInterpretor/test.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-689">
+          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
         </state>
       </provider>
     </entry>
