@@ -2,6 +2,8 @@
 # from utils.builtins.funtions import Decision
 
 OPERATORS = {
+    '//=': '',
+    '**=': '',
     '++': '',
     '--': '',
     '**': '',
@@ -10,6 +12,7 @@ OPERATORS = {
     '-=': '',
     '*=': '',
     '/=': '',
+    '%=': '',
     '==': '',
     '>=': '',
     '<=': '',
@@ -23,6 +26,9 @@ OPERATORS = {
     '>': '',
     '<': '',
     '!': '',
+    '^': '',
+    '&': '',
+    '~': '',
     '.': ''
 }
 
@@ -38,12 +44,15 @@ KEYWORDS = {
     'abstract': '',
     'return': '',
     'when': '',
+    'whenever': '',
     'with': '',
     'endwith': '',
     'as': '',
     'from': '',
     'import': '',
     'in': '',
+    'is': '',
+    'case': '',
     'of': '',
     'for': '',
     'endfor': '',
@@ -63,6 +72,11 @@ KEYWORDS = {
     'except': '',
     'break': '',
     'continue': '',
+    'require': '',
+    'include': '',
+    'extends': '',
+    'export': '',
+    'implements': '',
 }
 
 TYPES = {
@@ -85,7 +99,8 @@ TYPES = {
 }
 
 FUNCTIONS = {
-    'display': 'Display()'
+    'display': 'Display()',
+    'input': 'Input()'
 }
 
 BUILTINS = {

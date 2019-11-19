@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../MyvarpLanguageInterpreter/.idea/MyvarpLanguageInterpreter.iml" filepath="$PROJECT_DIR$/../MyvarpLanguageInterpreter/.idea/MyvarpLanguageInterpreter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/MyvarpLanguageInterpreter.iml" filepath="$PROJECT_DIR$/.idea/MyvarpLanguageInterpreter.iml" />
     </modules>
   </component>
 </project>

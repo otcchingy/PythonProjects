@@ -17,7 +17,7 @@ class ScriptReader(StringEnumerator):
                str(self.peek_next()).lower() in ['true', 'false', 'none'] or self.is_next_string()
 
     def is_next_string(self):
-        return str(self.peek_next()) in ['"', "'", '"""', "'''"]
+        return str(self.peek_next()) in ['`', "'", '"', '"""', "'''"]
 
     def is_next_comment(self):
         return str(self.peek_next()) in ['#', "###", '/*', '*/']
@@ -58,15 +58,14 @@ class ScriptReader(StringEnumerator):
         pass
 
     def is_next_operator(self):
-        items = ['++', '--', '**', '//', '+=', '-=',
-                 '*=', '/=', '==', '>=', '<=', '!=', '=',
-                 '/', '*', '+', '-', '%', '>', '<', '!']
+        items = ['++', '--', '**', '//', '+=', '-=', '^',
+                 '*=', '/=', '==', '>=', '<=', '!=', '&',
+                 '**=', '//=', '%=', '%', '^', '~', '=',
+                 '/', '*', '+', '-', '>', '<', '!', '.']
         return self.peek_next() in items
 
     def is_next_syntax_helper(self):
-        items = [';', ':', '^', '&', '%', '|', '$',
-                 '@', '!', '#', '\\', '.', '=', ',',
-                 '?', '(', ')', '[', ']', '{', '}', '']
+        items = [';', ':', '|', '$', '#', '\\', ',', '?', '@', '(',  ')', '[', ']', '{', '}']
         return self.peek_next() in items
 
     def is_next_dot_operator(self):
@@ -76,13 +75,14 @@ class ScriptReader(StringEnumerator):
         return self.peek_next() in ["=", 'as']
 
     def is_next_group(self):
-        return self.peek_next() in ['"', "'", '/*', '*/', '"""', "'''", '###']
+        return self.peek_next() in ['`', '"', "'", '/*', '*/', '"""', "'''", '###']
 
     def is_next_new_line(self):
         return self.peek_next() in ['\n']
 
     def is_next_line_terminator(self):
-        return self.peek_next() in [';', 'endif', 'endfor', 'endwhile', 'endforeach']
+        return self.peek_next() in [';', 'endif', 'endfor', 'endwith', 'endfunc',
+                                    'endwhile',  'endswitch',  'endclass', 'endforeach']
 
     def get_next_not_space(self):
         index = self.peek_next_index(not_in=' \n\t\b\a')

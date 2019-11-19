@@ -104,7 +104,7 @@ class MyvarpScriptReader:
     def get_next_string(self):
 
         if self._script.is_next_string() or self.is_string_active():
-            if self._script.peek_next() in ["'", '"'] and not self.is_string_active():
+            if self._script.peek_next() in ['`',"'", '"'] and not self.is_string_active():
                 self._string_active = self._script.peek_next()
                 self._group_data += self.get_next()
                 self._group_type = 'single'
@@ -152,7 +152,9 @@ class MyvarpScriptReader:
         if self._script.is_next_operator():
             while self._script.has_next():
                 if is_operator(self._script.peek_next()):
-                    _operator += self.get_next()
+                    op = _operator + self._script.peek_next()
+                    if is_operator(op):
+                        _operator += self.get_next()
                 else:
                     if _operator:
                         return _operator
