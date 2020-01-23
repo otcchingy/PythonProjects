@@ -2,7 +2,7 @@
 
 class MyvarpImporter:
 
-    def __init__(self, scope=None, script: str = "", expression_data: list = None):
+    def __init__(self, scope=None, script: str = ""):
         pass
 
     def check_if_module_exist(self):

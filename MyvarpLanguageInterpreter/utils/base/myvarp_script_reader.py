@@ -1,6 +1,3 @@
-# import date
-# import datetime
-# import subprocess
 import logging
 
 from utils.collections.script_reader import ScriptReader
@@ -12,7 +9,7 @@ configuring logger
 
 logging.basicConfig(format="%(levelname)-8s [%(lineno)d] %(message)s", level=logging.DEBUG)
 # logging.disable(logging.DEBUG)
-logging = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 class MyvarpScriptReader:
@@ -104,29 +101,34 @@ class MyvarpScriptReader:
     def get_next_string(self):
 
         if self._script.is_next_string() or self.is_string_active():
-            if self._script.peek_next() in ['`',"'", '"'] and not self.is_string_active():
-                self._string_active = self._script.peek_next()
-                self._group_data += self.get_next()
+            if self._script.peek_next() in ['`', "'", '"'] and not self.is_string_active():
                 self._group_type = 'single'
+                self._string_active = self._script.peek_next()
+                self._group_data += "'"
+                self.get_next()
 
             elif self._script.peek_next() in ['"""', "'''"] and not self.is_string_active():
-                self._string_active = self._script.peek_next()
-                self._group_data += self.get_next()
                 self._group_type = 'multi'
+                self._string_active = self._script.peek_next()
+                self._group_data += "'"
+                self.get_next()
+
+            escape = False
 
             while self.has_next():
                 data = self.get_next()
 
-                if self._group_type == 'single':
-                    if data == self._string_active:
-                        self._group_type = ''
-                    self._group_data += data
+                if not escape and data == self._string_active:
+                    self._group_type = ''
+                    self._group_data += "'"
+                else:
+                    for i in data:
+                        if i == '\\' and not escape:
+                            escape = True
+                        elif escape:
+                            escape = False
 
-                    # print(self._group_data)
-                elif self._group_type == 'multi':
-                    if data == self._string_active:
-                        self._group_type = ''
-                    self._group_data += data
+                        self._group_data += i
 
                 if self._group_type == '':
                     break
@@ -155,6 +157,7 @@ class MyvarpScriptReader:
                     op = _operator + self._script.peek_next()
                     if is_operator(op):
                         _operator += self.get_next()
+                    return _operator
                 else:
                     if _operator:
                         return _operator
@@ -187,10 +190,7 @@ class MyvarpScriptReader:
             if self._group_type == 'single':
                 self._group_type = ''
 
-    def get_next_argument(self):
-        return self.get_next_not_space()
-
-    def get_next_assignment(self):
+    def get_next_arguments(self):
         return self.get_next_not_space()
 
     def get_next_scope(self):
@@ -212,7 +212,7 @@ class MyvarpScriptReader:
 
     def has_string_data(self):
         if self.is_string_active() and self._group_data and not self._group_type:
-            # print('has string data')
+            # logger.debug('has string data')
             return True
 
     def get_string_data(self):
@@ -220,7 +220,7 @@ class MyvarpScriptReader:
             temp = self._group_data
             self._group_data = ''
             self._string_active = ''
-            return temp
+            return eval(f'"{temp}"')
         return ''
 
     def get_next_line(self):

@@ -1,6 +1,55 @@
-name = "bernard"
-bernard_name = name
-bernard_name = "chris"
-newname = name
-bless = bernard_name
-bless
+###
+name = string
+age = int
+magic num = int
+###
+
+display("Welcome to Tell Me The Lucky Number")
+
+name = input("Enter your name : ")
+
+display("welcome..Hope have fun ",name)
+
+age = input("Enter your your for the lucky number : ")
+
+luckynum = int(age)*12//2
+
+display("your luck number is  ", luckynum)
+
+# ADD TWO NUMBERS
+
+display("Enter two number to add")
+num1 = input("Enter the First num  :   ")
+num2 = input("Enter the Second num  :   ")
+total = int(num1)+int(num2)
+display("the total is ", total)
+
+nums = [1,2,3,4,5,6,7]; names = "bernard", "chris", "micheal","jacob";
+display(nums);display(names);display(names, nums)
+
+index = nums[3]
+
+display("nums[3]  = " , index)
+
+###
+
+will work on function creation in the future
+
+ func add(a = int,b = string){
+	return a+b
+ }
+
+or
+
+func add(a,b,{
+	return a+b
+})
+
+func add(a = int, b = string,{
+	return a+b
+})
+
+sum = add(a,b)
+display(sum)
+
+###

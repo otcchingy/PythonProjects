@@ -26,8 +26,8 @@ from utils.base.myvarp_expressions import *
 
 
 logging.basicConfig(format="%(levelname)-8s [%(lineno)d] %(message)s", level=logging.DEBUG)
-logging.disable(logging.DEBUG)
-logging = logging.getLogger(__name__)
+# logging.disable(logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 Process = namedtuple("Process", ["type", "object", "method", "args", "result"])
 
@@ -201,7 +201,7 @@ class MyvarpRun:
         self._return = _return
 
     def run(self, line):
-        logging.debug("original = {} ".format(line))
+        logger.debug("original = {} ".format(line))
         if self._multicomment:
             line = self.continueCollectingComments(line)
             if line is not None:
@@ -209,10 +209,10 @@ class MyvarpRun:
             else:
                 line = self._lines
             self._line = ""  # reseting temp line storage
-            logging.debug("continue collecting comments = {} ".format(line))
+            logger.debug("continue collecting comments = {} ".format(line))
         else:
             line = self.stripComments(line)
-            logging.debug("after striping comments = {} ".format(line))
+            logger.debug("after striping comments = {} ".format(line))
         # if self.isMultiline(line): 
         #     logging.debug('is multiline  :: start collecting')
         # self._nline += line
@@ -221,15 +221,15 @@ class MyvarpRun:
         self._status['operating'] = None
         self._temp = None
         lines = self.splitline(line.strip())
-        logging.debug("after spliting collected = {} ".format(lines))
-        logging.debug("muticomment status = {} ".format(self._multicomment))
+        logger.debug("after spliting collected = {} ".format(lines))
+        logger.debug("muticomment status = {} ".format(self._multicomment))
         if self._multicomment != True:
             for line in lines:
-                logging.debug("processing line  : {} ".format(line))
+                logger.debug("processing line  : {} ".format(line))
                 self.process(line) if line != "" else self._pass_()
-                logging.debug("Environ Variables : {}".format(self._environ['variables']))
-                logging.debug("Output :: {}".format(self.output))
-                logging.debug("Temp :: {}".format(self._temp))
+                logger.debug("Environ Variables : {}".format(self._environ['variables']))
+                logger.debug("Output :: {}".format(self.output))
+                logger.debug("Temp :: {}".format(self._temp))
                 if self._return:
                     print(self.output) if self.output is not None else self._pass_()
                 self.output = (None if self._return else self.output)
@@ -270,11 +270,11 @@ class MyvarpRun:
     def stripComments(self, old_line):
         line = ""
         mlc = False
-        logging.debug("in striping comment start = {} ".format(old_line))
-        logging.debug("mulcomm stats = {} ".format(self._multicomment))
+        logger.debug("in striping comment start = {} ".format(old_line))
+        logger.debug("mulcomm stats = {} ".format(self._multicomment))
 
         if self._multicomment == True:
-            logging.debug("checking for end of multilinecomment")
+            logger.debug("checking for end of multilinecomment")
             return self.continueCollectingComments(old_line)
 
         if "#" in old_line:
@@ -286,7 +286,7 @@ class MyvarpRun:
                     r = old_line.find("###") + 3
                     rol = old_line[r:]
                     if rol.count("###") > 0:
-                        logging.debug("cleaning single line multi commenting")
+                        logger.debug("cleaning single line multi commenting")
                         index = rol.find("###") + 3
                         rol = rol[index:]
                         self.multiline = False
@@ -315,9 +315,9 @@ class MyvarpRun:
             if mlc == True:
                 self._multicomment = True
                 self._lines = line
-            logging.debug("in # striping comment end = {} ".format(line))
+            logger.debug("in # striping comment end = {} ".format(line))
             return line
-        logging.debug("in striping comment end = {} ".format(old_line))
+        logger.debug("in striping comment end = {} ".format(old_line))
         return old_line
 
     def continueCollectingComments(self, line):
@@ -330,8 +330,8 @@ class MyvarpRun:
                 for i in range(z, len(line)):
                     nline += line[i]
                     nline = nline.strip().rstrip()
-                logging.debug("result from continue collecting = {}".format(nline))
-                logging.debug("multicommenting status in continue collecting = {}".format(self._multicomment))
+                logger.debug("result from continue collecting = {}".format(nline))
+                logger.debug("multicommenting status in continue collecting = {}".format(self._multicomment))
                 self.output = None
                 return self.stripComments(nline)
             else:
@@ -350,7 +350,7 @@ class MyvarpRun:
 
     def process(self, line):
         p = self.getProcess(line)
-        logging.debug(p)
+        logger.debug(p)
         if p is not None and p.object != "":
             if p.type == "f.callable":
                 hf = self.is_function(p.method)
@@ -415,7 +415,7 @@ class MyvarpRun:
         elif isCallable(line):
             return self.getcallArgs(line)
         elif hasOperation(line):
-            logging.debug("as operation")
+            logger.debug("as operation")
             return self.getOperation(line)
         elif isDataObject(line):
             return self.getDataObject(line)
@@ -510,8 +510,8 @@ class MyvarpRun:
 
     def getParamArgs(self, line):
 
-        logging.debug("Getting Arguments for Params = {}".format(line))
-        logging.debug("Testing resolveParamArgument = {}".format(self.resolveParameterArguments(line)))
+        logger.debug("Getting Arguments for Params = {}".format(line))
+        logger.debug("Testing resolveParamArgument = {}".format(self.resolveParameterArguments(line)))
         print(type(self.resolveParameterArguments(line)))
         print(type(self.resolveParameterArguments(line)[0]))
 
@@ -636,7 +636,7 @@ class MyvarpRun:
         if ckwargs != {}:
             args = {'args': args, 'kwargs': ckwargs}
 
-        logging.debug("Result Arguments for Params = {}".format(line))
+        logger.debug("Result Arguments for Params = {}".format(line))
 
         return args
 
@@ -793,7 +793,7 @@ class MyvarpRun:
 
     def get_arg_values(self, args):
         old_args = args
-        logging.debug("finding arg value for {} in get_arg_values".format(args))
+        logger.debug("finding arg value for {} in get_arg_values".format(args))
         while has_paranthesis(args):
             args = raw_string(args).strip()
         if args is not None:
@@ -823,9 +823,9 @@ class MyvarpRun:
                 if args is None:
                     if '[' in old_args and ']' in old_args:
                         args = self._index_(old_args)
-            logging.debug("returning from get_arg_values {}".format(args))
+            logger.debug("returning from get_arg_values {}".format(args))
             return args
-        logging.debug('Something went wrong in get arg Values')
+        logger.debug('Something went wrong in get arg Values')
 
     def evaluate(self, args):
         print(args)
@@ -1327,7 +1327,7 @@ class MyvarpRun:
                 return "byte"
             else:
                 # check user class __future
-                logging.debug("all failed")
+                logger.debug("all failed")
                 return "object"
 
     def check_type(self, args):

@@ -1,8 +1,8 @@
 import os
 import sys
+import datetime
 
-from MyvarpCompiler import MyvarpCompile
-from MyvarpRunner import MyvarpRun
+from MyvarpCompiler import MyvarpCompile, NewMyvarpCompile
 from utils.base.myvarp_script_interpreter import MyvarpScriptInterpreter
 
 args = sys.argv
@@ -41,16 +41,12 @@ def main(argv):
         if argv[0] == "-h" or argv[0] == "-help":
             print("\nhelp on Myvarp ..how to run how to convert to python file")
         else:
-            MyvarpCompile(argv[0])
+            NewMyvarpCompile(argv[0], argv=argv)
     else:
-        print(
-            "##############################################################################################################")
-        print(
-            "##                                  Myvarp By TechupStudio @Copyright 2018                                  ##")
-        print(
-            "##                                          Version 1.0 Build 0001                                          ##")
-        print(
-            "##############################################################################################################\n")
+        print("#"*110)
+        print("##"+(" "*34)+"Myvarp By TechupStudio @Copyright "+str(datetime.datetime.now().year)+(" "*34)+"##")
+        print("##"+(" "*42)+"Version 1.0 Build 0001"+(" "*42)+"##")
+        print("#"*110+"\n")
 
         session = MyvarpScriptInterpreter()
 
@@ -60,6 +56,15 @@ def main(argv):
                 line = input('   ... ')
                 session.add_line(line+"\n")
                 session.run_script()
+                if session.has_error():
+                    session.show_error()
+                    session.clear_error()
+                else:
+                    result = session.get_result()
+                    if result is not None:
+                        print(result)
+                    session.clear_result()
+
             else:
                 line = input('mv >>> ')
 
@@ -70,6 +75,14 @@ def main(argv):
                 else:
                     session.add_line(line+"\n")
                     session.run_script()
+                    if session.has_error():
+                        session.show_error()
+                        session.clear_error()
+                    else:
+                        result = session.get_result()
+                        if result is not None:
+                            print(result)
+                        session.clear_result()
 
 
 if __name__ == "__main__":

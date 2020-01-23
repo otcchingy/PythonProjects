@@ -17,14 +17,17 @@ class MyvarpCompile:
 class NewMyvarpCompile:
     session: MyvarpScriptInterpreter
 
-    def __init__(self, file_path):
+    def __init__(self, file_path, argv=None):
         with open(str(file_path), 'r') as file:
-            self.session = MyvarpScriptInterpreter(name=file.name, path=file_path)
+            self.session = MyvarpScriptInterpreter(name=file.name, path=file_path, argv=argv)
             for i, line in enumerate(file):
                 self.session.add_line(line+"\n")
                 self.session.run_script()
+                if self.session.has_error():
+                    self.session.show_error()
+                    break
             self.session.add_line('\n')
             self.session.run_script()
 
 
-# c = NewMyvarpCompile('C:/Users/Otc_Chingy/PycharmProjects/MyvarpLanguageInterpreter/test.txt')
+# c = NewMyvarpCompile('C:/Users/Otc_Chingy/PycharmProjects/MyvarpLanguageInterpreter/test.mv')

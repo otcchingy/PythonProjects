@@ -472,7 +472,8 @@ class Walker(Enumerator):
                 self._current_word += data
 
                 if opener != self._multiple_char_grouper_active['open']:
-                    self._multiple_char_grouper_active['open'] += opener[len(self._multiple_char_grouper_active['open'])]
+                    self._multiple_char_grouper_active['open'] += opener[
+                        len(self._multiple_char_grouper_active['open'])]
                     if opener == self._multiple_char_grouper_active['open']:
                         self.make_word()
 
@@ -533,11 +534,10 @@ class Walker(Enumerator):
 
 
 class DefaultWalker(Walker):
-
     def __init__(self, lines):
         breakers = {
             ' ', ',', ';', ':', '.', '=', '+', '&',
-            '-', '*', '/', '@', '\n', '\t', '~'
+            '-', '*', '/', '@', '\n', '\t', '~',
             '\b', '\a', '^', '!', '<', '>', '#'}
 
         groupers = {

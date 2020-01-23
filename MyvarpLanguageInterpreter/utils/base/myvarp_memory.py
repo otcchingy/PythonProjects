@@ -45,7 +45,13 @@ class MyvarpMemory:
         def __repr__(self):
             return f'MemoryReference<{self.get_referenced_key()}: {self.get_referenced_value()}>'
 
-    def set_item(self, key, value, assign_type = 'new'):
+    def set_item(self, key, value, **kwargs):
+
+        assign_type = 'new'
+
+        if kwargs.keys().__contains__('assign-type'):
+            assign_type = kwargs['assign-type']
+
         if self.has_key(key) and isinstance(self.get_value_for(key), self.Reference):
             # if assign_type == 'new':
             #     return self.set_item(key, self.get_data_for(key))

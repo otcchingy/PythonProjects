@@ -10,7 +10,7 @@ def get_builtin(line):
 
 def is_builtin(line, _type="all"):
     if _type == "all":
-        for x in ['keywords', 'operators', 'classes', 'functions']:
+        for x in ['keywords', 'operators', 'classes', 'objects']:
             if BUILTINS[f'{x}'].__contains__(line):
                 return True
     else:
@@ -29,8 +29,8 @@ def is_builtin_type(line):
     return is_builtin(line, _type='classes')
 
 
-def is_builtin_function(line):
-    return is_builtin(line, _type='functions')
+def is_builtin_object(line):
+    return is_builtin(line, _type='objects')
 
 
 def is_comparator_operator(line):

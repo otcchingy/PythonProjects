@@ -1,9 +1,9 @@
-from utils.base.myvarp_script_interpreter import MyvarpScriptInterpreter, Process
+from utils.base.processors.process import Process
 
 
 class MyvarpObject:
-    __script__: str  # code
-    __interpreter__: MyvarpScriptInterpreter
+    __script__: str
+    __interpreter__: None
     __attr_dict__: dict
 
     """
@@ -24,25 +24,78 @@ class MyvarpObject:
             
     """
 
-    def __init__(self, parent=None, script: str = "", expression_data: list = None):
+    def __init__(self, parent=None, script: str = "", **kwargs):
+        """
+
+        :param parent: parent interpretor
+        :param script: lines to process
+        :param kwargs:
+            access_spec = [
+                'private',
+                'public',
+                'protected'
+            ],
+            modifier_access = [
+                'static',
+                'normal'
+            ],
+            access_state = [
+                'final',
+                'constant',
+                'normal'
+            ]
+        """
         self.__script__ = script
         self.__result__ = None
-        self.__interpreter__ = MyvarpScriptInterpreter(script, parent=parent, expression_data=expression_data)
-        self.__attr_dict__ = {'access_spec': 'protected', 'modifier_access': 'normal', 'access_state': 'normal'}
+        self.__interpreter__ = None
+        self.__attr_dict__ = {}
 
-    def call(self, args: dict = None):
+    def call(self, args=None):
         # set interpreter variable (params) to args
         # runs the script in the interpreter (interpreter.interpret) and returns the result # default result = None
-        self.__interpreter__.start_interpreting_process()
-        self.__result__ = self.get_attribute('call')(args)
-        if isinstance(self.__result__, Process) and self.__result__.type == "exception":
-            print(self.__result__.object)
+        if args is None:
+            args = {'posargs': [], 'kwargs': {}}
+
+        param_details = self.get_interpreter().get_all_params()
+        posargs: list = args['posargs']
+        kwargs: dict = args['kwargs']
+        using_kwargs = False
+        pos_arg_index = 0
+        for i in range(param_details):
+            param = param_details[i]
+            if param['param-type'] == 'positional':
+                if using_kwargs:
+                    # TODO: trow error positional arg after kwarg args
+                    pass
+                elif kwargs.keys().__contains__(param['param']):
+                    using_kwargs = True
+                    self.get_interpreter().set_param_value(param['param'], kwargs.pop(param['param']))
+                else:
+                    self.get_interpreter().set_param_value(param['param'],  posargs[pos_arg_index])
+                    pos_arg_index += 1
+            else:
+                using_kwargs = True
+                if i == len(param_details)-1:
+                    self.get_interpreter().set_param_value(param['param'], kwargs)
+                else:
+                    # throw error invalid argument structure
+                    pass
+
+        self.__result__ = self.get_interpreter().run_script()
+        if isinstance(self.__result__, Process) and self.__result__.get_type() == "exception":
+            print(self.__result__.get_object())
+
+    def add_parent(self, parent):
+        pass
 
     def get_interpreter(self):
         return self.__interpreter__
 
+    def get_script(self):
+        return self.__script__
+
     def get_value(self):
-        return self.__result__
+        return self.__result__ or self.__script__
         pass
 
     def to_string(self):
@@ -50,37 +103,61 @@ class MyvarpObject:
         return self.__attr_dict__['to_string']
 
     def equal_to(self, item):
-        return self.__attr_dict__['eq'].call(item)
+        return self.get_interpreter().get_property('eq').call(item)
 
     def greater_than(self, item):
-        return self.__attr_dict__['gt'].call(item)
+        return self.get_interpreter().get_property('gt').call(item)
 
     def less_than(self, item):
-        return self.__attr_dict__['lt'].call(item)
+        return self.get_interpreter().get_property('lt').call(item)
 
     def greater_than_or_equal_to(self, item):
-        return self.__attr_dict__['ge'].call(item)
+        return self.get_interpreter().get_property('ge').call(item)
 
     def less_than_or_equal_to(self, item):
-        return self.__attr_dict__['le'].call(item)
+        return self.get_interpreter().get_property('le').call(item)
 
     def not_equal_to(self, item):
-        return self.__attr_dict__['ne'].call(item)
+        return self.get_interpreter().get_property('ne').call(item)
+
+    def set_property(self, name, value, **kwargs):
+        self.get_interpreter().set_property(name, value, **kwargs)
+
+    def get_property(self, name):
+        return self.get_interpreter().get_property(name)
 
     def set_attribute(self, name, value):
         self.__attr_dict__[f'{name}'] = value
 
     def get_attribute(self, name):
-        return self.__attr_dict__[f'{name}']
+        self.__attr_dict__[f'{name}']
 
     def has_attribute(self, name):
-        return self.__attr_dict__.keys().__contains__(name)
+        pass
 
     def remove_attribute(self, name):
-        return self.__attr_dict__.pop(name)
+        pass
 
     def class_type(self):
         return self.__attr_dict__['object']
+
+    def plus(self, other):
+        pass
+
+    def minus(self, other):
+        pass
+
+    def mul(self, other):
+        pass
+
+    def div(self, other):
+        pass
+
+    def abs_div(self, other):
+        pass
+
+    def is_empty(self):
+        return False
 
     def clone(self):
         return self.__new__

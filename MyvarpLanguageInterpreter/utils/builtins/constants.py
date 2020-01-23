@@ -62,6 +62,10 @@ KEYWORDS = {
     'endforeach': '',
     'try': '',
     'new': '',
+    'async': '',
+    'await': '',
+    'self': '',
+    'this': '',
     'ref': '',
     'public': '',
     'private': '',
@@ -89,41 +93,54 @@ TYPES = {
     'set': '',
     'tuple': '',
     'bool': '',
+    'none': None,
     'byte': '',
     'object': '',
-    'true': True,
-    'false': False,
-    'none': None,
-    'range': range,
-    'exception': Exception
 }
 
-FUNCTIONS = {
-    'display': 'Display()',
-    'input': 'Input()'
+
+SYS_DEFAULT_OBJECT_IMPORTS = {
+    'true': {'value': True, 'type': 'bool'},
+    'false': {'value': False, 'type': 'bool'},
+    'typeof': {'value': None, 'type': 'object'},
+    'range': {'value': None, 'type': 'object'},
+    'date': {'value': None, 'type': 'object'},
+    'len': {'value': None, 'type': 'object'},
+    'sizeof': {'value': None, 'type': 'object'},
+    'display': {'value': None, 'type': 'object'},
+    'input': {'value': None, 'type': 'object'},
+    'exception': {'value': Exception, 'type': 'object'}
+}
+
+SYS_OTHER_OBJECT = {
+    'os': {'value': None, 'type': 'object'},
+    'sys': {'value': None, 'type': 'object'},
+    'time': {'value': None, 'type': 'object'},
+    'thread': {'value': None, 'type': 'object'},
+    'process': {'value': None, 'type': 'object'},
+    'socket': {'value': None, 'type': 'object'},
+    'http': {'value': None, 'type': 'object'},
+    'math': {'value': None, 'type': 'object'},
+    'file': {'value': None, 'type': 'object'}
 }
 
 BUILTINS = {
     'operators': OPERATORS,
-
     'keywords': KEYWORDS,
-
     'classes': TYPES,
-
-    'functions': FUNCTIONS
+    'objects': SYS_DEFAULT_OBJECT_IMPORTS
 }
 
 DEFAULT_STARTUP_ENVIRON = {
-
     'info': {
         'script_name': '',  # get_script_name from kwargs
         'script_path': '',  # get script path
         'script_source': '',
         'start_line': 0,
-        'stop_line': 0
+        'stop_line': 0,
+        'script_argv': []
     },
 }
-
 
 EXPECT_AFTER_DATA = [
     'syntax.helper',

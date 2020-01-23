@@ -25,9 +25,6 @@ class ScriptReader(StringEnumerator):
     def is_next_collection(self):
         if str(self.peek_next()) in ['[', "(", '{', '}', ')', ']']:
             return True
-        # else:
-        #     if self.peek_next() in [',']:
-        #         return True
 
     def is_next_collection_opener(self, line=None):
         if self.peek_next() in ['(', '[', '{']:
