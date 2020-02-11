@@ -38,7 +38,7 @@ class ScriptReader(StringEnumerator):
                 return self.peek_next() == line
             return True
 
-    def is_next_int(self):
+    def is_next_number(self):
         return str(self.peek_next()).isnumeric()
 
     def is_next_bool(self):
@@ -55,14 +55,15 @@ class ScriptReader(StringEnumerator):
         pass
 
     def is_next_operator(self):
-        items = ['++', '--', '**', '//', '+=', '-=', '^',
-                 '*=', '/=', '==', '>=', '<=', '!=', '&',
-                 '**=', '//=', '%=', '%', '^', '~', '=',
-                 '/', '*', '+', '-', '>', '<', '!', '.']
+        items = ['++', '--', '**', '//', '+=', '-=',
+                 '^', '*=', '/=', '==', '>=', '<=',
+                 '!=', '**=', '//=', '%=', '%', '^',
+                 '~', '=', '/', '*', '+', '-', '>',
+                 '<', '.']
         return self.peek_next() in items
 
     def is_next_syntax_helper(self):
-        items = [';', ':', '|', '$', '#', '\\', ',', '?', '@', '(',  ')', '[', ']', '{', '}']
+        items = [';', ':', '!', '||', '$', '#', '\\', ',', '?', '@', '(',  ')', '[', ']', '{', '}']
         return self.peek_next() in items
 
     def is_next_dot_operator(self):

@@ -15,6 +15,12 @@ class Word:
                 return True
         return False
 
+    def is_match(self, names):
+        for name in names:
+            if name == self._value:
+                return True
+        return False
+
     def get_type(self):
         return self._type
 

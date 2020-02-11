@@ -237,8 +237,16 @@ class MyvarpScriptInterpreter(MyvarpScriptReader):
     def set_property(self, key, value, **kwargs):
         self.get_memory().set_item(key, value, **kwargs)
 
+    def has_property(self, key):
+        result = self.get_property(key)
+        if isinstance(result, Process):
+            if result.get_type() == 'exception':
+                return False
+        return True
+
     def get_property(self, key):
         data = self.get_memory().get_data_for(key)
+
         if data is None:
 
             data = Process(type='exception', object='NameException :: Undefined Name', state='failed')
@@ -292,94 +300,99 @@ class MyvarpScriptInterpreter(MyvarpScriptReader):
     def __process_line__(self):
 
         # try:
-            word = Word(None, None)
+        word = Word(None, None)
 
-            if self.has_next_needed():
+        if self.has_next_needed():
 
-                self.move_to_next_needed()
+            self.move_to_next_needed()
 
-                # logging.debug(f'|{self._script.peek_next()}|')
+            # logging.debug(f'|{self._script.peek_next()}|')
 
-                if self._script.is_next_comment() or self.is_comments_active():
-                    self.get_next_comment()
+            if self._script.is_next_comment() or self.is_comments_active():
+                self.get_next_comment()
 
-                elif self._script.is_next_string() or self.is_string_active():
-                    if self.has_string_data():
-                        word = Word('builtins.data.string', self.get_string_data())
-                    else:
-                        self.get_next_string()
-
-                elif self._script.is_next_new_line() or self._script.is_next_line_terminator():
-                    word = Word('expression.helper.run', '<run>')
-                    self.get_next()
-
-                elif self._script.is_next_data_object() or self._script.is_next_identifier():
-                    if self._script.is_next_identifier():
-
-                        if is_builtin(self._script.peek_next()):
-                            if is_keyword(self._script.peek_next()):
-                                word = Word('builtins.keyword.' + self._script.peek_next_not_space(),
-                                            self.get_next_not_space())
-                            elif is_builtin_type(self._script.peek_next()):
-                                word = Word('builtins.class', self.get_next_not_space())
-                            elif is_builtin_object(self._script.peek_next()):
-                                word = Word('builtins.object', self.get_next_not_space())
-                        else:
-                            # if is_object(self._script.peek_next_not_space()) then get type and create object
-                            word = Word('data.identifier', self.get_next_not_space())
-
-                    elif self._script.is_next_int():
-                        word = Word('builtins.data.number.integer',
-                                    self.get_next_not_space())  # TODO: create get next number
-                    elif self._script.is_next_float():  # TODO: remove line
-                        word = Word('builtins.data.number.float', self.get_next_not_space())
-                    elif self._script.is_next_bool():
-                        word = Word('builtins.data.bool', self.get_next_not_space())
-                    elif self._script.is_next_byte():
-                        word = Word('builtins.data.byte', self.get_next_not_space())
-
-                elif self._script.is_next_operator():
-
-                    if self._script.is_next_dot_operator():
-                        word = Word('operator.accessor', self.get_next_not_space())
-
-                    else:
-                        operator = self.get_next_operator()
-                        if operator:
-                            word = Word('operator.' + operator, operator)
-
-                elif self._script.is_next_collection():
-
-                    if self._script.is_next_collection_opener():
-                        word = Word('expression.collection.opener.' + self._script.peek_next(),
-                                    self.get_next_not_space())
-
-                    elif self._script.is_next_collection_closer():
-                        word = Word('expression.collection.closer.' + self._script.peek_next(),
-                                    self.get_next_not_space())
-
-                elif self._script.is_next_syntax_helper():
-                    word = Word('expression.helper.' + self._script.peek_next_not_space(), self.get_next_not_space())
-                    # ; : , $ @ \ !
+            elif self._script.is_next_string() or self.is_string_active():
+                if self.has_string_data():
+                    word = Word('builtins.data.string', self.get_string_data())
                 else:
-                    self.set_error(Error('UnExpectedWordError', f'The word {self._script.peek_next_not_space()} is invalid!'))
-                    word = Word('exception.invalid-word.' + self._script.peek_next_not_space(), self.get_next_not_space())
-                    logger.debug(word)
-                    return word
-                    pass
+                    self.get_next_string()
 
-                if word.get_type() is not None and not word.is_type_of('run'):
-                    # print(word)
-                    self.add_token(word)
-                self.__process_line__()
+            elif self._script.is_next_new_line() or self._script.is_next_line_terminator():
+                word = Word('expression.helper.run', self.get_next().replace('\n', '<newline>'))
 
+            elif self._script.is_next_data_object() or self._script.is_next_identifier():
+                if self._script.is_next_identifier():
+
+                    if is_builtin(self._script.peek_next()):
+                        if is_keyword(self._script.peek_next()):
+                            word = Word('builtins.keyword.' + self._script.peek_next_not_space(),
+                                        self.get_next_not_space())
+                        elif is_builtin_type(self._script.peek_next()):
+                            word = Word('builtins.object.type', self.get_next_not_space())
+                        elif is_builtin_object(self._script.peek_next()):
+                            word = Word('builtins.object', self.get_next_not_space())
+                    else:
+                        # if is_object(self._script.peek_next_not_space()) then get type and create object
+                        word = Word('data.identifier', self.get_next_not_space())
+
+                elif self._script.is_next_number():
+                    number = self.get_next_number()
+                    if number.__contains__('--error--'):
+                        number = number.replace('--error--:', '')
+                        self.set_error(Error('InvalidSyntaxError', f'cannot parse \'{number}\' into number!'))
+                    else:
+                        word = Word('builtins.data.number.integer', number)  # TODO: create get next number
+
+                elif self._script.is_next_float():  # TODO: remove line
+                    word = Word('builtins.data.number.float', self.get_next_not_space())
+                elif self._script.is_next_bool():
+                    word = Word('builtins.data.bool', self.get_next_not_space())
+                elif self._script.is_next_byte():
+                    word = Word('builtins.data.byte', self.get_next_not_space())
+
+            elif self._script.is_next_operator():
+
+                if self._script.is_next_dot_operator():
+                    word = Word('operator.accessor', self.get_next_not_space())
+                else:
+                    operator = self.get_next_operator()
+                    if operator:
+                        word = Word('operator.' + operator, operator)
+                    else:
+                        self.set_error(Error('InvalidSyntaxError', f'cannot parse \'{operator}\' into operator!'))
+            elif self._script.is_next_collection():
+
+                if self._script.is_next_collection_opener():
+                    word = Word('expression.collection.opener.' + self._script.peek_next(),
+                                self.get_next_not_space())
+
+                elif self._script.is_next_collection_closer():
+                    word = Word('expression.collection.closer.' + self._script.peek_next(),
+                                self.get_next_not_space())
+
+            elif self._script.is_next_syntax_helper():
+                word = Word('expression.helper.' + self._script.peek_next_not_space(), self.get_next_not_space())
+                # ; : , $ @ \ !
             else:
-                if word.get_type() is not None:
-                    # print(word)
-                    self.add_token(word)
+                self.set_error(
+                    Error('UnExpectedWordError', f'The word \'{self._script.peek_next_not_space()}\' is invalid!'))
+                word = Word('exception.invalid-word.' + self._script.peek_next_not_space(), self.get_next_not_space())
+                logger.debug(word)
+                return word
+                pass
 
-        # except Exception as e:
-        #     self.set_error(e)
+            if word.get_type() is not None:
+                # print(word)
+                self.add_token(word)
+            self.__process_line__()
+
+        else:
+            if word.get_type() is not None:
+                # print(word)
+                self.add_token(word)
+
+                # except Exception as e:
+                #     self.set_error(e)
 
     def __interpret(self):
 
@@ -392,7 +405,7 @@ class MyvarpScriptInterpreter(MyvarpScriptReader):
                 parse_result = parser.get_result()
                 logger.debug(f'ParseResult: {parse_result}')
                 processor = MyvarpGrammarProcessor(self, parse_result)
-                # TODO: fix processor.has_error and passing around ref to self
+                processor.process()
                 if processor.has_error():
                     logger.debug(f'submitting error: {processor.get_error()}')
                     self.set_error(processor.get_error())

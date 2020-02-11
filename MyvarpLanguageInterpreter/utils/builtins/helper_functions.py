@@ -42,7 +42,7 @@ def is_assignment_operator(line):
 
 
 def is_numerical_operator(line):
-    return line in ['+', '-', '*', '/', '%', '**']
+    return line in ['+', '-', '*', '/', '%', '**', '^']
 
 
 def is_expression_operator(line):
@@ -57,7 +57,6 @@ def is_function(line):
     return is_builtin(line, _type='functions')
 
 
-@staticmethod
 def is_string(line):
     if isinstance(line, str) and not line.isspace() and line != '':
         if line[0] == '"' and line[-1] == '"':
@@ -66,6 +65,5 @@ def is_string(line):
             return True
 
 
-@staticmethod
 def de_string(line):
     return line[1:-1]

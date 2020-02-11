@@ -1,3 +1,4 @@
+from utils.base.processors.operation import Identifier
 from utils.builtins.constants import BUILTINS
 
 
@@ -47,28 +48,27 @@ class MyvarpMemory:
 
     def set_item(self, key, value, **kwargs):
 
-        assign_type = 'new'
+        if kwargs.keys().__contains__('assign_type'):
+            assign_type = kwargs['assign_type']
 
-        if kwargs.keys().__contains__('assign-type'):
-            assign_type = kwargs['assign-type']
-
-        if self.has_key(key) and isinstance(self.get_value_for(key), self.Reference):
-            # if assign_type == 'new':
-            #     return self.set_item(key, self.get_data_for(key))
-            # elif assign_type == 'ref':
-                key = self.get_value_for(key).get_referenced_key()
-                return self.set_item(key, value)
-
-        elif self.has_key(value):
-            if assign_type == 'new':
-                self.__memory[f'{key}'] = self.get_data_for(value)
-            elif assign_type == 'ref':
-                self.__memory[f'{key}'] = self.reference(value)
+            if self.has_key(value):
+                if assign_type == 'new':
+                    if isinstance(value, Identifier):
+                        self.__memory[f'{key}'] = self.get_data_for(value.get_name())
+                    else:
+                        self.__memory[f'{key}'] = value
+                else:
+                    if self.has_key(key) and isinstance(self.get_value_for(key), self.Reference):
+                        key = self.get_value_for(key).get_referenced_key()
+                    # print(f'doing assignment: {key} = {assign_type} {value}')
+                    if assign_type == 'val':
+                        self.__memory[f'{key}'] = self.get_data_for(value)
+                    elif assign_type == 'ref':
+                        self.__memory[f'{key}'] = self.reference(value)
 
         else:
-            if str(value).isidentifier():
-                value = self.get_data_for(value)
-
+            if self.has_key(key) and isinstance(self.get_value_for(key), self.Reference):
+                key = self.get_value_for(key).get_referenced_key()
             self.__memory[f'{key}'] = value
 
     def get_all_items(self):
@@ -78,17 +78,17 @@ class MyvarpMemory:
         if self.has_key(key):
             value = self.get_referenced_value_for(key)
             if isinstance(value, self.Reference):
-                if isinstance(value, self.Reference):
-                    return self.get_referenced_value_for(value.get_referenced_key())
-                else:
-                    return {'key': key, 'value': value}
+                return self.get_referenced_value_for(value.get_referenced_key())
             else:
                 return {'key': key, 'value': value}
 
     def get_referenced_value_for(self, key):
+        # print(f'getting referenced value for: {key}')
         if self.has_key(key):
-            value = self.__memory[f'{key}']
+            value = self.get_value_for(key)
+            # print(f'value: {value} is reference: {isinstance(value, self.Reference)}')
             if isinstance(value, self.Reference):
+                # print(f'try again referenced value for: {value.get_referenced_key()}')
                 return self.get_referenced_value_for(value.get_referenced_key())
             else:
                 return {'key': key, 'value': value}
@@ -100,8 +100,6 @@ class MyvarpMemory:
     def get_data_for(self, key):
         if self.has_key(key):
             return self.get_referenced_value_for(key)['value']
-        else:
-            pass
 
     def get_keys(self):
         return list(self.__memory.keys())

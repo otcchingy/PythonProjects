@@ -66,11 +66,34 @@ class Identifier:
         return f'Identifier<{self.name}>'
 
 
+class KeyWord(Word):
+    def __init__(self, word: Word):
+        super().__init__(word.get_type(), word.get_value())
+
+
 class VarAccessOperation(UnaryOperation):
-    def __init__(self, var_name):
-        super().__init__(None, Word('memory.access', '?'), var_name)
+    def __init__(self, identifier):
+        super().__init__(None, Word('memory.access', '?'), identifier)
 
 
 class VarAssignOperation(BinaryOperation):
     def __init__(self, var_name, op, value):
         super().__init__(var_name, op, value)
+
+
+class DecisionOperation:
+    def __init__(self, if_cases, else_case):
+        self._if_cases = if_cases
+        self._else_case = else_case
+
+    def get_if_cases(self):
+        return self._if_cases
+
+    def get_else_case(self):
+        return self._else_case
+
+    def has_else_case(self):
+        return self.get_else_case() is not None
+
+    def __repr__(self):
+        return f'DecisionOperation(<{self.get_if_cases()}, {self.get_else_case()}>)'

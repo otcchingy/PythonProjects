@@ -98,6 +98,21 @@ class MyvarpScriptReader:
     def get_next_data_object(self):
         return self.get_next_not_space()
 
+    def get_next_number(self):
+        number = ''
+        if self._script.is_next_number():
+            number += self.get_next_not_space()
+            if self._script.peek_next() == '.':
+                number += self.get_next()
+                if self._script.is_next_number():
+                    number += self.get_next()
+                    return number
+                else:
+                    number += self.get_next()
+                    return '--error--:' + number
+            else:
+                return number
+
     def get_next_string(self):
 
         if self._script.is_next_string() or self.is_string_active():
@@ -151,17 +166,14 @@ class MyvarpScriptReader:
     def get_next_operator(self):
         _operator = ''
 
-        if self._script.is_next_operator():
-            while self._script.has_next():
-                if is_operator(self._script.peek_next()):
-                    op = _operator + self._script.peek_next()
-                    if is_operator(op):
-                        _operator += self.get_next()
-                    return _operator
-                else:
-                    if _operator:
-                        return _operator
-                    break
+        while self._script.is_next_operator():
+            op = _operator + self._script.peek_next()
+            if is_operator(op):
+                _operator += self.get_next()
+            else:
+                break
+
+        return _operator
 
     def get_next_comment(self):
 

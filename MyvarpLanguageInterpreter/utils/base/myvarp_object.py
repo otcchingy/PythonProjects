@@ -130,7 +130,7 @@ class MyvarpObject:
         self.__attr_dict__[f'{name}'] = value
 
     def get_attribute(self, name):
-        self.__attr_dict__[f'{name}']
+        return self.__attr_dict__[f'{name}']
 
     def has_attribute(self, name):
         pass
@@ -158,6 +158,17 @@ class MyvarpObject:
 
     def is_empty(self):
         return False
+
+    def is_obj(self, other):
+        pass
+
+    def and_op(self, other):
+        # return not self.is_empty() and not other.is_empty()
+        pass
+
+    def or_op(self, other):
+        # return not self.is_empty() or not other.is_empty()
+        pass
 
     def clone(self):
         return self.__new__
