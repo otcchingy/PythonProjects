@@ -55,7 +55,7 @@ googleapis-common-protos==1.5.3
 greenlet==0.4.13
 gunicorn==19.9.0
 heroku==0.1.4
-httplib2==0.11.3
+httplib2==0.18.0
 idna==2.6
 idna-ssl==1.1.0
 isort==4.3.4
