@@ -1,9 +1,16 @@
+import logging
+from utils.base.myvarp_class import MyvarpClass
 from utils.base.myvarp_error import Error
 from utils.base.myvarp_word import Word
 from utils.base.processors.operation import BinaryOperation, UnaryOperation, VarAssignOperation, VarAccessOperation, \
     Identifier, KeyWord, Operation, DecisionOperation
 from utils.builtins.classes import Number, String, Boolean, Empty
 from utils.builtins.helper_functions import de_string
+
+logging.basicConfig(format="%(levelname)-8s [%(filename)s:%(lineno)d] %(message)s", filename="grammar_processor",
+                    level=logging.DEBUG)
+# logging.disable(logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 
 class MyvarpGrammarParser:
@@ -38,6 +45,7 @@ class MyvarpGrammarParser:
         if self.has_next_token():
             self.__current_token_index += 1
             self.__current_token = self.get_tokens()[self.__current_token_index]
+            # logger.debug("advancing from previous token: "+str(self.get_previous_token())+", current token: "+str(self.__current_token))
             return self.__current_token
 
     def get_current_token(self):
@@ -49,7 +57,7 @@ class MyvarpGrammarParser:
 
     def parse(self):
         self.advance()
-        self.__result = self.expression()
+        self.__result = self.statements()
 
     def get_binary_operation(self, func, operators):
 
@@ -59,8 +67,8 @@ class MyvarpGrammarParser:
         while self.get_current_token().is_match(operators):
             operator = self.get_current_token()
             self.advance()
-            if operator.is_type_of('/'):
-                right = self.get_binary_operation(func, ['*', '/'])
+            if operator.is_type_of('/') or operator.is_type_of('//'):
+                right = self.get_binary_operation(func, ['*', '/', '//'])
             else:
                 right = func()
             if self.has_error(): return right
@@ -108,8 +116,6 @@ class MyvarpGrammarParser:
             if self.get_current_token().is_type_of(')'):
                 self.advance()
             return expr
-        else:
-            self.set_error(Error('InvalidSyntaxError', 'Expected type int, float, -, +!'))
 
     def factor(self):
 
@@ -130,106 +136,103 @@ class MyvarpGrammarParser:
             return self.atom()
 
         else:
-            self.set_error(Error('InvalidSyntaxError', 'Expected type int, float, -, +!'))
+            self.set_error(Error('InvalidSyntaxError', 'Expected an expression or a value!<1>'))
 
     def term(self):
-        return self.get_binary_operation(self.factor, ['*', '/'])
+        return self.get_binary_operation(self.factor, ['*', '**', '/', '//'])
 
     def arith_expression(self):
         return self.get_binary_operation(self.term, ['+', '-'])
 
     def comp_expression(self):
-        return self.get_binary_operation(self.arith_expression, ['<', '>', '==', '<=', '>='])
+        return self.get_binary_operation(self.arith_expression, ['<', '>', '==', '<=', '>=', '!='])
 
     def decision_expression(self):
+        """
+
+        #case 1
+        if condition:
+            block
+        (o|...)elseif condition:
+            block
+        (o)else:
+            block
+        endif
+
+        #case 2
+        if condition{
+            block
+        }
+        (o|...)elseif condition{
+            block
+        }
+        (o)else{
+            block
+        }
+        :return: DecisionOperation
+        """
         if self.get_previous_token().is_match(['if']):
+            logger.debug("doing if")
             if_cases = []
             else_case = None
-            if_scope_type = ''
             condition = self.expression()
-            if self.get_current_token().is_match(['{', ':']):
-                if_scope_type = self.get_current_token().get_value()
-                self.advance()
-                expression = self.expression()
-                if_cases.append((condition, expression))
-                if if_scope_type == '{':
-                    proceed = self.get_current_token().is_match(['}'])
-                else:
-                    proceed = True
-                print(proceed)
-                if proceed:
+            if condition is None:
+                self.set_error(Error('InvalidSyntaxError', 'Expected boolean expression'))
+                return
+            proceed, is_open, scope_opener, block = self.block()  # list of expressions
+
+            if proceed:
+                if_cases.append((condition, block))
+
+                logger.debug("current word<1>: "+str(self.get_current_token()))
+
+                while self.get_current_token().is_match(['elseif']):
+                    logger.debug("doing else if")
                     self.advance()
-                    while self.get_current_token().is_match(['elseif']):
-                        self.advance()
-                        condition = self.expression()
-                        print(condition)
-                        if self.get_current_token().is_match(['{', ':']):
-                            if if_scope_type == '{':
-                                proceed = self.get_current_token().is_match(['{'])
-                            else:
-                                proceed = self.get_current_token().is_match(':')
+                    condition = self.expression()
+                    if condition is None:
+                        self.set_error(Error('InvalidSyntaxError', 'Expected boolean expression'))
+                        return
+                    proceed, is_open, scope_opener, block = self.block()
+                    if proceed:
+                        if_cases.append((condition, block))
+                    elif is_open:
+                        expected_closer = "endif" if scope_opener == ':' else "}"
+                        self.set_error(Error('InvalidSyntaxError', f'Expected {expected_closer}'))
+                    else:
+                        self.set_error(Error('InvalidSyntaxError', 'Expected { or :<4>'))
+                        return
 
-                            if proceed:
-                                self.advance()
-                                expression = self.expression()
-                                print(expression)
-                                if_cases.append((condition, expression))
-                                if if_scope_type == '{':
-                                    proceed = self.get_current_token().is_match(['}'])
-                                    if proceed:
-                                        self.advance()
-                                    else:
-                                        self.set_error(Error('InvalidSyntaxError', 'Expected \'}\''))
-                                        return None
-                            else:
-                                self.set_error(Error('InvalidSyntaxError', 'Expected \'{\', \':\''))
-                                return None
-                        else:
-                            self.set_error(Error('InvalidSyntaxError', 'Expected \'{\', \':\''))
-                            return None
+                logger.debug("current word<2>: "+str(self.get_current_token()))
 
-                    print(self.get_current_token())
-                    if self.get_current_token().is_match('else'):
-                        self.advance()
-                        if self.get_current_token().is_match(['{', ':']):
-                            if if_scope_type == '{':
-                                proceed = self.get_current_token().is_match(['{'])
-                            else:
-                                proceed = self.get_current_token().is_match(':')
+                if self.get_current_token().is_match(['else']):
+                    logger.debug("doing else")
+                    self.advance()
+                    proceed, is_open, scope_opener, block = self.block()
+                    if proceed:
+                        else_case = block
 
-                            if proceed:
-                                self.advance()
-                                else_case = self.expression()
-
-                                if if_scope_type == '{':
-                                    proceed = self.get_current_token().is_match(['}'])
-                                else:
-                                    proceed = self.get_current_token().is_match('endif')
-
-                                if proceed:
-                                    print(1, if_cases, else_case)
-                                    return DecisionOperation(if_cases, else_case)
-                                else:
-                                    self.set_error(Error('InvalidSyntaxError', 'Expected \'}\', \'endif\''))
-                                    return None
-                            else:
-                                self.set_error(Error('InvalidSyntaxError', 'Expected \'{\', \':\''))
-                                return None
-                        else:
-                            self.set_error(Error('InvalidSyntaxError', 'Expected \'{\', \':\''))
-                            return None
-                    print(2, if_cases, else_case)
-                    return DecisionOperation(if_cases, else_case)
+                if is_open:
+                    expected_closer = "endif" if scope_opener.is_match([":"]) else "}"
+                    logger.debug("current word<3>: " + str(self.get_current_token()))
+                    if self.get_current_token().is_match([expected_closer]):
+                        return DecisionOperation(if_cases, else_case)
+                    else:
+                        self.set_error(Error('InvalidSyntaxError', f'Expected {expected_closer}'))
                 else:
-                    self.set_error(Error('InvalidSyntaxError', 'Expected \'}\''))
-                    return None
+                    return DecisionOperation(if_cases, else_case)
+
+            elif is_open:
+                expected_closer = "endif" if scope_opener == ':' else "}"
+                self.set_error(Error('InvalidSyntaxError', f'Expected {expected_closer}'))
             else:
-                self.set_error(Error('InvalidSyntaxError', 'Expected \'{\', \':\''))
-                return None
+                self.set_error(Error('InvalidSyntaxError', 'Expected { or :<2>'))
+
+            return DecisionOperation(if_cases, else_case)
 
     def expression(self):
 
-        result = self.get_binary_operation(self.comp_expression, ['and', 'or', '||', '&&'])
+        result = self.get_binary_operation(self.comp_expression, ['and', 'or', '||', '&&', 'is'])
 
         if isinstance(result, KeyWord) and result.is_match(['if']):
             return self.decision_expression()
@@ -240,20 +243,60 @@ class MyvarpGrammarParser:
                 if self.has_next_token():
                     self.advance()
                     word = self.expression()
-                    if isinstance(word, KeyWord) and word.is_type_any(['ref', 'val', 'new']):
+                    if isinstance(word, KeyWord) and word.is_type_of('new'):
+                        value = self.expression()
+                        if isinstance(value, Operation) or isinstance(value, MyvarpClass):
+                            return VarAssignOperation(result.get_child_node(), word, value)
+                        else:
+                            self.set_error(Error('InvalidSyntexaxError', 'Expected an expression'))
+                            return None
+                    elif isinstance(word, KeyWord) and word.is_type_any(['ref', 'val']):
                         value = self.expression()
                         if isinstance(value, VarAccessOperation):
                             return VarAssignOperation(result.get_child_node(), word, value.get_child_node())
                         else:
-                            self.set_error(Error('InvalidSyntaxError', 'Expected an identifier'))
-                            return None
+                            self.set_error(Error('InvalidSyntaxError', 'Expected an Identifier!'))
+                            return
+                    elif word is None:
+                        self.set_error(Error('InvalidSyntaxError', 'Expected ref, val, new or expression'))
                     else:
                         return VarAssignOperation(result.get_child_node(), Word('keyword', 'val'), word)
                 else:
-                    self.set_error(Error('InvalidSyntaxError', 'Expected ref, val or expression'))
+                    self.set_error(Error('InvalidSyntaxError', 'Expected ref, val, new or expression'))
                     return None
 
             return result
-
         else:
             return result
+
+    def statements(self):
+        results = []
+        expression = self.expression()
+        while expression is not None:
+            results.append(expression)
+            if self.get_current_token().is_type_of('run'):
+                self.advance()
+                expression = self.expression()
+            else:
+                logger.debug("end statements: " + str(self.get_current_token()))
+                break
+        return results
+
+    def block(self):
+        if self.get_current_token().is_match(['{', ':']):
+            scope_opener = self.get_current_token()
+            scope_type = self.get_current_token().get_value()
+            self.advance()
+            statements = self.statements()
+            if scope_type == '{':
+                proceed = self.get_current_token().is_match(['}'])
+                is_open = not proceed
+                self.advance()
+            else:
+                proceed = True
+                is_open = True
+
+            return proceed, is_open, scope_opener, statements
+        else:
+            self.set_error(Error('InvalidSyntaxError', 'Expected { or : <1>'))
+            return False, False, None, []

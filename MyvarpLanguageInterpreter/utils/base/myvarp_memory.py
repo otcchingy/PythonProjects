@@ -49,21 +49,25 @@ class MyvarpMemory:
     def set_item(self, key, value, **kwargs):
 
         if kwargs.keys().__contains__('assign_type'):
+
             assign_type = kwargs['assign_type']
 
-            if self.has_key(value):
-                if assign_type == 'new':
-                    if isinstance(value, Identifier):
-                        self.__memory[f'{key}'] = self.get_data_for(value.get_name())
+            if assign_type == 'new':
+                # detach from reference parent and set n
+                self.__memory[f'{key}'] = self.get_data_for(value) if isinstance(value, str) else value
+            else:
+                if self.has_key(key) and isinstance(self.get_value_for(key), self.Reference):
+                    key = self.get_value_for(key).get_referenced_key()
+                # print(f'doing assignment: {key} = {assign_type} {value}')
+                if assign_type == 'val':
+                    self.__memory[f'{key}'] = self.get_data_for(value) if isinstance(value, str) else value
+                elif assign_type == 'ref':
+                    temp_value = self.get_value_for(value)
+                    if isinstance(temp_value, self.Reference):
+                        self.get_referenced_value_for(value)
+                        if temp_value.get_referenced_parent_key() != key:
+                            self.__memory[f'{key}'] = self.reference(value)
                     else:
-                        self.__memory[f'{key}'] = value
-                else:
-                    if self.has_key(key) and isinstance(self.get_value_for(key), self.Reference):
-                        key = self.get_value_for(key).get_referenced_key()
-                    # print(f'doing assignment: {key} = {assign_type} {value}')
-                    if assign_type == 'val':
-                        self.__memory[f'{key}'] = self.get_data_for(value)
-                    elif assign_type == 'ref':
                         self.__memory[f'{key}'] = self.reference(value)
 
         else:

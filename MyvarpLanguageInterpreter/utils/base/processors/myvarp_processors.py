@@ -6,7 +6,7 @@ from utils.base.processors.identifier_processor import IdentifierProcessor
 from utils.base.processors.object_processors import StringProcessor, NumberProcessor
 from utils.base.processors.syntax_processors import SyntaxHelperProcessor, RunProcessor
 
-logging.basicConfig(format="%(levelname)-8s [%(lineno)d] %(message)s", level=logging.DEBUG)
+logging.basicConfig(format="%(levelname)-8s [%(filename)s:%(lineno)d] %(message)s", level=logging.DEBUG)
 # logging.disable(logging.DEBUG)
 logger = logging.getLogger(__name__)
 

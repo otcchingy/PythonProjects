@@ -59,11 +59,11 @@ class ScriptReader(StringEnumerator):
                  '^', '*=', '/=', '==', '>=', '<=',
                  '!=', '**=', '//=', '%=', '%', '^',
                  '~', '=', '/', '*', '+', '-', '>',
-                 '<', '.']
+                 '<', '!', '.']
         return self.peek_next() in items
 
     def is_next_syntax_helper(self):
-        items = [';', ':', '!', '||', '$', '#', '\\', ',', '?', '@', '(',  ')', '[', ']', '{', '}']
+        items = [';', ':', '||', '$', '#', '\\', ',', '?', '@', '(',  ')', '[', ']', '{', '}']
         return self.peek_next() in items
 
     def is_next_dot_operator(self):
@@ -78,9 +78,12 @@ class ScriptReader(StringEnumerator):
     def is_next_new_line(self):
         return self.peek_next() in ['\n']
 
-    def is_next_line_terminator(self):
+    def is_next_scope_terminator(self):
         return self.peek_next() in [';', 'endif', 'endfor', 'endwith', 'endfunc',
                                     'endwhile',  'endswitch',  'endclass', 'endforeach']
+
+    def is_next_line_terminator(self):
+        return self.peek_next() in [';']
 
     def get_next_not_space(self):
         index = self.peek_next_index(not_in=' \n\t\b\a')

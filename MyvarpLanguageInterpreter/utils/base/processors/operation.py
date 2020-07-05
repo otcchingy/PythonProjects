@@ -96,4 +96,4 @@ class DecisionOperation:
         return self.get_else_case() is not None
 
     def __repr__(self):
-        return f'DecisionOperation(<{self.get_if_cases()}, {self.get_else_case()}>)'
+        return f'DecisionOperation(<cases {self.get_if_cases()}, else: {self.get_else_case()}>)'

@@ -1,5 +1,10 @@
 FIX BUGS:
 
+is
+new object
+a = b = c = 4
+line break: ;
+multiline str '''
 argument collection # important //  geArgs and cleanArgs in expression
 continue line '/'
 setting default data types for variables # name = string // name will take only strings in its scope
@@ -9,8 +14,6 @@ finish multline assignment for containers //
     name = 4
     age = 5
 }
-get arg_values
-fix display endl
 isIndexing and containers
 
 

@@ -7,7 +7,7 @@ from utils.builtins.helper_functions import *
 configuring logger
 """
 
-logging.basicConfig(format="%(levelname)-8s [%(lineno)d] %(message)s", level=logging.DEBUG)
+logging.basicConfig(format="%(levelname)-8s [%(filename)s:%(lineno)d] %(message)s", level=logging.DEBUG)
 # logging.disable(logging.DEBUG)
 logger = logging.getLogger(__name__)
 

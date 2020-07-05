@@ -28,6 +28,13 @@ class Primitive(MyvarpClass):
         except Exception as e:
             return Error('InvalidSyntaxError', str(e))
 
+    def is_object(self, other):
+        try:
+            result = self.get_value() is other.get_value()
+            return result
+        except Exception as e:
+            return Error('InvalidSyntaxError', str(e))
+
     def __str__(self):
         return self.get_value()
 
@@ -132,6 +139,10 @@ class Number(Primitive):
     def equal_to(self, other):
         if isinstance(other, Number):
             return Boolean(self.get_value() == other.get_value())
+
+    def not_equal_to(self, other):
+        if isinstance(other, Number):
+            return Boolean(self.get_value() != other.get_value())
 
     def less_than_or_equal_to(self, other):
         if isinstance(other, Number):

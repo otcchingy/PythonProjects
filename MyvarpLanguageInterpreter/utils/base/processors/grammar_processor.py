@@ -1,10 +1,11 @@
 import logging
 
 from utils.base.myvarp_error import Error
-from utils.base.processors.operation import Identifier
+from utils.base.processors.operation import Identifier, DecisionOperation
 from utils.builtins.classes import Number, Empty, Boolean, String
+from utils.collections.stack import Stack
 
-logging.basicConfig(format="%(levelname)-8s [%(lineno)d] %(message)s", level=logging.DEBUG)
+logging.basicConfig(format="%(levelname)-8s [%(filename)s:%(lineno)d] %(message)s", level=logging.DEBUG)
 # logging.disable(logging.DEBUG)
 logger = logging.getLogger(__name__)
 
@@ -41,10 +42,11 @@ class MyvarpGrammarProcessor:
         self._result = self._process(self.get_operation())
 
     def _process(self, operation):
-        method_name = f'process_{type(operation).__name__}'
-        logger.debug(f'trying to run method {method_name}')
-        method = getattr(self, method_name, self.process_invalid_operation)
-        return method(operation)
+        if not self.has_error():
+            method_name = f'process_{type(operation).__name__}'
+            logger.debug(f'trying to run method {method_name}')
+            method = getattr(self, method_name, self.process_invalid_operation)
+            return method(operation)
 
     def process_invalid_operation(self, operation):
         raise Exception(f'method for operation {operation} does not exist!')
@@ -80,9 +82,10 @@ class MyvarpGrammarProcessor:
     def process_VarAccessOperation(self, operation):
         logger.debug(f'doing var access: {operation}')
         process = self.get_interpreter().get_property(operation.get_child_node().get_name())
+        logger.debug(f'result of var access: {process}')
         if process.get_type() == 'exception':
-            return self.set_error(Error('UndefinedNameError',
-                                        f'The Symbol \'{operation.get_child_node().get_name()}\' does not exist'))
+            self.set_error(Error('UndefinedNameError',
+                                 f'The Symbol \'{operation.get_child_node().get_name()}\' does not exist'))
         else:
             return process.get_result()
 
@@ -93,19 +96,29 @@ class MyvarpGrammarProcessor:
         value = self._process(operation.get_right_node())
         logger.debug(f'{identifier} = {value}')
 
+        if self.has_error():
+            return
+
+        print(type(value))
+
         if isinstance(value, Identifier):
             if self.get_interpreter().has_property(value.get_name()):
                 self.get_interpreter().set_property(identifier.get_name(), value.get_name(), assign_type=assign_type)
             else:
-                self.set_error(Error('UndefinedNameError',
-                                     f'The Symbol \'{value.get_name()}\' does not exist'))
+                self.set_error(Error('UndefinedNameError', f'The Symbol \'{value.get_name()}\' does not exist'))
         else:
-            self.get_interpreter().set_property(identifier.get_name(), value)
+            self.get_interpreter().set_property(identifier.get_name(), value, assign_type=assign_type)
+
+        print(self.get_interpreter().get_memory())
 
         return None
 
     def process_UnaryOperation(self, operation):
         _object = self._process(operation.get_child_node())
+
+        if self.has_error():
+            return
+
         if isinstance(_object, Number):
             if operation.get_operator().is_type_of('+'):
                 return Number(0).plus(_object)
@@ -115,7 +128,7 @@ class MyvarpGrammarProcessor:
                 return Boolean(not bool(_object.get_value()))
         elif isinstance(_object, Boolean):
             if operation.get_operator().is_type_any(['!', 'not']):
-                return Boolean(int(_object.get_value()))
+                return Boolean(not bool(_object.get_value()))
         elif isinstance(_object, String):
             if operation.get_operator().is_type_any(['!', 'not']):
                 return Boolean(not bool(_object.get_value() != "''" and _object.get_value() != "''"))
@@ -127,10 +140,19 @@ class MyvarpGrammarProcessor:
         object1 = self._process(operation.get_left_node())
         object2 = self._process(operation.get_right_node())
 
+        if self.has_error():
+            return
+
         if operation.get_operator().is_type_of('+'):
             return object1.plus(object2)
         elif operation.get_operator().is_type_of('-'):
             return object1.minus(object2)
+        elif operation.get_operator().is_type_of('//'):
+            result = object1.abs_div(object2)
+            if isinstance(result, Number):
+                return result
+            else:
+                return self.set_error(result)
         elif operation.get_operator().is_type_of('/'):
             result = object1.div(object2)
             if isinstance(result, Number):
@@ -147,6 +169,8 @@ class MyvarpGrammarProcessor:
             return object1.greater_than(object2)
         elif operation.get_operator().is_type_of('=='):
             return object1.equal_to(object2)
+        elif operation.get_operator().is_type_of('!='):
+            return object1.not_equal_to(object2)
         elif operation.get_operator().is_type_of('<='):
             return object1.less_than_or_equal_to(object2)
         elif operation.get_operator().is_type_of('>='):
@@ -155,9 +179,41 @@ class MyvarpGrammarProcessor:
             return object1.and_op(object2)
         elif operation.get_operator().is_type_any(['or', '||']):
             return object1.or_op(object2)
+        elif operation.get_operator().is_type_any(['is']):
+            return object1.is_object(object2)
 
-    def process_DecisionOperation(self, operation):
+    def process_DecisionOperation(self, operation: DecisionOperation):
         print(operation)
+        outputs = []
+        has_true_condition = False
+        for case in operation.get_if_cases():
+            self._operation = case[0]
+            self.process()
+            result = self.get_result()
+            if self.has_error():
+                return
+
+            has_true_condition = result.get_value()
+            if has_true_condition:
+                block = case[1]
+                for statement in block:
+                    self._operation = statement
+                    self.process()
+                    output = self.get_result()
+                    if self.has_error():
+                        return
+
+                    if output is not None:
+                        outputs.append(output)
+                break
+
+        if not has_true_condition and operation.has_else_case():
+            for statement in operation.get_else_case():
+                output = self._process(statement)
+                if output is not None:
+                    outputs.append(output)
+
+        return outputs
 
     def __repr__(self):
         return f'MyvarpGrammarProcessor<{self.get_operation()}>'

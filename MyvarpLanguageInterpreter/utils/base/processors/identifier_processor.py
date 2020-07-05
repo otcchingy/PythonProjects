@@ -3,7 +3,7 @@ import logging
 from utils.base.processors.null_processor import NullProcessor
 from utils.base.processors.grammar_processor import MyvarpGrammarProcessor
 
-logging.basicConfig(format="%(levelname)-8s [%(lineno)d] %(message)s", level=logging.DEBUG)
+logging.basicConfig(format="%(levelname)-8s [%(filename)s:%(lineno)d] %(message)s", level=logging.DEBUG)
 # logging.disable(logging.DEBUG)
 logger = logging.getLogger(__name__)
 

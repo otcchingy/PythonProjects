@@ -11,7 +11,7 @@ from utils.builtins.constants import DEFAULT_STARTUP_ENVIRON
 from utils.builtins.helper_functions import *
 from utils.collections.stack import Stack
 
-logging.basicConfig(format="%(levelname)-8s [%(lineno)d] %(message)s", level=logging.DEBUG)
+logging.basicConfig(format="%(levelname)-8s [%(filename)s:%(lineno)d] %(message)s", level=logging.DEBUG)
 # logging.disable(logging.DEBUG)
 logger = logging.getLogger(__name__)
 
@@ -325,8 +325,12 @@ class MyvarpScriptInterpreter(MyvarpScriptReader):
 
                     if is_builtin(self._script.peek_next()):
                         if is_keyword(self._script.peek_next()):
-                            word = Word('builtins.keyword.' + self._script.peek_next_not_space(),
-                                        self.get_next_not_space())
+                            if self._script.is_next_scope_terminator():
+                                word = Word('builtins.keyword.terminator.' + self._script.peek_next_not_space(),
+                                            self.get_next_not_space())
+                            else:
+                                word = Word('builtins.keyword.' + self._script.peek_next_not_space(),
+                                            self.get_next_not_space())
                         elif is_builtin_type(self._script.peek_next()):
                             word = Word('builtins.object.type', self.get_next_not_space())
                         elif is_builtin_object(self._script.peek_next()):
@@ -404,14 +408,16 @@ class MyvarpScriptInterpreter(MyvarpScriptReader):
             else:
                 parse_result = parser.get_result()
                 logger.debug(f'ParseResult: {parse_result}')
-                processor = MyvarpGrammarProcessor(self, parse_result)
-                processor.process()
-                if processor.has_error():
-                    logger.debug(f'submitting error: {processor.get_error()}')
-                    self.set_error(processor.get_error())
-                if not self.has_error():
-                    logger.debug(f'submitting result: {processor.get_result()}')
-                    self.set_result(processor.get_result())
+                # parse_result = [list of expressions]
+                for statement in parse_result:
+                    processor = MyvarpGrammarProcessor(self, statement)
+                    processor.process()
+                    if processor.has_error():
+                        logger.debug(f'submitting error: {processor.get_error()}')
+                        self.set_error(processor.get_error())
+                    if not self.has_error():
+                        logger.debug(f'submitting result: {processor.get_result()}')
+                        self.set_result(processor.get_result())
 
         self.get_tokens().clear()
 
