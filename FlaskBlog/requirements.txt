@@ -1,5 +1,5 @@
 aiofiles==0.3.2
-aiohttp==3.3.2
+aiohttp==3.7.4
 altgraph==0.15
 antiorm==1.2.1
 asn1crypto==0.24.0
