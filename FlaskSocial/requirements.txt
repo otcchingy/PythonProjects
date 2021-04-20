@@ -83,7 +83,7 @@ passlib==1.7.1
 peewee==3.5.0
 psycopg2==2.7.5
 ptyprocess==0.6.0
-py==1.5.4
+py==1.10.0
 PyMySQL==0.8.1
 python-dateutil==1.5
 python-engineio==2.1.1
