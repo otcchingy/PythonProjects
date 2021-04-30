@@ -85,7 +85,7 @@ query-string==1.0.1
 raven==6.9.0
 request==1.0.1
 requests==2.18.4
-rsa==3.4.2
+rsa==4.7
 six==1.11.0
 socketIO-client==0.7.2
 speaklater==1.3
