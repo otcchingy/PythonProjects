@@ -102,7 +102,7 @@ SQLAlchemy-Searchable==1.0.3
 SQLAlchemy-Utils==0.33.3
 tornado==5.1
 twilio==6.15.1
-urllib3==1.22
+urllib3==1.26.5
 validators==0.12.6
 vcversioner==2.16.0.0
 virtualenv==16.0.0
